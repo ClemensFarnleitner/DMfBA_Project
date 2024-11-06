@@ -4,8 +4,6 @@ import requests
 url = "https://stackoverflow.com/questions/tagged/h2o"
 response = requests.get(url)
 soup = BeautifulSoup(response.content, "html.parser")
-
-# Finding the main questions container
 questions_container = soup.find("div", id="questions")
 
 # Dictionaries to store summary and detailed question data
@@ -49,20 +47,31 @@ for question in questions_container.find_all("div", class_="s-post-summary"):
     date_created = metadata_container.find("time", itemprop="dateCreated")['datetime'] if metadata_container.find("time", itemprop="dateCreated") else None
     last_activity_element = metadata_container.find("a", href="?lastactivity")
     last_activity_date = last_activity_element['title'] if last_activity_element else None
-    view_count = int(question_soup.find("div", class_ ="flex--item ws-nowrap mb8")['title'].split()[1])
-    
+    view_count = int(question_soup.find("div", class_ ="flex--item ws-nowrap mb8")['title'].split()[1]) if question_soup.find("div", class_ ="flex--item ws-nowrap mb8") else int(question_soup.find("div", class_ ="flex--item ws-nowrap mb8 mr16")['title'].split()[1])
 
 
-
-
-
-    questions_details = {
+    questions_details[post_id] = {
         "date_created": date_created,
         "last_activity_date": last_activity_date,
-        "view_count": view_count
+        "view_count": view_count,
     }
 
     break
 
-print(questions_summary)
-print(questions_details)
+for item in questions_summary:
+    print("**********", item, "**********")
+    print("votes: ", questions_summary[item]["votes"])  
+    print("answers: ", questions_summary[item]["answers"])
+    print("views: ", questions_summary[item]["views"])
+    print("title: ", questions_summary[item]["title"])
+    print("link: ", questions_summary[item]["link"])
+    print("excerpt: ", questions_summary[item]["excerpt"])
+    print("tags: ", questions_summary[item]["tags"])
+    print("user_name: ", questions_summary[item]["user_name"])
+    print("user_rep: ", questions_summary[item]["user_rep"])
+    
+    print("question details:")
+    print("date_created: ", questions_details[item]["date_created"])
+    print("last_activity_date: ", questions_details[item]["last_activity_date"])
+    print("view_count: ", questions_details[item]["view_count"])
+    print("\n")
