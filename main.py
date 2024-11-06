@@ -11,7 +11,7 @@ questions_summary = {}
 questions_details = {}
 answers = []
 
-x = 0
+x = 1
 # Loop through each question summary
 for question in questions_container.find_all("div", class_="s-post-summary"):
     post_id = question.get("data-post-id")
@@ -116,10 +116,12 @@ for question in questions_container.find_all("div", class_="s-post-summary"):
             for comment in comments_container.find_all("li", class_="comment"):
                 comment_text = comment.find("span", class_="comment-copy").get_text(strip=True)
                 comment_author = comment.find("a", class_="comment-user").text
+                comment_author_link = "https://stackoverflow.com" + comment.find("a", class_="comment-user")["href"]
                 comment_date = comment.find("span", class_="relativetime-clean").get_text()
                 comments.append({
                     "comment_text": comment_text,
                     "comment_author": comment_author,
+                    "comment_author_link": comment_author_link,
                     "comment_date": comment_date
                 })
 
@@ -139,38 +141,40 @@ for question in questions_container.find_all("div", class_="s-post-summary"):
     questions_details[post_id]["answer_count"] = answer_count
     questions_details[post_id]["answers"] = answers
 
-    if x == 10:
+    if x == 1:
         break
     x += 1
 
 # Output each question's summary and details
-for item in questions_summary:
-    print(f"\n{'='*40}\nQuestion ID: {item}\n{'='*40}")
-    print(f"Title: {questions_summary[item]['title']}")
-    print(f"Link: {questions_summary[item]['link']}")
-    print(f"Votes: {questions_summary[item]['votes']}")
-    print(f"Answers: {questions_summary[item]['answers']}")
-    print(f"Views (Summary): {questions_summary[item]['views']}")
-    print(f"Excerpt: {questions_summary[item]['excerpt']}")
-    print(f"Tags: {', '.join(questions_summary[item]['tags'])}")
-    print(f"Posted by: {questions_summary[item]['user_name']} (Reputation: {questions_summary[item]['user_rep']})")
+for item_id, summary in questions_summary.items():
+    print(f"\n{'='*40}\nQuestion ID: {item_id}\n{'='*40}")
+    print(f"Title: {summary['title']}")
+    print(f"Link: {summary['link']}")
+    print(f"Votes: {summary['votes']}")
+    print(f"Answers: {summary['answers']}")
+    print(f"Views (Summary): {summary['views']}")
+    print(f"Excerpt: {summary['excerpt']}")
+    print(f"Tags: {', '.join(summary['tags'])}")
+    print(f"Posted by: {summary['user_name']} (Reputation: {summary['user_rep']})\n")
 
-    print("\nQuestion Details:")
-    print(f"Date Created: {questions_details[item]['date_created']}")
-    print(f"Last Activity Date: {questions_details[item]['last_activity_date']}")
-    print(f"View Count: {questions_details[item]['view_count']}")
-    print(f"Detailed Tags: {', '.join(questions_details[item]['detailed_tags'])}")
-    print(f"Question Text:\n{questions_details[item]['question_text']}\n")
+    # Get details for the current question
+    details = questions_details.get(item_id, {})
+    print("Question Details:")
+    print(f"Date Created: {details.get('date_created', 'N/A')}")
+    print(f"Last Activity Date: {details.get('last_activity_date', 'N/A')}")
+    print(f"View Count: {details.get('view_count', 'N/A')}")
+    print(f"Detailed Tags: {', '.join(details.get('detailed_tags', []))}")
+    print(f"Question Text:\n{details.get('question_text', 'N/A')}\n")
 
     print("User Details:")
-    print(f"User Name: {questions_details[item]['user_name']}")
-    print(f"Profile Link: {questions_details[item]['user_profile_link']}")
-    print(f"Reputation Score: {questions_details[item]['reputation_score']}")
-    print(f"Badges: {questions_details[item]['badges']}")
-    print(f"Answer Count: {questions_details[item]['answer_count']}")
+    print(f"User Name: {details.get('user_name', 'N/A')}")
+    print(f"Profile Link: {details.get('user_profile_link', 'N/A')}")
+    print(f"Reputation Score: {details.get('reputation_score', 'N/A')}")
+    print(f"Badges: {details.get('badges', 'N/A')}")
+    print(f"Answer Count: {details.get('answer_count', 'N/A')}\n")
 
-    print("\nAnswers:")
-    for i, answer in enumerate(questions_details[item]["answers"], start=1):
+    print("Answers:")
+    for i, answer in enumerate(details.get("answers", []), start=1):
         print(f"\n  Answer {i}:")
         print(f"  Answer ID: {answer['answer_id']}")
         print(f"  Vote Count: {answer['vote_count']}")
@@ -178,13 +182,15 @@ for item in questions_summary:
         print(f"  Creation Date: {answer['creation_date']}")
         print(f"  Answered by: {answer['user_name']} (Profile: {answer['user_profile_link']})")
         print(f"  Reputation: {answer['reputation_score']}")
-        
+
         print("  Comments:")
         if answer["comments"]:
             for j, comment in enumerate(answer["comments"], start=1):
                 print(f"    Comment {j}:")
                 print(f"      Text: {comment['comment_text']}")
                 print(f"      Author: {comment['comment_author']}")
+                print(f"      Author Profile: {comment['comment_author_link']}")
                 print(f"      Date: {comment['comment_date']}")
         else:
             print("    No comments.")
+
