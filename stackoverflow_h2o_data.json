@@ -1,0 +1,504 @@
+{
+    "questions_summary": {
+        "79045928": {
+            "votes": "0",
+            "answers": "1",
+            "views": "27",
+            "title": "H2O GradientBoostingEstimator (GBM) - Group subitems of a feature together for training",
+            "link": "https://stackoverflow.com/questions/79045928/h2o-gradientboostingestimator-gbm-group-subitems-of-a-feature-together-for-t",
+            "excerpt": "I have the scenario where you have a feature, call it X, with possible values it can hold, say x1, x2, x3, x4. I want the GBM in H2O to train x1 and x3 together so that they are predicted with the ...",
+            "tags": [
+                "h2o",
+                "gbm"
+            ],
+            "user_name": "Adam",
+            "user_rep": "21"
+        },
+        "79033110": {
+            "votes": "0",
+            "answers": "1",
+            "views": "54",
+            "title": "How can I install JRE/Java in pydroid3",
+            "link": "https://stackoverflow.com/questions/79033110/how-can-i-install-jre-java-in-pydroid3",
+            "excerpt": "Everytime when I run h2o on pydroid3 then it says I need Java/JRE for it to work. ERROR:\nChecking whether there is an H2O instance running at http://localhost:54321..... not found.\nAttempting to start ...",
+            "tags": [
+                "python",
+                "java",
+                "mobile",
+                "h2o"
+            ],
+            "user_name": "XuhanChen",
+            "user_rep": "1"
+        },
+        "78995266": {
+            "votes": "0",
+            "answers": "2",
+            "views": "49",
+            "title": "h2o predict error: Test/Validation dataset has no columns in common with the training set",
+            "link": "https://stackoverflow.com/questions/78995266/h2o-predict-error-test-validation-dataset-has-no-columns-in-common-with-the-tra",
+            "excerpt": "I'm attempting to implement the deeplearning function in the h2o package and obtain a persistent error despite (seemingly) following the example given in the documentation for the package:\nhttps://www....",
+            "tags": [
+                "r",
+                "deep-learning",
+                "h2o"
+            ],
+            "user_name": "Max",
+            "user_rep": "569"
+        },
+        "78986631": {
+            "votes": "0",
+            "answers": "3",
+            "views": "63",
+            "title": "Error with H2O in R - No active connection to an H2O cluster despite \"Successful Connection\"",
+            "link": "https://stackoverflow.com/questions/78986631/error-with-h2o-in-r-no-active-connection-to-an-h2o-cluster-despite-successful",
+            "excerpt": "I would like to switch the parsinp engine to h2o and use h2o and agua packages to fit models. The following code is from the standard help site.\nWith tune::tune_grid, I bump into the \"Warning: ...",
+            "tags": [
+                "r",
+                "connection",
+                "h2o",
+                "hyperparameters",
+                "tidymodels"
+            ],
+            "user_name": "Sasha Babaei",
+            "user_rep": "485"
+        },
+        "78853756": {
+            "votes": "0",
+            "answers": "2",
+            "views": "78",
+            "title": "h2o variable importance for GLM models in R",
+            "link": "https://stackoverflow.com/questions/78853756/h2o-variable-importance-for-glm-models-in-r",
+            "excerpt": "I ran a GLM model using h2o in r (the model was saved as an object called mod), the dataset contains categorical and continuous predictors. I called the h2o.varimp function on mod to retrieve the ...",
+            "tags": [
+                "r",
+                "h2o"
+            ],
+            "user_name": "ZTraveler",
+            "user_rep": "1"
+        },
+        "78716974": {
+            "votes": "0",
+            "answers": "1",
+            "views": "48",
+            "title": "H20 error in R: Error en .Call(R_curl_fetch_memory, enc2utf8(url), handle, nonblocking): the elapsed time limit has been reached",
+            "link": "https://stackoverflow.com/questions/78716974/h20-error-in-r-error-en-callr-curl-fetch-memory-enc2utf8url-handle-nonbl",
+            "excerpt": "When I am trying to run the function h2o.splitFrame from H2O, I receive the following error:\nError en .Call(R_curl_fetch_memory, enc2utf8(url), handle, nonblocking): \n  se ha alcanzado el l\u00edmite de ...",
+            "tags": [
+                "r",
+                "h2o",
+                "h2o.ai"
+            ],
+            "user_name": "user23479948",
+            "user_rep": "1"
+        },
+        "78449790": {
+            "votes": "0",
+            "answers": "0",
+            "views": "64",
+            "title": "H2O AutoML - reproducing results",
+            "link": "https://stackoverflow.com/questions/78449790/h2o-automl-reproducing-results",
+            "excerpt": "I am running H2O AutoML on the same date set with the same seed on the same laptop multiple times and getting different predictions from time to time. I wonder if it is possible to get the same ...",
+            "tags": [
+                "h2o",
+                "automl",
+                "reproducible-research"
+            ],
+            "user_name": "user1700890",
+            "user_rep": "7,630"
+        },
+        "78444040": {
+            "votes": "0",
+            "answers": "3",
+            "views": "64",
+            "title": "Need Guidance on Predictions with rand_forest and h2o with R",
+            "link": "https://stackoverflow.com/questions/78444040/need-guidance-on-predictions-with-rand-forest-and-h2o-with-r",
+            "excerpt": "I have a random forest model that I'm trying to understand better.\nFor the sake of the example, lets say we have a grove of blueberry bushes. What we're interested in is predicting the production of ...",
+            "tags": [
+                "r",
+                "machine-learning",
+                "classification",
+                "h2o",
+                "predict"
+            ],
+            "user_name": "SqueakyBeak",
+            "user_rep": "432"
+        },
+        "78250475": {
+            "votes": "0",
+            "answers": "1",
+            "views": "81",
+            "title": "Error while using predict function for h2o.deeplearning model on raster stack",
+            "link": "https://stackoverflow.com/questions/78250475/error-while-using-predict-function-for-h2o-deeplearning-model-on-raster-stack",
+            "excerpt": "I am trying to use h2o.deeplearning model to predict on raster data. It returns me the following error\n\nError: Not compatible with requested type: [type=character; target=double].\n\nHere is a minimal, ...",
+            "tags": [
+                "r",
+                "h2o",
+                "predict",
+                "terra"
+            ],
+            "user_name": "UseR10085",
+            "user_rep": "8,052"
+        },
+        "78245999": {
+            "votes": "-1",
+            "answers": "1",
+            "views": "89",
+            "title": "java.lang.AssertionError when trying to train certain datasets with h2o",
+            "link": "https://stackoverflow.com/questions/78245999/java-lang-assertionerror-when-trying-to-train-certain-datasets-with-h2o",
+            "excerpt": "I am getting an error for my desired dataset when trying to use an isolation forest method to detect anomalies. However I have another completely different dataset that it works fine for, what could ...",
+            "tags": [
+                "python",
+                "java",
+                "h2o"
+            ],
+            "user_name": "Amon",
+            "user_rep": "2,931"
+        }
+    },
+    "questions_details": {
+        "79045928": {
+            "date_created": "2024-10-02T08:26:43",
+            "last_activity_date": "2024-10-03 08:20:49Z",
+            "view_count": 27,
+            "question_text": "I have the scenario where you have a feature, call it X, with possible values it can hold, say x1, x2, x3, x4. I want the GBM in H2O to train x1 and x3 together so that they are predicted with the same output value.\n\n\nAny suggestions how to do this would be appreciated. :)",
+            "detailed_tags": [
+                "h2o",
+                "gbm"
+            ],
+            "user_name": "Adam",
+            "user_profile_link": "https://stackoverflow.com/users/12979649/adam",
+            "reputation_score": "21",
+            "badges": {
+                "bronze": "4"
+            },
+            "answer_count": 1,
+            "answers": [
+                {
+                    "answer_id": "79049681",
+                    "vote_count": 0,
+                    "answer_content": "What is the use case for this scenario? Is it the classification or regression problem? It always depends on the training data. From training data, the model learns how to predict. If you have the same output value for X1 and X3, the model will also expect the same predicted value for these features for test data.\n\n\nI don't know any reason to constrain model output for concrete values. If you want the output to be the same for x1 and x3, you can pick the predicted value for x1 and replace it with the predicted value for x3.",
+                    "creation_date": "2024-10-03T08:20:49",
+                    "user_name": "Maurever",
+                    "user_profile_link": "https://stackoverflow.com/users/5036600/maurever",
+                    "reputation_score": "157",
+                    "comments": [
+                        {
+                            "comment_text": "It is for regression. The problem with your solution, is you are loosing all the data for x3 in the training stage, and so the model will not perform as well as it could have.   Instead, I am looking for a way to group x1 and x3 together so that it trains them as the same, even thought their values aren't.",
+                            "comment_author": "Adam",
+                            "comment_author_link": "https://stackoverflow.com/users/12979649/adam",
+                            "comment_date": "Oct 4 at 11:32"
+                        },
+                        {
+                            "comment_text": "Hi Adam. I still don't understand your problem well. Could you please explain your issue using a simple example with concrete data? Thanks!",
+                            "comment_author": "Maurever",
+                            "comment_author_link": "https://stackoverflow.com/users/5036600/maurever",
+                            "comment_date": "Oct 16 at 9:11"
+                        }
+                    ]
+                }
+            ]
+        },
+        "79033110": {
+            "date_created": "2024-09-27T23:03:19",
+            "last_activity_date": "2024-09-30 07:34:12Z",
+            "view_count": 54,
+            "question_text": "Everytime when I run h2o on pydroid3 then it says I need Java/JRE for it to work. ERROR:\n\n\nChecking whether there is an H2O instance running at http://localhost:54321..... not found.\n\n\nAttempting to start a local H2O server...\n\n\nTraceback (most recent call last):\n\n\nFile \"/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.11/site-packages/h2o/h2o.py\", line 270, in init\n\n\nh2oconn = H2OConnection.open(url=url, ip=ip, port=port, name=name, https=https,\n\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n\nFile \"/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.11/site-packages/h2o/backend/connection.py\", line 406, in open\n\n\nconn._cluster = conn._test_connection(retries, messages=msgs)\n\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n\nFile \"/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.11/site-packages/h2o/backend/connection.py\", line 713, in _test_connection\n\n\nraise H2OConnectionError(\"Could not establish link to the H2O cloud %s after %d retries\\n%s\"\n\n\n\nh2o.exceptions.H2OConnectionError: Could not establish link to the H2O cloud http://localhost:54321 after 5 retries\n\n\n[22:07.97] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Metadata/schemas/CloudV3 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79554692d0>: Failed to establish a new connection: [Errno 111] Connection refused'))\n\n\n[22:08.19] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Metadata/schemas/CloudV3 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x795546b1d0>: Failed to establish a new connection: [Errno 111] Connection refused'))\n\n\n[22:08.41] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Metadata/schemas/CloudV3 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x795546b810>: Failed to establish a new connection: [Errno 111] Connection refused'))\n\n\n[22:08.63] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Metadata/schemas/CloudV3 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7955065450>: Failed to establish a new connection: [Errno 111] Connection refused'))\n\n\n[22:08.85] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Metadata/schemas/CloudV3 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7955067390>: Failed to establish a new connection: [Errno 111] Connection refused'))\n\n\nDuring handling of the above exception, another exception occurred:\n\n\nTraceback (most recent call last):\n\n\nFile \"/data/user/0/ru.iiec.pydroid3/files/accomp_files/iiec_run/iiec_run.py\", line 31, in \n\n\nstart(fakepyfile,mainpyfile)\n\n\n\nFile \"/data/user/0/ru.iiec.pydroid3/files/accomp_files/iiec_run/iiec_run.py\", line 30, in start\n\n\nexec(open(mainpyfile).read(),  __main__.__dict__)\n\n\n\nFile \"\", line 19, in \n\n\nFile \"/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.11/site-packages/h2o/h2o.py\", line 287, in init\n\n\nhs = H2OLocalServer.start(nthreads=nthreads, enable_assertions=enable_assertions, max_mem_size=mmax,\n\n     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n\nFile \"/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.11/site-packages/h2o/backend/server.py\", line 139, in start\n\n\nhs._launch_server(port=port, baseport=baseport, nthreads=int(nthreads), ea=enable_assertions,\n\n\n\nFile \"/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.11/site-packages/h2o/backend/server.py\", line 271, in _launch_server\n\n\njava = self._find_java()\n\n       ^^^^^^^^^^^^^^^^^\n\n\n\nFile \"/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.11/site-packages/h2o/backend/server.py\", line 453, in _find_java\n\n\nraise H2OStartupError(\"Cannot find Java. Please install the latest JRE from\\n\"\n\n\n\nh2o.exceptions.H2OStartupError: Cannot find Java. Please install the latest JRE from\n\n\nhttp://docs.h2o.ai/h2o/latest-stable/h2o-docs/welcome.html#java-requirements\n\n\n[Program finished]\n\n\nI tried nothing, cant find any information to download it.",
+            "detailed_tags": [
+                "python",
+                "java",
+                "mobile",
+                "h2o"
+            ],
+            "user_name": "XuhanChen",
+            "user_profile_link": "https://stackoverflow.com/users/27513799/xuhanchen",
+            "reputation_score": "1",
+            "badges": {
+                "bronze": null
+            },
+            "answer_count": 1,
+            "answers": [
+                {
+                    "answer_id": "79038349",
+                    "vote_count": 0,
+                    "answer_content": "I think there might be two issues:\n\n\n\n\ninstalling correct version of java,\n\n\ntelling H2O where the java is.\n\n\n\n\nI'm not sure what's the best way to do the (1) but I think I might help with the (2).\n\n\nOnce you install java and if it doesn't work, it's likely due to different than usual file paths. To mitigate this issue you can set \nJAVA_HOME\n or \nH2O_JAVA_HOME\n environment variables to point to your java installation or you can even \nstart the h2o backend manually\n and then call \nh2o.connect()\n instead of \nh2o.init()\n.",
+                    "creation_date": "2024-09-30T07:34:12",
+                    "user_name": "Tom\u00e1\u0161 Fr\u00fdda",
+                    "user_profile_link": "https://stackoverflow.com/users/13566678/tom%c3%a1%c5%a1-fr%c3%bdda",
+                    "reputation_score": "591",
+                    "comments": []
+                }
+            ]
+        },
+        "78995266": {
+            "date_created": "2024-09-17T17:55:20",
+            "last_activity_date": "2024-09-18 12:11:50Z",
+            "view_count": 0,
+            "question_text": "I'm attempting to implement the deeplearning function in the h2o package and obtain a persistent error despite (seemingly) following the example given in the documentation for the package:\n\n\nhttps://www.rdocumentation.org/packages/h2o/versions/3.44.0.3/topics/h2o.deeplearning\n\n\nMy inputs are y, a length-n vector of 0,1 indicating binary outcomes, and an nxm matrix of integers x which are my predictor variables.\n\n\nlibrary(h2o)\nh2o.init()\n\ny = as.factor(y)\nxnew = cbind(y,x)\nxnew = data.frame(xnew)\n#create a single data frame with response variable y and predictor variables x\nx_df = as.h2o(xnew)\n# formats dataframe as h2o data object\nnn_model_training = h2o.deeplearning(y=1,training_frame = x_df)\n\n\n\nwhich executes without issue. I now wish to use the nn_model_training to predict outcomes for a test set. To have the same column names as in the model, I take 2...m from the training_frame (i.e. exclude outcome variable y):\n\n\nkeep_names = names(x_df)[2:length(x_df[1,])]\nx_new = Test_Mat\nx_new = data.frame(x_new)\nnames(x_new) = keep_names\nx_df_new = as.h2o(x_new)\n\nnn_predicted = h2o.predict(nn_model_training, x_df_new)\n\n\n\nwhich immediately results in the error\n\n\n*Error: java.lang.IllegalArgumentException: Test/Validation dataset has no columns in common with the training set*\n\n\n\ndespite the fact that I renamed the columns to match the names of the x-variables in the training set.\n\n\nWhat am I doing incorrectly when implementing the h2o.predict() ?",
+            "detailed_tags": [
+                "r",
+                "deep-learning",
+                "h2o"
+            ],
+            "user_name": "Max",
+            "user_profile_link": "https://stackoverflow.com/users/5904690/max",
+            "reputation_score": "569",
+            "badges": {
+                "bronze": "7"
+            },
+            "answer_count": 1,
+            "answers": [
+                {
+                    "answer_id": "78995415",
+                    "vote_count": 1,
+                    "answer_content": "Please check and make sure the test data frame \nx_df_new\n has the same predictor column names as your \nx_df\n.\n\n\nYou can find the names of a h2o frame by calling \nnames(x_df)",
+                    "creation_date": "2024-09-17T18:47:25",
+                    "user_name": "jpsmith",
+                    "user_profile_link": "https://stackoverflow.com/users/12109788/jpsmith",
+                    "reputation_score": "16.2k",
+                    "comments": [
+                        {
+                            "comment_text": "Yes, the column names are the same. That's the reason why the error that I'm getting makes no sense to me. At first I thought that I had failed to convert some variable into an h2o frame, but that doesn't seem to be the case either.",
+                            "comment_author": "Max",
+                            "comment_author_link": "https://stackoverflow.com/users/5904690/max",
+                            "comment_date": "Sep 17 at 20:27"
+                        },
+                        {
+                            "comment_text": "I also thought that in the test set I might need the y variable as a placeholder (even though it isn't used), but I get the same results with or without it in x_df_new",
+                            "comment_author": "Max",
+                            "comment_author_link": "https://stackoverflow.com/users/5904690/max",
+                            "comment_date": "Sep 17 at 20:34"
+                        }
+                    ]
+                }
+            ]
+        },
+        "78986631": {
+            "date_created": "2024-09-15T04:36:28",
+            "last_activity_date": "2024-09-19 21:19:57Z",
+            "view_count": 0,
+            "question_text": "I would like to switch the parsinp engine to h2o and use h2o and agua packages to fit models. The following code is from the standard help site.\n\n\nWith \ntune::tune_grid\n, I bump into the \n\"Warning: All models failed ...\"\n, which is due to \"\nError in\n \nh2o.getConnection()\n: \nNo active connection to an H2O cluster ...\"\n. Although the output of \nh2o.getConnection()\n immediately before and after \ntune_grid\n suggest everything should be OK.\n\n\nlibrary(ggplot2)\nlibrary(tidymodels)\nlibrary(agua)\n#> \n#> Attaching package: 'agua'\n#> The following object is masked from 'package:workflowsets':\n#> \n#>     rank_results\nlibrary(h2o)\n#> \n#> ----------------------------------------------------------------------\n#> \n#> Your next step is to start H2O:\n#>     > h2o.init()\n#> \n#> For H2O package documentation, ask for help:\n#>     > ??h2o\n#> \n#> After starting H2O, you can use the Web UI at http://localhost:54321\n#> For more information visit https://docs.h2o.ai\n#> \n#> ----------------------------------------------------------------------\n#> \n#> Attaching package: 'h2o'\n#> The following objects are masked from 'package:stats':\n#> \n#>     cor, sd, var\n#> The following objects are masked from 'package:base':\n#> \n#>     %*%, %in%, &&, ||, apply, as.factor, as.numeric, colnames,\n#>     colnames<-, ifelse, is.character, is.factor, is.numeric, log,\n#>     log10, log1p, log2, round, signif, trunc\n\ndoParallel::registerDoParallel()\n\nh2o::h2o.init()\n#>  Connection successful!\n#> \n#> R is connected to the H2O cluster: \n#>     H2O cluster uptime:         50 minutes 51 seconds \n#>     H2O cluster timezone:       America/New_York \n#>     H2O data parsing timezone:  UTC \n#>     H2O cluster version:        3.46.0.5 \n#>     H2O cluster version age:    16 days \n#>     H2O cluster name:           H2O_started_from_R_siava_dqu656 \n#>     H2O cluster total nodes:    1 \n#>     H2O cluster total memory:   13.28 GB \n#>     H2O cluster total cores:    32 \n#>     H2O cluster allowed cores:  32 \n#>     H2O cluster healthy:        TRUE \n#>     H2O Connection ip:          localhost \n#>     H2O Connection port:        54321 \n#>     H2O Connection proxy:       NA \n#>     H2O Internal Security:      FALSE \n#>     R Version:                  R version 4.4.1 (2024-06-14 ucrt)\nh2o::h2o.connect()\n#>  Connection successful!\n#> \n#> R is connected to the H2O cluster: \n#>     H2O cluster uptime:         50 minutes 54 seconds \n#>     H2O cluster timezone:       America/New_York \n#>     H2O data parsing timezone:  UTC \n#>     H2O cluster version:        3.46.0.5 \n#>     H2O cluster version age:    16 days \n#>     H2O cluster name:           H2O_started_from_R_siava_dqu656 \n#>     H2O cluster total nodes:    1 \n#>     H2O cluster total memory:   13.28 GB \n#>     H2O cluster total cores:    32 \n#>     H2O cluster allowed cores:  32 \n#>     H2O cluster healthy:        TRUE \n#>     H2O Connection ip:          localhost \n#>     H2O Connection port:        54321 \n#>     H2O Connection proxy:       NA \n#>     H2O Internal Security:      FALSE \n#>     R Version:                  R version 4.4.1 (2024-06-14 ucrt)\nh2o::h2o.getConnection()\n#> IP Address: localhost \n#> Port      : 54321 \n#> Name      : NA \n#> Session ID: _sid_b5d8 \n#> Key Count : 0\n\ndata(ames)\n\nset.seed(4595)\ndata_split <- ames |>\n  mutate(Sale_Price = log10(Sale_Price)) |>\n  initial_split(strata = Sale_Price)\names_train <- training(data_split)\names_test <- testing(data_split)\ncv_splits <- vfold_cv(ames_train, v = 10, strata = Sale_Price)\n\names_rec <-\n  recipe(Sale_Price ~ Gr_Liv_Area + Longitude + Latitude, data = ames_train) |>\n  step_log(Gr_Liv_Area, base = 10) |>\n  step_ns(Longitude, deg_free = tune(\"long df\")) |>\n  step_ns(Latitude, deg_free = tune(\"lat df\"))\n\nlm_mod <- linear_reg(penalty = tune()) |>\n  set_engine(\"h2o\")\n\nlm_wflow <- workflow() |>\n  add_model(lm_mod) |>\n  add_recipe(ames_rec)\n\ngrid <- lm_wflow |>\n  extract_parameter_set_dials() |>\n  grid_regular(levels = 5)\n\nh2o.getConnection()\n#> IP Address: localhost \n#> Port      : 54321 \n#> Name      : NA \n#> Session ID: _sid_b5d8 \n#> Key Count : 0\n\names_res <- tune_grid(\n  lm_wflow,\n  resamples = cv_splits,\n  grid = grid,\n  control = control_grid(save_pred = TRUE,\n                         backend_options = agua_backend_options(parallelism = 5))\n)\n#> Warning: All models failed. Run `show_notes(.Last.tune.result)` for more\n#> information.\n\nh2o.getConnection()\n#> IP Address: localhost \n#> Port      : 54321 \n#> Name      : NA \n#> Session ID: _sid_b5d8 \n#> Key Count : 0\n\nagua::h2o_running(verbose = FALSE)\n#> [1] TRUE\n\nshow_notes(.Last.tune.result)\n#> unique notes:\n#> \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n#> Error in h2o.getConnection(): No active connection to an H2O cluster. Did you run `h2o.init()` ?\nCreated on 2024-09-15 with reprex v2.1.1\n\n\n\nLatest RStudio is run with both normal and administrative privileges (same issue - although we should not need admin rights) on Windows 11 Pro x64 machine. JRE (1.8.0_421) and JDK (22) are installed, and all Java paths (\nJRE_HOME\n, \nJDK_HOME\n, \nJAVA_HOME = JRE_HOME\n) are all A-OK! I went so-far as to use rJava to manually initialize a Java VM instance with no effect. The command \ndemo(h2o.kmeans)\n runs without a problem and produces expected results.\n\n\nThe only other thing of note is that running \nagua::h2o_start()\n produces weird output that it should not be. I get \"permission denied error\" on user folder which should be accessible even without admin rights (folder-access issue is the same with h2o package) and I get \"no Java error\" that shouldn't be there.\n\n\nWarning message:\nJAVA not found, H2O may take minutes trying to connect. \n\n\n\nCould this be the root of the issue: \n\"h2o cluster connection is there as far as h2o package is concerned but agua (which adds supports for tidymodels) does not recognize Java and the existing h2o connection\"\n?!",
+            "detailed_tags": [
+                "r",
+                "connection",
+                "h2o",
+                "hyperparameters",
+                "tidymodels"
+            ],
+            "user_name": null,
+            "user_profile_link": "https://stackoverflow.com/posts/78986631/revisions",
+            "reputation_score": null,
+            "badges": {
+                "bronze": null
+            },
+            "answer_count": 1,
+            "answers": [
+                {
+                    "answer_id": "79004093",
+                    "vote_count": 0,
+                    "answer_content": "Solved. It doesn't have anything to do with R/H2O version, Java, or Linux/Windows. It was right there but strangely I didn't see the obvious: You need to have a cluster object and every node needs to be initialized. The future package doesn't have a function to return the cluster object nor the ability to initialize nodes properly with complex code, but the parallel package does.\n\n\nTo use the model parallelism for tidymodels and data parallelism for h2o and agua, you need to mix-up parallel, future, and doFuture packages. The parallel packages is used to detect cores, make a cluster, and then load-up and initialize every node. The future and doFuture packages are used to plan a future and register the for.each backend, which is required to enable model-parallelism in tidymodels. Tidymodels specifically uses the future package while agua can work with future, parallel, etc (please correct if wrong).\n\n\n# H2O for machine learning\nlibrary(h2o)\n\n# Initialize local H2O server and start\nlocal_h2o <- h2o::h2o.init(startH2O = TRUE)\nlocal_h2o |> print()\n\n# The agua package provides tidymodels interface to the H2O platform and the\n# H2O R package\nlibrary(agua)\n\n# Adaptive Parallelism - Decided by H2O\nh2o_thread_spec <- agua::agua_backend_options(parallelism = 0)\n\n# To be used when using grid search, racing, or any of the iterative search\n# methods in tidymodels.\ngrid_ctrl <- tune::control_grid(\n  allow_par = TRUE,\n  save_pred = TRUE,\n  save_workflow = TRUE,\n  event_level = \"second\",\n  # chooses between \"resamples\" and \"everything\" automatically\n  parallel_over = NULL,\n  backend_options = h2o_thread_spec\n)\n\n# Parallel computation libraries\nlibrary(future)\nlibrary(doFuture)\n\n# Speed up computation with parrallel processing (optional)\nn_cores <- parallel::detectCores(logical = TRUE) \ncluster <- parallel::makeCluster(spec = n_cores)\ndoFuture::registerDoFuture()\nstrategy <- future::plan(strategy = future::cluster, workers = cluster)\n\n# load, initialize, and check status of h2o on a cluster node\nnode_h2o_init <- function() {\n  library(h2o)\n  library(agua)\n\n  # doesn't start a new server if you've already started one\n  cluster_init <- h2o.init(startH2O = FALSE)\n\n  c(cluster_init = cluster_init, cluster_status = h2o.clusterIsUp())\n}\n\n# initialize and check each node\ncluster |>\n  parallel::clusterCall(cl = _, fun = node_h2o_init) |>\n  purr::list_c()",
+                    "creation_date": "2024-09-19T19:08:18",
+                    "user_name": null,
+                    "user_profile_link": null,
+                    "reputation_score": null,
+                    "comments": []
+                }
+            ]
+        },
+        "78853756": {
+            "date_created": "2024-08-09T16:16:57",
+            "last_activity_date": "2024-08-12 15:02:37Z",
+            "view_count": 0,
+            "question_text": "I ran a GLM model using h2o in r (the model was saved as an object called mod), the dataset contains categorical and continuous predictors. I called the h2o.varimp function on mod to retrieve the variable importance for this GLM model, for categorical predictors, it seemed to calculate the relative importance for each level within that same categorical predictor. Is there a way for me to aggregate the importance across all levels so that I get a single importance metric for each unique predictor?\n\n\nI first tried summing the relative importance but since they are based on standardized coefficients, I'm not sure if this is the right way.",
+            "detailed_tags": [
+                "r",
+                "h2o"
+            ],
+            "user_name": "ZTraveler",
+            "user_profile_link": "https://stackoverflow.com/users/22456747/ztraveler",
+            "reputation_score": "1",
+            "badges": {
+                "bronze": null
+            },
+            "answer_count": 1,
+            "answers": [
+                {
+                    "answer_id": "78862361",
+                    "vote_count": 0,
+                    "answer_content": "Another reason that only standardized coefficients are used in the calculation of variable importance is due to the scaling of the different predictors.  A predictor A that is in the range of 0 to 1 and another predictor B is in the range of 10000-200000. I know that both predictors contribute equally to the final model output.\n\n\nFor example, A = 0.5, B = 20000, y = 40000.  Then, in this case, we will have 40000\nA+1\nB = 40000.  Hence, the variable importance without standardization will give you the impression that predictor A is much more important than predictor B which is incorrect.  They participated equally in generating the model output and the two should have the same variable importance.",
+                    "creation_date": "2024-08-12T15:02:37",
+                    "user_name": "Wendy",
+                    "user_profile_link": "https://stackoverflow.com/users/20736722/wendy",
+                    "reputation_score": "301",
+                    "comments": [
+                        {
+                            "comment_text": "Thanks - the idea of using standardized coefficients to measure variable importance makes sense to me as they are scale independent. What I'm struggling with is how to aggregate these coefficients so that I can have a single number for each predictor (given that each level within a categorical predictor has its own coefficient)",
+                            "comment_author": "ZTraveler",
+                            "comment_author_link": "https://stackoverflow.com/users/22456747/ztraveler",
+                            "comment_date": "Aug 14 at 5:31"
+                        }
+                    ]
+                }
+            ]
+        },
+        "78716974": {
+            "date_created": "2024-07-07T09:57:06",
+            "last_activity_date": "2024-07-08 13:33:34Z",
+            "view_count": 0,
+            "question_text": "When I am trying to run the function \nh2o.splitFrame\n from H2O, I receive the following error:\n\n\nError en .Call(R_curl_fetch_memory, enc2utf8(url), handle, nonblocking): \n  se ha alcanzado el l\u00edmite de tiempo transcurrido\n\n\n\nI tried to check the admin task to liberate the memory from my laptop, and tried other combinations but nothing worked. Find below my complete code.\n\n\n# Establecer el tiempo de espera de CURL\noptions(RCurlOptions = list(timeout = 600))\n\nlibrary(h2o)\nlibrary(parallel)\nlibrary(doParallel)\n\n# Detectar el n\u00famero de n\u00facleos disponibles\nn_cores <- parallel::detectCores()\nregisterDoParallel(cores=4)\n\n# Inicializar H2O con par\u00e1metros mejorados\nh2o.init(\n  ip = \"localhost\",\n  nthreads = max(1, n_cores - 1),\n  max_mem_size = \"6g\"\n)\n\n# Deshabilitamos la salida de progreso\nh2o.no_progress()\n\ndata <- as.h2o(ordata.ren)\n\nsplits <- h2o.splitFrame(\n  data = data, \n  ratios = c(0.7, 0.15),  # partition data into 70%, 15%, 15% chunks\n  destination_frames = c(\"train\", \"valid\", \"test\"),  # frame ID (not required)\n  seed = 1  # setting a seed will guarantee reproducibility\n)\n\n# When I run this part of the code, I receive the error message mentioned before:\n# Error en .Call(R_curl_fetch_memory, enc2utf8(url), handle, nonblocking): \n#   se ha alcanzado el l\u00edmite de tiempo transcurrido.\n\ntrain <- splits[[1]]\nvalid <- splits[[2]]\ntest <- splits[[3]]\n\ny <- \"Price\"\nx <- setdiff(names(data), y)\nprint(x)",
+            "detailed_tags": [
+                "r",
+                "h2o",
+                "h2o.ai"
+            ],
+            "user_name": "user23479948",
+            "user_profile_link": "https://stackoverflow.com/users/23479948/user23479948",
+            "reputation_score": "1",
+            "badges": {
+                "bronze": null
+            },
+            "answer_count": 1,
+            "answers": [
+                {
+                    "answer_id": "78721140",
+                    "vote_count": 0,
+                    "answer_content": "H2O is capable of using \ncurl\n package instead of \nRCurl\n if installed. I would first try to use the \ncurl\n package (\ninstall.packages(\"curl\")\n) and if that doesn't help, I would like to ask you to provide more information such as H2O version, OS version, processor architecture (x86_64 or M1), total available memory (RAM) on the laptop and free memory, dataset size, dataset metadata (type and cardinality (if applicable) of each column, number of rows, number of columns).\n\n\nAlso feel free to submit a \nbug report\n to H2O-3 if installing \ncurl\n doesn't help. The bug report template should guide you to fill the most important things that we need to find out what went wrong.",
+                    "creation_date": "2024-07-08T13:33:34",
+                    "user_name": "Tom\u00e1\u0161 Fr\u00fdda",
+                    "user_profile_link": "https://stackoverflow.com/users/13566678/tom%c3%a1%c5%a1-fr%c3%bdda",
+                    "reputation_score": "591",
+                    "comments": []
+                }
+            ]
+        },
+        "78449790": {
+            "date_created": "2024-05-08T15:58:11",
+            "last_activity_date": "2024-05-08 20:57:55Z",
+            "view_count": 64,
+            "question_text": "I am running H2O AutoML on the same date set with the same seed on the same laptop multiple times and getting different predictions from time to time. I wonder if it is possible to get the same numbers on every run. Here is my code:\n\n\nimport h2o\nh2o.init()\naml = h2o.automl.H2OAutoML(max_models = 25,\n balance_classes = False, seed = 1)\naml.train(predictors, response, training_frame = h2o_df_train)\naml.leader.predict(h2o_df_test)\n\n\n\nIt looks like it is possible for \nGBM\n, but I wonder if it is possible for whole AutoML run?\n\n\nMy appologies for cross posting, but here is a complete example:\n\n\nH2O forum\n\n\nProblem solved\n\n\nFrom \nH2O docs\n:\n\n\n\"seed: Integer. Set a seed for reproducibility. AutoML can only guarantee reproducibility under certain conditions. H2O Deep Learning models are not reproducible by default for performance reasons, \nso if the user requires reproducibility, then exclude_algos must contain \"DeepLearning\".\n In addition max_models must be used because max_runtime_secs is resource limited, meaning that if the available compute resources are not the same between runs, AutoML may be able to train more models on one run vs another. Defaults to NULL/None.\"",
+            "detailed_tags": [
+                "h2o",
+                "automl",
+                "reproducible-research"
+            ],
+            "user_name": null,
+            "user_profile_link": "https://stackoverflow.com/posts/78449790/revisions",
+            "reputation_score": null,
+            "badges": {
+                "bronze": null
+            },
+            "answer_count": 1,
+            "answers": [
+                {
+                    "answer_id": "78721140",
+                    "vote_count": 0,
+                    "answer_content": "H2O is capable of using \ncurl\n package instead of \nRCurl\n if installed. I would first try to use the \ncurl\n package (\ninstall.packages(\"curl\")\n) and if that doesn't help, I would like to ask you to provide more information such as H2O version, OS version, processor architecture (x86_64 or M1), total available memory (RAM) on the laptop and free memory, dataset size, dataset metadata (type and cardinality (if applicable) of each column, number of rows, number of columns).\n\n\nAlso feel free to submit a \nbug report\n to H2O-3 if installing \ncurl\n doesn't help. The bug report template should guide you to fill the most important things that we need to find out what went wrong.",
+                    "creation_date": "2024-07-08T13:33:34",
+                    "user_name": null,
+                    "user_profile_link": "https://stackoverflow.com/posts/78449790/revisions",
+                    "reputation_score": null,
+                    "comments": []
+                }
+            ]
+        },
+        "78444040": {
+            "date_created": "2024-05-07T16:58:00",
+            "last_activity_date": "2024-05-16 20:42:45Z",
+            "view_count": 0,
+            "question_text": "I have a random forest model that I'm trying to understand better.\n\n\nFor the sake of the example, lets say we have a grove of blueberry bushes. What we're interested in is predicting the production of rotten blueberries on a specific bush, among harvest of all blueberries of the individual bushes.\n\n\nEach bush has an identifying name: \nbush_name\n, such as \n'bush001'\n, and we want predictions based on each individual bush. For example, I want to know if bush025 produced a rotten berry on 2/2/22.\n\n\nInputs are in a df with the following dummy structure for the sake of this example:\n\n\ntrain_data <- data.frame(date = c(\"2022-01-01\", \"2022-01-07\", \"2022-02-09\", \"2022-05-01\", \"2022-11-01\", \"2022-11-02\"),\n                   bush_name = c(\"bush001\", \"bush001\", \"bush001\", \"bush043\", \"bush043\", \"bush043\"),\n                   bugs = c(2, 0, 1, 0, 3, 1),\n                   has_rotten_berry = c(1, 0, 0, 1, 1, 0),\n                   berry_count = c(12, 1, 7, 100, 14, 4),\n                   weather = c(1, 0, 2, 0, 1, 1))\n\n\n\nI've got a random forest model that I have set up with the following high level set up:\n\n\nlibrary(agua)\nlibrary(parsnip)\nlibrary(h2o)\n\nh2o.init(nthreads = -1)\n\nmodel_fit <- rand_forest(mtry = 10,  trees = 100) %>%\n  set_engine(\"h2o\") %>%\n  set_mode(\"classification\") %>%\n  fit(has_rotten_berry ~  .,\n      data = train_data) %>% \n  step_dummy(bush_name) %>%\n  step_zv(all_predictors()) %>%\n  step_normalize(all_predictors())\n\n\n\nI do get this message after training:\n\n\nWarning message:\nIn .h2o.processResponseWarnings(res) :\n  Dropping bad and constant columns: [bush_name].\n\n\n\nWhat I want to know is:\n\n\nWhen I try to then predict on new data in the trained model, it seems that I am only able to input new test data with the bush_names of bushes I already trained on. \nAm I correct in assuming this model is creating bush-specific predictions? And therefore would have to input new bush information in the training in order to output a future prediction for those new bushes?\n\n\nExample: I plant a new bush, bush700, and it was not present in the original training data set. If I try to predict with the new bush data without it being present in the training data, is giving me a message that there are new levels in the data. So \nI'm assuming that because it seems these predictions are bush-specific, and we can't get any new bush predictions for newly-added bushes.\n\n\nIs this correct to assume?",
+            "detailed_tags": [
+                "r",
+                "machine-learning",
+                "classification",
+                "h2o",
+                "predict"
+            ],
+            "user_name": "desertnaut",
+            "user_profile_link": "https://stackoverflow.com/posts/78444040/revisions",
+            "reputation_score": "60.1k",
+            "badges": {
+                "bronze": "31"
+            },
+            "answer_count": 1,
+            "answers": [
+                {
+                    "answer_id": "78492388",
+                    "vote_count": 0,
+                    "answer_content": "Hi:  It looks like you are just trying to predict the rotten blueberries on a bush based on the predictors bugs, has_rotten_berry, berry_count and weather.  I will simply build a model with bugs, has_rotten_berry, berry_count and weather and ignore all the other columns.\n\n\nThe name of the berry bush should not matter to rotten blueberries.  The date is not important because this should be reflected by the weather column.",
+                    "creation_date": "2024-05-16T20:42:45",
+                    "user_name": "Wendy",
+                    "user_profile_link": "https://stackoverflow.com/users/20736722/wendy",
+                    "reputation_score": "301",
+                    "comments": []
+                }
+            ]
+        },
+        "78250475": {
+            "date_created": "2024-03-31T06:26:06",
+            "last_activity_date": "2024-03-31 20:30:59Z",
+            "view_count": 0,
+            "question_text": "I am trying to use \nh2o.deeplearning\n model to predict on raster data. It returns me the following error\n\n\n\n\nError: Not compatible with requested type: [type=character; target=double].\n\n\n\n\nHere is a minimal, reproducible, self-contained example\n\n\nlibrary(terra)\nlibrary(h2o)\nlibrary(tidyverse)\n\nh2o.init()\n\n# create a RasterStack or RasterBrick with with a set of predictor layers\nlogo <- rast(system.file(\"external/rlogo.grd\", package=\"raster\"))\nnames(logo)\n\n# known presence and absence points\np <- matrix(c(48, 48, 48, 53, 50, 46, 54, 70, 84, 85, 74, 84, 95, 85,\n              66, 42, 26, 4, 19, 17, 7, 14, 26, 29, 39, 45, 51, 56, 46, 38, 31,\n              22, 34, 60, 70, 73, 63, 46, 43, 28), ncol=2)\na <- matrix(c(22, 33, 64, 85, 92, 94, 59, 27, 30, 64, 60, 33, 31, 9,\n              99, 67, 15, 5, 4, 30, 8, 37, 42, 27, 19, 69, 60, 73, 3, 5, 21,\n              37, 52, 70, 74, 9, 13, 4, 17, 47), ncol=2)\n\n# extract values for points\nxy <- rbind(cbind(1, p), cbind(0, a))\nv <- data.frame(cbind(pa=xy[,1], terra::extract(logo, xy[,2:3]))) %>% \n  mutate(pa = as.factor(pa))\n\nstr(v) \n\n#### Import data to H2O cluster\ndf <- as.h2o(v)\n\n#### Split data into train, validation and test dataset\nsplits <- h2o.splitFrame(df, c(0.70,0.15), seed=1234)\ntrain  <- h2o.assign(splits[[1]], \"train.hex\")\nvalid  <- h2o.assign(splits[[2]], \"valid.hex\")\ntest   <- h2o.assign(splits[[3]], \"test.hex\")\n\n#### Create response and features data sets\ny <- \"pa\"\nx <- setdiff(names(train), y)\n\n### Deep Learning Model\ndl_model <- h2o.deeplearning(training_frame=train,                      \n  validation_frame=valid,                    \n  x=x,                                       \n  y=y,                                      \n  standardize=TRUE,                          \n  seed=125)\n\ndnn_pred <- function(model, data, ...) {\n  predict(model, newdata=as.h2o(data), ...)\n}\n\np <- predict(logo, model=dl_model, fun=dnn_pred)\nplot(p)",
+            "detailed_tags": [
+                "r",
+                "h2o",
+                "predict",
+                "terra"
+            ],
+            "user_name": "UseR10085",
+            "user_profile_link": "https://stackoverflow.com/users/6123824/user10085",
+            "reputation_score": "8,052",
+            "badges": {
+                "bronze": "4"
+            },
+            "answer_count": 1,
+            "answers": [
+                {
+                    "answer_id": "78252702",
+                    "vote_count": 2,
+                    "answer_content": "h2o.predict\n returns an \"H2OFrame\". That is not expected as almost all predict methods return a data.frame. You transform the input data to a H2OFrame, but you also need to transform the output to a data.frame:\n\n\ndnn_pred <- function(model, data, ...) {\n   predict(model, newdata=as.h2o(data), ...) |> as.data.frame()\n}\n\np <- predict(logo, model=dl_model, fun=dnn_pred)\nplot(p, nr=1, mar=c(1,2,1,4))",
+                    "creation_date": "2024-03-31T20:12:28",
+                    "user_name": null,
+                    "user_profile_link": null,
+                    "reputation_score": null,
+                    "comments": []
+                }
+            ]
+        },
+        "78245999": {
+            "date_created": "2024-03-29T21:21:16",
+            "last_activity_date": "2024-03-30 15:28:57Z",
+            "view_count": 89,
+            "question_text": "I am getting an error for my desired dataset when trying to use an isolation forest method to detect anomalies. However I have another completely different dataset that it works fine for, what could cause this issue?\n\n\nisolationforest Model Build progress: | (failed) | 0% Traceback (most recent call last): File \n\"h2o_test.py\", line 149, in <module> isoforest.train(x=iso_forest.col_names[0:65], \ntraining_frame=iso_forest) File \"/home/ec2-user/.local/lib/python3.7/site- \npackages/h2o/estimators/estimator_base.py\", line 107, in train self._train(parms, \nverbose=verbose) File \"/home/ec2-user/.local/lib/python3.7/site- \npackages/h2o/estimators/estimator_base.py\", line 199, in _train \njob.poll(poll_updates=self._print_model_scoring_history if verbose else None) File \n\"/home/ec2-user/.local/lib/python3.7/site-packages/h2o/job.py\", line 89, in poll \n\"\\n{}\".format(self.job_key, self.exception, self.job[\"stacktrace\"])) OSError: Job with key \n$03017f00000132d4ffffffff$_92ee3e892f7bc86460e80153eaec4b70 failed with an exception: \n\njava.lang.AssertionError stacktrace: java.lang.AssertionError at \nhex.tree.DHistogram.init(DHistogram.java:350) at \nhex.tree.DHistogram.init(DHistogram.java:343) at \nhex.tree.ScoreBuildHistogram2$ComputeHistoThread.computeChunk(ScoreBuildHistogram2.java:427) \nat hex.tree.ScoreBuildHistogram2$ComputeHistoThread.map(ScoreBuildHistogram2.java:408) at \nwater.LocalMR.compute2(LocalMR.java:89) at water.LocalMR.compute2(LocalMR.java:81) at \nwater.H2O$H2OCountedCompleter.compute(H2O.java:1704) at \njsr166y.CountedCompleter.exec(CountedCompleter.java:468) at \njsr166y.ForkJoinTask.doExec(ForkJoinTask.java:263) at \njsr166y.ForkJoinPool$WorkQueue.popAndExecAll(ForkJoinPool.java:906) at \njsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:979) at \njsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) at \njsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104)\n\n\n\nwith open('/home/webapp/flask-api/tmp_rows/temp_file2.csv', 'w+') as tmp_file:\n        temp_name = \"/tmp_rows/temp_file2.csv\"\n        tmp_file.write(text_stream.getvalue())\n        tmp_file.close()\n\nh2o.init()\nprint(\"TEMP_nAME\", temp_name)\niso_forest = h2o.import_file('/home/webapp/flask-api/{0}'.format(temp_name))\nseed = 12345\nntrees = 100\nisoforest = h2o.estimators.H2OIsolationForestEstimator(\nntrees=ntrees, seed=seed)\nisoforest.train(x=iso_forest.col_names[0:65], training_frame=iso_forest)\npredictions = isoforest.predict(iso_forest)\nprint(predictions)\nh2o.cluster().shutdown()\n\n\n\n\nThe CSV is being created fine, so there doesn't seem to be an issue with that, what is causing this Java error? I even increased the size of my ec2 to have more RAM, that didn't solve it either.",
+            "detailed_tags": [
+                "python",
+                "java",
+                "h2o"
+            ],
+            "user_name": "Amon",
+            "user_profile_link": "https://stackoverflow.com/users/2621316/amon",
+            "reputation_score": "2,931",
+            "badges": {
+                "bronze": "6"
+            },
+            "answer_count": 1,
+            "answers": [
+                {
+                    "answer_id": "78248479",
+                    "vote_count": 1,
+                    "answer_content": "I guess this is getting close votes because it will be the data that is causing the problem, but the data is not given. But maybe your data cannot be given, or there is too much of it.\n\n\nSo I'd suggest try just using the first/half second half of data, and if only one or the other trigger it then keep repeating, to see if you can narrow it down to just one row.\n\n\nAnd the same for columns, e.g. try 10-15 columns at a time, to see if it is just one column, or maybe certain types of column, triggering it.\n\n\nOf course, once you have that, you also have the solution: exclude the troublesome column/row.\nBut you will also have enough to give a bug report to H2O (looks like this can be done at \nhttps://github.com/h2oai/h2o-3/issues\n)",
+                    "creation_date": "2024-03-30T15:28:57",
+                    "user_name": "Darren Cook",
+                    "user_profile_link": "https://stackoverflow.com/users/841830/darren-cook",
+                    "reputation_score": "28.8k",
+                    "comments": [
+                        {
+                            "comment_text": "Eureka!! Thank you Darren, I spliced the dataframe to only use the first 10 rows and I got a result, you're awesome. (I couldn't post the csv because the data in sensitive)",
+                            "comment_author": "Amon",
+                            "comment_author_link": "https://stackoverflow.com/users/2621316/amon",
+                            "comment_date": "Mar 30 at 16:42"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

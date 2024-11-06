@@ -155,7 +155,7 @@ for x, question in enumerate(questions_container.find_all("div", class_="s-post-
     time.sleep(1)
 
     # Limit scraping to 10 questions for demonstration
-    if x == 1:
+    if x == 10:
         break
 
     x += 1
