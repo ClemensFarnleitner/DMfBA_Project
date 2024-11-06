@@ -11,6 +11,7 @@ questions_summary = {}
 questions_details = {}
 answers = []
 
+x = 0
 # Loop through each question summary
 for question in questions_container.find_all("div", class_="s-post-summary"):
     post_id = question.get("data-post-id")
@@ -66,11 +67,11 @@ for question in questions_container.find_all("div", class_="s-post-summary"):
 
     user_info_container = question_soup.find("div", class_="user-info")
     if user_info_container:
-        user_name = user_info_container.find("div", class_="user-details").find("a").text.strip()
+        user_name = user_info_container.find("div", class_="user-details").find("a").text.strip() if user_info_container.find("div", class_="user-details").find("a") else None 
         user_profile_link = "https://stackoverflow.com" + user_info_container.find("a")['href']
-        reputation_score = user_info_container.find("span", class_="reputation-score").text.strip()
+        reputation_score = user_info_container.find("span", class_="reputation-score").text.strip() if user_info_container.find("span", class_="reputation-score") else None
         badges = {
-            "bronze": user_info_container.find("span", class_="badgecount").text.strip()
+            "bronze": user_info_container.find("span", class_="badgecount").text.strip() if user_info_container.find("span", class_="badgecount") else None 
         }
     else:
         user_name = "Unknown"
@@ -104,9 +105,9 @@ for question in questions_container.find_all("div", class_="s-post-summary"):
 
         # Extract author information
         user_info = answer.find("div", class_="user-details")
-        user_name = user_info.find("a").text.strip() if user_info else "Unknown"
-        user_profile_link = "https://stackoverflow.com" + user_info.find("a")["href"] if user_info else None
-        reputation_score = user_info.find("span", class_="reputation-score").text if user_info.find("span", class_="reputation-score") else "N/A"
+        user_name = user_info.find("a").text.strip() if user_info.find("a") else None 
+        user_profile_link = "https://stackoverflow.com" + user_info.find("a")["href"] if user_info.find("a") else None 
+        reputation_score = user_info.find("span", class_="reputation-score").text if user_info.find("span", class_="reputation-score") else None 
 
         # Extract comments on the answer
         comments = []
@@ -138,9 +139,9 @@ for question in questions_container.find_all("div", class_="s-post-summary"):
     questions_details[post_id]["answer_count"] = answer_count
     questions_details[post_id]["answers"] = answers
 
-
-
-    break  # Remove this if you want to process more than one question
+    if x == 10:
+        break
+    x += 1
 
 # Output each question's summary and details
 for item in questions_summary:
