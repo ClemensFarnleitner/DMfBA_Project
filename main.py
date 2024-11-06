@@ -174,51 +174,51 @@ df_summary = pd.DataFrame.from_dict(questions_summary, orient="index")
 df_summary.to_csv("stackoverflow_h2o_summary.csv", index_label="post_id")
 
 # Output each question's summary and details
-for item_id, summary in questions_summary.items():
-    print(f"\n{'='*40}\nQuestion ID: {item_id}\n{'='*40}")
-    print(f"Title: {summary['title']}")
-    print(f"Link: {summary['link']}")
-    print(f"Votes: {summary['votes']}")
-    print(f"Answers: {summary['answers']}")
-    print(f"Views (Summary): {summary['views']}")
-    print(f"Excerpt: {summary['excerpt']}")
-    print(f"Tags: {', '.join(summary['tags'])}")
-    print(f"Posted by: {summary['user_name']} (Reputation: {summary['user_rep']})\n")
+# for item_id, summary in questions_summary.items():
+#     print(f"\n{'='*40}\nQuestion ID: {item_id}\n{'='*40}")
+#     print(f"Title: {summary['title']}")
+#     print(f"Link: {summary['link']}")
+#     print(f"Votes: {summary['votes']}")
+#     print(f"Answers: {summary['answers']}")
+#     print(f"Views (Summary): {summary['views']}")
+#     print(f"Excerpt: {summary['excerpt']}")
+#     print(f"Tags: {', '.join(summary['tags'])}")
+#     print(f"Posted by: {summary['user_name']} (Reputation: {summary['user_rep']})\n")
 
-    # Get details for the current question
-    details = questions_details.get(item_id, {})
-    print("Question Details:")
-    print(f"Date Created: {details.get('date_created', 'N/A')}")
-    print(f"Last Activity Date: {details.get('last_activity_date', 'N/A')}")
-    print(f"View Count: {details.get('view_count', 'N/A')}")
-    print(f"Detailed Tags: {', '.join(details.get('detailed_tags', []))}")
-    print(f"Question Text:\n{details.get('question_text', 'N/A')}\n")
+#     # Get details for the current question
+#     details = questions_details.get(item_id, {})
+#     print("Question Details:")
+#     print(f"Date Created: {details.get('date_created', 'N/A')}")
+#     print(f"Last Activity Date: {details.get('last_activity_date', 'N/A')}")
+#     print(f"View Count: {details.get('view_count', 'N/A')}")
+#     print(f"Detailed Tags: {', '.join(details.get('detailed_tags', []))}")
+#     print(f"Question Text:\n{details.get('question_text', 'N/A')}\n")
 
-    print("User Details:")
-    print(f"User Name: {details.get('user_name', 'N/A')}")
-    print(f"Profile Link: {details.get('user_profile_link', 'N/A')}")
-    print(f"Reputation Score: {details.get('reputation_score', 'N/A')}")
-    print(f"Badges: {details.get('badges', 'N/A')}")
-    print(f"Answer Count: {details.get('answer_count', 'N/A')}\n")
+#     print("User Details:")
+#     print(f"User Name: {details.get('user_name', 'N/A')}")
+#     print(f"Profile Link: {details.get('user_profile_link', 'N/A')}")
+#     print(f"Reputation Score: {details.get('reputation_score', 'N/A')}")
+#     print(f"Badges: {details.get('badges', 'N/A')}")
+#     print(f"Answer Count: {details.get('answer_count', 'N/A')}\n")
 
-    print("Answers:")
-    for i, answer in enumerate(details.get("answers", []), start=1):
-        print(f"\n  Answer {i}:")
-        print(f"  Answer ID: {answer['answer_id']}")
-        print(f"  Vote Count: {answer['vote_count']}")
-        print(f"  Content:\n    {answer['answer_content']}")
-        print(f"  Creation Date: {answer['creation_date']}")
-        print(f"  Answered by: {answer['user_name']} (Profile: {answer['user_profile_link']})")
-        print(f"  Reputation: {answer['reputation_score']}")
+#     print("Answers:")
+#     for i, answer in enumerate(details.get("answers", []), start=1):
+#         print(f"\n  Answer {i}:")
+#         print(f"  Answer ID: {answer['answer_id']}")
+#         print(f"  Vote Count: {answer['vote_count']}")
+#         print(f"  Content:\n    {answer['answer_content']}")
+#         print(f"  Creation Date: {answer['creation_date']}")
+#         print(f"  Answered by: {answer['user_name']} (Profile: {answer['user_profile_link']})")
+#         print(f"  Reputation: {answer['reputation_score']}")
 
-        print("  Comments:")
-        if answer["comments"]:
-            for j, comment in enumerate(answer["comments"], start=1):
-                print(f"    Comment {j}:")
-                print(f"      Text: {comment['comment_text']}")
-                print(f"      Author: {comment['comment_author']}")
-                print(f"      Author Profile: {comment['comment_author_link']}")
-                print(f"      Date: {comment['comment_date']}")
-        else:
-            print("    No comments.")
+#         print("  Comments:")
+#         if answer["comments"]:
+#             for j, comment in enumerate(answer["comments"], start=1):
+#                 print(f"    Comment {j}:")
+#                 print(f"      Text: {comment['comment_text']}")
+#                 print(f"      Author: {comment['comment_author']}")
+#                 print(f"      Author Profile: {comment['comment_author_link']}")
+#                 print(f"      Date: {comment['comment_date']}")
+#         else:
+#             print("    No comments.")
 
