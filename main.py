@@ -1,5 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
+import json
+import pandas as pd
+import time  # for throttling requests
 
 url = "https://stackoverflow.com/questions/tagged/h2o"
 response = requests.get(url)
@@ -9,15 +12,17 @@ questions_container = soup.find("div", id="questions")
 # Dictionaries to store summary and detailed question data
 questions_summary = {}
 questions_details = {}
-answers = []
 
 x = 1
 # Loop through each question summary
-for question in questions_container.find_all("div", class_="s-post-summary"):
+for x, question in enumerate(questions_container.find_all("div", class_="s-post-summary"), start=1):
     post_id = question.get("data-post-id")
     votes = question.find("span", class_="s-post-summary--stats-item-number").text
-    answers_count = question.find("div", class_="has-answers").find("span", class_="s-post-summary--stats-item-number").text if question.find("div", class_="has-answers") else "0"
-    views = question.find("div", title=lambda x: x and "views" in x).find("span", class_="s-post-summary--stats-item-number").text
+    answers_count = question.find("div", class_="has-answers").find("span",
+                                                                    class_="s-post-summary--stats-item-number").text if question.find(
+        "div", class_="has-answers") else "0"
+    views = question.find("div", title=lambda x: x and "views" in x).find("span",
+                                                                          class_="s-post-summary--stats-item-number").text
     title_element = question.find("h3", class_="s-post-summary--content-title").find("a")
     title = title_element.text
     link = "https://stackoverflow.com" + title_element['href']
@@ -40,22 +45,23 @@ for question in questions_container.find_all("div", class_="s-post-summary"):
         "user_name": user_name,
         "user_rep": user_rep
     }
-    
+
     # Fetch and parse the question details page
     question_response = requests.get(link)
     question_soup = BeautifulSoup(question_response.content, "html.parser")
 
     metadata_container = question_soup.find("div", class_="d-flex fw-wrap pb8 mb16 bb bc-black-200")
-    date_created = metadata_container.find("time", itemprop="dateCreated")['datetime'] if metadata_container and metadata_container.find("time", itemprop="dateCreated") else None
+    date_created = metadata_container.find("time", itemprop="dateCreated")[
+        'datetime'] if metadata_container and metadata_container.find("time", itemprop="dateCreated") else None
     last_activity_element = metadata_container.find("a", href="?lastactivity")
     last_activity_date = last_activity_element['title'] if last_activity_element else None
-    
-    # Extract the view count dynamically
+
+    # Extract view count dynamically
     try:
         view_text = question_soup.find("div", class_="flex--item ws-nowrap mb8")['title']
-        view_count = int(view_text.split()[1])  # Extract the number only
+        view_count = int(view_text.split()[1])
     except (AttributeError, IndexError, TypeError, ValueError):
-        view_count = 0  # Set to 0 if unable to parse
+        view_count = 0
 
     # Extract question text
     question_text_element = question_soup.find("div", class_="s-prose js-post-body", itemprop="text")
@@ -63,15 +69,20 @@ for question in questions_container.find_all("div", class_="s-post-summary"):
 
     # Extract tags from the question details page
     tags_container = question_soup.find("div", class_="post-taglist")
-    detailed_tags = [tag.text for tag in tags_container.find_all("a", class_="s-tag post-tag")] if tags_container else []
+    detailed_tags = [tag.text for tag in
+                     tags_container.find_all("a", class_="s-tag post-tag")] if tags_container else []
 
     user_info_container = question_soup.find("div", class_="user-info")
     if user_info_container:
-        user_name = user_info_container.find("div", class_="user-details").find("a").text.strip() if user_info_container.find("div", class_="user-details").find("a") else None 
+        user_name = user_info_container.find("div", class_="user-details").find(
+            "a").text.strip() if user_info_container.find("div", class_="user-details").find("a") else None
         user_profile_link = "https://stackoverflow.com" + user_info_container.find("a")['href']
-        reputation_score = user_info_container.find("span", class_="reputation-score").text.strip() if user_info_container.find("span", class_="reputation-score") else None
+        reputation_score = user_info_container.find("span",
+                                                    class_="reputation-score").text.strip() if user_info_container.find(
+            "span", class_="reputation-score") else None
         badges = {
-            "bronze": user_info_container.find("span", class_="badgecount").text.strip() if user_info_container.find("span", class_="badgecount") else None 
+            "bronze": user_info_container.find("span", class_="badgecount").text.strip() if user_info_container.find(
+                "span", class_="badgecount") else None
         }
     else:
         user_name = "Unknown"
@@ -92,22 +103,22 @@ for question in questions_container.find_all("div", class_="s-post-summary"):
         "badges": badges
     }
 
-    # Find the answers container
+    # Extract answers
+    answers = []
     answers_container = question_soup.find("div", id="answers")
-    answer_count = int(answers_container.find("h2", {"data-answercount": True})["data-answercount"])
+    if answers_container:
+        for answer in answers_container.find_all("div", class_="answer"):
+            answer_id = answer["data-answerid"]
+            vote_count = int(answer["data-score"])
+            answer_content = answer.find("div", class_="s-prose js-post-body").get_text(separator="\n").strip()
+            creation_date = answer.find("time", itemprop="dateCreated")["datetime"]
 
-    # Loop through each answer
-    for answer in answers_container.find_all("div", class_="answer"):
-        answer_id = answer["data-answerid"]
-        vote_count = int(answer["data-score"])
-        answer_content = answer.find("div", class_="s-prose js-post-body").get_text(separator="\n").strip()
-        creation_date = answer.find("time", itemprop="dateCreated")["datetime"]
-
-        # Extract author information
-        user_info = answer.find("div", class_="user-details")
-        user_name = user_info.find("a").text.strip() if user_info.find("a") else None 
-        user_profile_link = "https://stackoverflow.com" + user_info.find("a")["href"] if user_info.find("a") else None 
-        reputation_score = user_info.find("span", class_="reputation-score").text if user_info.find("span", class_="reputation-score") else None 
+            user_info = answer.find("div", class_="user-details")
+            user_name = user_info.find("a").text.strip() if user_info.find("a") else None
+            user_profile_link = "https://stackoverflow.com" + user_info.find("a")["href"] if user_info.find(
+                "a") else None
+            reputation_score = user_info.find("span", class_="reputation-score").text if user_info.find("span",
+                                                                                                        class_="reputation-score") else None
 
         # Extract comments on the answer
         comments = []
@@ -125,25 +136,42 @@ for question in questions_container.find_all("div", class_="s-post-summary"):
                     "comment_date": comment_date
                 })
 
-        # Store the answer details
-        answers.append({
-            "answer_id": answer_id,
-            "vote_count": vote_count,
-            "answer_content": answer_content,
-            "creation_date": creation_date,
-            "user_name": user_name,
-            "user_profile_link": user_profile_link,
-            "reputation_score": reputation_score,
-            "comments": comments
-        })
+            answers.append({
+                "answer_id": answer_id,
+                "vote_count": vote_count,
+                "answer_content": answer_content,
+                "creation_date": creation_date,
+                "user_name": user_name,
+                "user_profile_link": user_profile_link,
+                "reputation_score": reputation_score,
+                "comments": comments
+            })
 
     # Add answer details to questions_details dictionary
-    questions_details[post_id]["answer_count"] = answer_count
+    questions_details[post_id]["answer_count"] = len(answers)
     questions_details[post_id]["answers"] = answers
 
+    # Throttle requests to avoid overloading the server
+    time.sleep(1)
+
+    # Limit scraping to 10 questions for demonstration
     if x == 1:
         break
+
     x += 1
+
+# Save data to JSON
+data_to_save = {
+    "questions_summary": questions_summary,
+    "questions_details": questions_details,
+}
+
+with open("stackoverflow_h2o_data.json", "w") as outfile:
+    json.dump(data_to_save, outfile, indent=4)
+
+# Save questions summary to CSV
+df_summary = pd.DataFrame.from_dict(questions_summary, orient="index")
+df_summary.to_csv("stackoverflow_h2o_summary.csv", index_label="post_id")
 
 # Output each question's summary and details
 for item_id, summary in questions_summary.items():
