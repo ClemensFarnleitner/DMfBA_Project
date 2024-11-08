@@ -15,20 +15,22 @@ questions_details = {}
 
 x = 1
 # Loop through each question summary
-for x, question in enumerate(questions_container.find_all("div", class_="s-post-summary"), start=1):
+for x, question in enumerate(questions_container.find_all("div", 
+                                                        class_="s-post-summary"), start=1):
     post_id = question.get("data-post-id")
     votes = question.find("span", class_="s-post-summary--stats-item-number").text
     answers_count = question.find("div", class_="has-answers").find("span",
-                                                                    class_="s-post-summary--stats-item-number").text if question.find(
-        "div", class_="has-answers") else "0"
-    views = question.find("div", title=lambda x: x and "views" in x).find("span",
-                                                                          class_="s-post-summary--stats-item-number").text
+                                                                    class_="s-post-summary--stats-item-number").text if question.find("div", class_="has-answers") else "0"
+    views = question.find("div", title=lambda x: x and "views" in x).find("span", 
+                                                                    class_="s-post-summary--stats-item-number").text
     title_element = question.find("h3", class_="s-post-summary--content-title").find("a")
     title = title_element.text
     link = "https://stackoverflow.com" + title_element['href']
     excerpt = question.find("div", class_="s-post-summary--content-excerpt").text.strip()
-    tags = [tag.text for tag in question.find("div", class_="s-post-summary--meta-tags").find_all("a", class_="s-tag")]
-    user_info = question.find("div", class_="s-user-card--info")
+    tags = [tag.text for tag in question.find("div", class_="s-post-summary--meta-tags").find_all("a", 
+                                                                                        class_="s-tag")]
+    user_info = question.find("div", 
+                            class_="s-user-card--info")
     user_name = user_info.find("a").text if user_info else "Unknown"
     user_rep = user_info.find("li", class_="s-user-card--rep").text if user_info else "N/A"
     time_element = question.find("time", class_="s-user-card--time")
