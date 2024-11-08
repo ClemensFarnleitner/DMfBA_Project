@@ -1,0 +1,54 @@
+,comment_id,content,creation_date,user_name,user_profile_link,reputation_score,answer_id
+139391547,139391547,"It is for regression. The problem with your solution, is you are loosing all the data for x3 in the training stage, and so the model will not perform as well as it could have.   Instead, I am looking for a way to group x1 and x3 together so that it trains them as the same, even thought their values aren't.",Oct 4 at 11:32,,,,79049681
+139463667,139463667,Hi Adam. I still don't understand your problem well. Could you please explain your issue using a simple example with concrete data? Thanks!,Oct 16 at 9:11,,,,79049681
+139285027,139285027,"Yes, the column names are the same. That's the reason why the error that I'm getting makes no sense to me. At first I thought that I had failed to convert some variable into an h2o frame, but that doesn't seem to be the case either.",Sep 17 at 20:27,,,,78995415
+139285078,139285078,"I also thought that in the test set I might need the y variable as a placeholder (even though it isn't used), but I get the same results with or without it in x_df_new",Sep 17 at 20:34,,,,78995415
+139032506,139032506,"Thanks for the response - I think using frequency to weigh the relative importance across the levels within a categorical predictor is reasonable; on the other hand, SHAP seems to work for only tree-based models and I'm curious if there are similar measures for GLMs.",Aug 11 at 0:57,,,,78854135
+139043415,139043415,"In newer versions of H2O, SHAP works for all the models that are available in H2O’s AutoML (DeepLearning, DRF, GBM, GLM, StackedEnsemble, XGBoost). You just need to specify 
+background_frame
+.  SHAP works on tree-based models even without background frame because we can use the structure of the trees to efficiently estimate how each feature influences the prediction. But even for tree-based models it’s usually better to estimate SHAP with background frame since it contains the information about distributions of individual variables.",Aug 12 at 20:21,,,,78854135
+139053710,139053710,Appreciated the feedback - do you know where I could find documentation regarding implementing SHAP on GLMs or non tree-based models in general?,Aug 14 at 5:21,,,,78854135
+139061995,139061995,"Most of the papers that were used for implementing the SHAP should be in h2o’s documentation 
+docs.h2o.ai/h2o/latest-stable/h2o-docs/…
+ . You can also check the references from the PR that added the SHAP to H2O: 
+github.com/h2oai/h2o-3/pull/15734
+ (I’m lazy and I didn’t update the PR’s description so some of the issues there mentioned are already resolved). If you want specifically GLM SHAP then you can have a look at this paper: 
+arxiv.org/abs/2006.16234
+ and 
+nature.com/articles/s41467-022-31384-3
+ for the conversion from link space.",Aug 15 at 6:34,,,,78854135
+139053756,139053756,Thanks - the idea of using standardized coefficients to measure variable importance makes sense to me as they are scale independent. What I'm struggling with is how to aggregate these coefficients so that I can have a single number for each predictor (given that each level within a categorical predictor has its own coefficient),Aug 14 at 5:31,,,,78862361
+138315359,138315359,"Thank you! So if I dont want the predictions of bush_name to be specific (as in I want to be able to predict future bushes that havent been planted yet, vs retraining the model each time), then should I still convert bush_name into a factor?",May 9 at 17:02,,,,78453131
+138320130,138320130,"For random forest you should probably remove the 
+bush_name
+ from training. But for, e.g., mixed-effects models (e.g., HGLM) you can use it to separate the influence of the individual bush and the other variables (you can see why it can be useful when you look at Simpson's paradox).  I would probably try to train it with and without 
+bush_name
+ and if the influence of having 
+bush_name
+ is big (in CV metrics), I would try to add some more information if possible, e.g., environmental factors - is the bush in the shade, is it more exposed to wind etc.",May 10 at 8:05,,,,78453131
+138490543,138490543,If I do 'step_dummy(bush_name)' is this similar to the factorizing of the variable? Thank you,May 30 at 14:37,,,,78453131
+137950531,137950531,"Eureka!! Thank you Darren, I spliced the dataframe to only use the first 10 rows and I got a result, you're awesome. (I couldn't post the csv because the data in sensitive)",Mar 30 at 16:42,,,,78248479
+137927362,137927362,You are right. Launching h2o cluster manually resolved the randomness that I was facing. I was previously starting h2o within my code.,Mar 28 at 1:47,,,,78201658
+137832323,137832323,"Ahhh thank you!  I don't quite follow the matrix algebra above, but I think what you're saying is it's possible to rotate an orthogonal pattern matrix (which the unrotated PCA is) without having the correlation matrix.  It looks like the GPArotation R package can do that with functions like promax() and bifactor(). Thanks again!",Mar 18 at 18:20,,,,78181801
+137356950,137356950,Error:'file' must be a character string or connection with as.data.frame(),Jan 31 at 11:38,,,,77911914
+137242323,137242323,Yeah i did it but it says pyspark don't have h2o model,Jan 19 at 19:52,,,,77841614
+136976650,136976650,Many thanks! Weirdly enough that only works if the the (binary) model is loaded (using h2o.load_model()) in the same sessions as it was saved. Otherwise I still get error mentioned in the openingpost. I will open a ticket.,"Dec 21, 2023 at 8:50",,,,77680312
+136114462,136114462,"Thank you. I have used as.h2o on the train and validation data separately because when I use it on the data frame first, my train data runs an error.  I am still getting a cardinality error","Oct 1, 2023 at 8:25",,,,77209082
+136112479,136112479,"Before sending the data to the H2O model, ensure that your response column is a factor with three levels. For instance, if your data frame is df and your response column is response, you can convert it to a factor using somting like this, df$response <- as.factor(df$response)","Sep 30, 2023 at 22:03",,,,77208591
+136112855,136112855,Thank you very much for the helpful information. Do you know how to ensure the multi-class setting is on ?,"Sep 30, 2023 at 23:49",,,,77208591
+137996089,137996089,In my case it didn't work,Apr 4 at 14:51,,,,78046835
+135657219,135657219,"Krasinski, thank you for your response. I tried two github codes: 1. download the stable release 
+github.com/h2oai/h2o-3/archive/refs/tags/…
+; 2. git clone the master branch. Both have the same build problem.","Aug 22, 2023 at 11:14",,,,76952165
+135657384,135657384,"And 
+./gradlew build -x test
+ also has this problem.","Aug 22, 2023 at 11:28",,,,76952165
+135662854,135662854,can you please share the full log building the newest revision of rel-3.42.0 branch?,"Aug 22, 2023 at 17:47",,,,76952165
+135666980,135666980,"Krasinski, I just updated the question with full log above, using the latest rel-3.42.0 branch.","Aug 23, 2023 at 3:35",,,,76952165
+135561796,135561796,Thank you. I also add that I solved this clash using a python virtual environment.,"Aug 14, 2023 at 8:34",,,,76871083
+135362388,135362388,"Checkpoint will address disk issue. I think the only catch is that I need to keep model up in memory in my server. If somehow my server goes down, then will need to retrain the complete dataset.","Jul 27, 2023 at 16:25",,,,76775726
+134745832,134745832,"I use h2o 3.34 (I cannot update it), and run it on Jupyter (Python 3.8).","Jun 6, 2023 at 14:38",,,,76394821
+134577167,134577167,"Ty!, I thought I did it with 
+apt-get install -y r-cran-jsonlite
+?","May 23, 2023 at 15:49",,,,76316527
+134522123,134522123,Your last state shows me how to save one csv file as a H2O dataframe. I already know how to do that. But I need to merge all the data together and then train it. Could you elaborate how your solution helps me do so,"May 18, 2023 at 20:28",,,,76275385

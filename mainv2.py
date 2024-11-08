@@ -12,25 +12,25 @@ class CSVWriter:
         df = pd.DataFrame(data).T
         file_name = "h2o_stackoverflow_questions_summary.csv"
         file_exists = os.path.isfile(file_name)
-        df.to_csv(file_name, mode="a", header=not file_exists, index=False)
+        df.to_csv(file_name, mode="a", header=not file_exists, index="post_id")
 
     def write_answer_csv(self, data):
         df = pd.DataFrame(data).T
         file_name = "h2o_stackoverflow_answers_summary.csv"
         file_exists = os.path.isfile(file_name)
-        df.to_csv(file_name, mode="a", header=not file_exists, index=False)
+        df.to_csv(file_name, mode="a", header=not file_exists, index="answer_id")
     
     def write_question_details_csv(self, data):
         df = pd.DataFrame(data).T
         file_name = "h2o_stackoverflow_questions_details.csv"
         file_exists = os.path.isfile(file_name)
-        df.to_csv(file_name, mode="a", header=not file_exists, index=False)
+        df.to_csv(file_name, mode="a", header=not file_exists, index="post_id")
 
     def write_comment_csv(self, data):
         df = pd.DataFrame(data).T
         file_name = "h2o_stackoverflow_comments_summary.csv"
         file_exists = os.path.isfile(file_name)
-        df.to_csv(file_name, mode="a", header=not file_exists, index=False)
+        df.to_csv(file_name, mode="a", header=not file_exists, index="comment_id")
 
 class StackOverFlowFetcher:
     def __init__(self):
@@ -39,7 +39,6 @@ class StackOverFlowFetcher:
 
     def fetch_page(self, page=1):
         response = requests.get(f"{self.base_url}&page={page}")
-        time.sleep(1)  # Pause for 1 second to avoid rate-limiting
         return response
     
     def get_max_pages(self):
@@ -83,7 +82,8 @@ class StackOverFlowFetcher:
             self.question_details(link, post_id)
 
             # Store summary in dictionary using post_id as key
-            questions_summary[post_id] = {
+            questions_summary[post_id]= {
+                "post_id": post_id,
                 "votes": votes,
                 "answers": answers_count,
                 "views": views,
@@ -94,8 +94,8 @@ class StackOverFlowFetcher:
                 "user_name": user_name,
                 "user_rep": user_rep
             }
-
-            time.sleep(1)  # Pause between each question fetch to avoid rate-limiting
+            
+            time.sleep(1)
 
         # Write questions into CSV
         self.csv_writer.write_question_csv(questions_summary)
@@ -104,7 +104,6 @@ class StackOverFlowFetcher:
         questions_details = {}
         question_response = requests.get(link)
         question_soup = BeautifulSoup(question_response.content, "html.parser")
-        time.sleep(1)  # Pause after fetching question details page
 
         metadata_container = question_soup.find("div", class_="d-flex fw-wrap pb8 mb16 bb bc-black-200")
         date_created = metadata_container.find("time", itemprop="dateCreated")[
@@ -142,6 +141,7 @@ class StackOverFlowFetcher:
 
         # Add user details to questions_details dictionary
         questions_details[post_id] = {
+            "post_id": post_id,
             "date_created": date_created,
             "last_activity_date": last_activity_date,
             "view_count": view_count,
@@ -153,13 +153,15 @@ class StackOverFlowFetcher:
             "badges": badges
         }
 
+        time.sleep(1)
+
         # Write question details into CSV
         self.csv_writer.write_question_details_csv(questions_details)
     
     def answer_summary(self, link, post_id):
         response = requests.get(link)
         soup = BeautifulSoup(response.content, "html.parser")
-        time.sleep(1)  # Pause after fetching answer page
+
         answers_container = soup.find("div", id="answers")
         if answers_container:
             for answer in answers_container.find_all("div", class_="answer"):
@@ -176,7 +178,8 @@ class StackOverFlowFetcher:
                 # Fetch comments to the answer
                 self.comment_summary(answer, answer_id)
 
-                answers_summary[answer_id] = {
+                answers_summary [answer_id]= {
+                    "answer_id": answer_id,
                     "vote_count": vote_count,
                     "answer_content": answer_content,
                     "creation_date": creation_date,
@@ -202,7 +205,8 @@ class StackOverFlowFetcher:
                 user_profile_link = "https://stackoverflow.com" + user_info.find("a")["href"] if user_info else None
                 reputation_score = user_info.find("span", "reputation-score").text if user_info else None
 
-                comments_summary[comment_id] = {
+                comments_summary [comment_id]= {
+                    "comment_id": comment_id,
                     "content": comment_content,
                     "creation_date": comment_date,
                     "user_name": user_name,
@@ -213,27 +217,28 @@ class StackOverFlowFetcher:
 
             # Write comments into CSV
             self.csv_writer.write_comment_csv(comments_summary)
-            time.sleep(1)  # Pause after fetching each set of comments
 
 if __name__ == "__main__":
     timestamp_start = time.time()
     fetcher = StackOverFlowFetcher()
     max_pages = fetcher.get_max_pages()
     print(f"Max number of pages: {max_pages}")
+
+    # Comment this number in order to fetch all pages
     max_pages = 1
+
     for page in range(1, max_pages + 1):
         response = fetcher.fetch_page(page)
         questions_container = fetcher.question_extraction(response)
         fetcher.question_summary(questions_container)
+        time.sleep(2)  # Longer pause between page fetches
         print("=" * 50)
         print(f"Data fetched for page {page}")
         print("Switching to next page...")
-        time.sleep(2)  # Longer pause between page fetches
         print("=" * 50)
     print("Data fetched for all pages.")
     print("=" * 50)
 
-    # get total lines of all csv
     df_questions = pd.read_csv("h2o_stackoverflow_questions_summary.csv")
     df_questions_details = pd.read_csv("h2o_stackoverflow_questions_details.csv")
     df_answers = pd.read_csv("h2o_stackoverflow_answers_summary.csv")
@@ -244,4 +249,4 @@ if __name__ == "__main__":
     print(f"Total number of answers: {len(df_answers)}")
     print(f"Total number of comments: {len(df_comments)}")
 
-    print(f"Time taken: {time.time() - timestamp_start} seconds")
+    print(f"Time taken: {round((time.time() - timestamp_start),1)} seconds")

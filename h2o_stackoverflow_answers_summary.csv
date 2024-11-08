@@ -1,0 +1,801 @@
+,answer_id,vote_count,answer_content,creation_date,user_name,user_profile_link,reputation_score,post_id
+79049681,79049681,0,"What is the use case for this scenario? Is it the classification or regression problem? It always depends on the training data. From training data, the model learns how to predict. If you have the same output value for X1 and X3, the model will also expect the same predicted value for these features for test data.
+
+
+I don't know any reason to constrain model output for concrete values. If you want the output to be the same for x1 and x3, you can pick the predicted value for x1 and replace it with the predicted value for x3.",2024-10-03T08:20:49,Maurever,https://stackoverflow.com/users/5036600/maurever,157,79045928
+79038349,79038349,0,"I think there might be two issues:
+
+
+
+
+installing correct version of java,
+
+
+telling H2O where the java is.
+
+
+
+
+I'm not sure what's the best way to do the (1) but I think I might help with the (2).
+
+
+Once you install java and if it doesn't work, it's likely due to different than usual file paths. To mitigate this issue you can set 
+JAVA_HOME
+ or 
+H2O_JAVA_HOME
+ environment variables to point to your java installation or you can even 
+start the h2o backend manually
+ and then call 
+h2o.connect()
+ instead of 
+h2o.init()
+.",2024-09-30T07:34:12,Tomáš Frýda,https://stackoverflow.com/users/13566678/tom%c3%a1%c5%a1-fr%c3%bdda,591,79033110
+78997017,78997017,1,"I couldn't reproduce the issue but I think it might be caused by having different types - if the training frame has factors/enums and test frame integer values then it could cause the first frame to encode so the names could end up something like X1.1 instead of X1.
+
+
+Could you try 
+attributes(x_df_new)[[""types""]]
+ and 
+attributes(x_df)[[""types""]]
+ and then verify that the types are the same?
+
+
+You can also use 
+nn_model_training@model$names
+ to find out what names the model used.
+
+
+Also I would suggest you make sure that the 
+y
+ is still a factor after the conversion to h2o frame.
+
+
+You can convert columns to factors in h2o using:
+
+x_df$y <- h2o.asfactor(x_df$y)",2024-09-18T07:30:14,Tomáš Frýda,https://stackoverflow.com/users/13566678/tom%c3%a1%c5%a1-fr%c3%bdda,591,78995266
+78995415,78995415,1,"Please check and make sure the test data frame 
+x_df_new
+ has the same predictor column names as your 
+x_df
+.
+
+
+You can find the names of a h2o frame by calling 
+names(x_df)",2024-09-17T18:47:25,jpsmith,https://stackoverflow.com/users/12109788/jpsmith,16.2k,78995266
+78988439,78988439,0,"Looks like the ""JAVA not found"" error from 
+agua::h2o_start()
+ is coming from a call to 
+Sys.which(""java"")
+. What output do you see in that case? Do you see different output in a terminal with 
+which java
+? I might focus on making sure the system knows where to find java using 
+which
+ as my first debugging route.
+
+
+Also, some diagnostic messages read:
+
+
+h2o::h2o.init()
+#> Note:  In case of errors look at the following log files:
+#>     C:\Users\siava\AppData\Local\Temp\Rtmp08HkaV\filec5072151a2b/h2o_siava_started_from_r.out
+#>     C:\Users\siava\AppData\Local\Temp\Rtmp08HkaV\filec50cc92881/h2o_siava_started_from_r.err
+
+
+
+Could you re-run 
+h2o::h2o.init()
+, note the log files shown in the output, attempt to run your tuning code, and then paste the log file contents here?
+
+
+(For future readers, further discussion of this issue at 
+https://github.com/tidymodels/agua/issues/57
+).",2024-09-15T22:07:28,Simon Couch,https://stackoverflow.com/users/14038605/simon-couch,531,78986631
+78998793,78998793,0,"Turns out
+ this user had 
+cluster <- parallel::makeCluster(...)
+ in their 
+.Rprofile
+, setting up tidymodels parallelism support.
+
+
+agua_backend_options(parallelism = 5)
+ tells agua to use H2O's within-model parallelism, distributing computations for a single model across 5 cores. 
+cluster <- parallel::makeCluster(...)
+ tells tidymodels to use its across-model parallelism, fitting 
+n_models
+/
+n_cores
+ models per core across 
+n_cores
+ cores. Setting both of these is an example of ""nested parallelism,"" and is unsupported by agua, as connections to H2O can't be serialized and shipped off to cluster workers. So, either 
+agua_backend_options(parallelism = 5)
+ or 
+cluster <- parallel::makeCluster(...)
+ will work, but not both at the same time.",2024-09-18T14:37:11,Simon Couch,https://stackoverflow.com/users/14038605/simon-couch,531,78986631
+79004093,79004093,0,"Solved. It doesn't have anything to do with R/H2O version, Java, or Linux/Windows. It was right there but strangely I didn't see the obvious: You need to have a cluster object and every node needs to be initialized. The future package doesn't have a function to return the cluster object nor the ability to initialize nodes properly with complex code, but the parallel package does.
+
+
+To use the model parallelism for tidymodels and data parallelism for h2o and agua, you need to mix-up parallel, future, and doFuture packages. The parallel packages is used to detect cores, make a cluster, and then load-up and initialize every node. The future and doFuture packages are used to plan a future and register the for.each backend, which is required to enable model-parallelism in tidymodels. Tidymodels specifically uses the future package while agua can work with future, parallel, etc (please correct if wrong).
+
+
+# H2O for machine learning
+library(h2o)
+
+# Initialize local H2O server and start
+local_h2o <- h2o::h2o.init(startH2O = TRUE)
+local_h2o |> print()
+
+# The agua package provides tidymodels interface to the H2O platform and the
+# H2O R package
+library(agua)
+
+# Adaptive Parallelism - Decided by H2O
+h2o_thread_spec <- agua::agua_backend_options(parallelism = 0)
+
+# To be used when using grid search, racing, or any of the iterative search
+# methods in tidymodels.
+grid_ctrl <- tune::control_grid(
+  allow_par = TRUE,
+  save_pred = TRUE,
+  save_workflow = TRUE,
+  event_level = ""second"",
+  # chooses between ""resamples"" and ""everything"" automatically
+  parallel_over = NULL,
+  backend_options = h2o_thread_spec
+)
+
+# Parallel computation libraries
+library(future)
+library(doFuture)
+
+# Speed up computation with parrallel processing (optional)
+n_cores <- parallel::detectCores(logical = TRUE) 
+cluster <- parallel::makeCluster(spec = n_cores)
+doFuture::registerDoFuture()
+strategy <- future::plan(strategy = future::cluster, workers = cluster)
+
+# load, initialize, and check status of h2o on a cluster node
+node_h2o_init <- function() {
+  library(h2o)
+  library(agua)
+
+  # doesn't start a new server if you've already started one
+  cluster_init <- h2o.init(startH2O = FALSE)
+
+  c(cluster_init = cluster_init, cluster_status = h2o.clusterIsUp())
+}
+
+# initialize and check each node
+cluster |>
+  parallel::clusterCall(cl = _, fun = node_h2o_init) |>
+  purr::list_c()",2024-09-19T19:08:18,,,,78986631
+78854135,78854135,0,"I think more appropriate is to do a weighted average since categorical variable has always only one value at a time and I would weigh it by the relative frequency of each level - imagine you have a very rare level that influences the target variable a lot. If you’d use average, this rare level would influence the relative importance more than it should.
+
+
+Another possibility is to use SHAP via 
+predict_contributions
+ and set 
+output_format = “compact”
+. This will give you coefficients multiplied by average value from each variable from the 
+background_set
+. These contributions then sum up to the prediction (might be in link space so unless you’re using Gaussian regression, you might want to se 
+output_space=TRUE
+). You can take the mean absolute value to get some 
+feature importance
+.",2024-08-09T18:08:56,Tomáš Frýda,https://stackoverflow.com/users/13566678/tom%c3%a1%c5%a1-fr%c3%bdda,591,78853756
+78862361,78862361,0,"Another reason that only standardized coefficients are used in the calculation of variable importance is due to the scaling of the different predictors.  A predictor A that is in the range of 0 to 1 and another predictor B is in the range of 10000-200000. I know that both predictors contribute equally to the final model output.
+
+
+For example, A = 0.5, B = 20000, y = 40000.  Then, in this case, we will have 40000
+A+1
+B = 40000.  Hence, the variable importance without standardization will give you the impression that predictor A is much more important than predictor B which is incorrect.  They participated equally in generating the model output and the two should have the same variable importance.",2024-08-12T15:02:37,Wendy,https://stackoverflow.com/users/20736722/wendy,301,78853756
+78721140,78721140,0,"H2O is capable of using 
+curl
+ package instead of 
+RCurl
+ if installed. I would first try to use the 
+curl
+ package (
+install.packages(""curl"")
+) and if that doesn't help, I would like to ask you to provide more information such as H2O version, OS version, processor architecture (x86_64 or M1), total available memory (RAM) on the laptop and free memory, dataset size, dataset metadata (type and cardinality (if applicable) of each column, number of rows, number of columns).
+
+
+Also feel free to submit a 
+bug report
+ to H2O-3 if installing 
+curl
+ doesn't help. The bug report template should guide you to fill the most important things that we need to find out what went wrong.",2024-07-08T13:33:34,Tomáš Frýda,https://stackoverflow.com/users/13566678/tom%c3%a1%c5%a1-fr%c3%bdda,591,78716974
+78449461,78449461,1,"The warning says your column 'bush_name' was detected as bad or constant and is not used during training. So, the result predictions are not based on this column.
+
+
+If the column is not bad or constant (the bush_name data looks good in your example), it is used to train a model, and the result predictions are based on its values (levels).
+
+
+If you put some unknown level in your test data, the model will create the prediction, but the prediction could not be as good as if the value were in the training dataset. That is the reason why we are raising the warning. However, the model will create some predictions for data with unknown levels.",2024-05-08T14:59:36,Maurever,https://stackoverflow.com/users/5036600/maurever,157,78444040
+78453131,78453131,1,"The problem might be with 
+bush_name
+ being a character vector and not a factor vector. Since 
+R 4.0
+, 
+stringsAsFactors
+ is set to FALSE so the character vector is not automatically converted to factors and H2O does not consider string vector as a valid input for most of its supervised algorithms.
+
+
+You can use 
+str()
+ to inspect the structure of a data structure in R, this can be very useful for 
+data.frame
+s to find out what data types individual columns have. For example, when adding 
+stringsAsFactors=TRUE
+ the types of 
+date
+ and 
+bush_name
+ change types from 
+character
+ to 
+factor
+:
+
+
+> train_data <- data.frame(date = c(""2022-01-01"", ""2022-01-07"", ""2022-02-09"", ""2022-05-01"", ""2022-11-01"", ""2022-11-02""),
+                   bush_name = c(""bush001"", ""bush001"", ""bush001"", ""bush043"", ""bush043"", ""bush043""),
+                   bugs = c(2, 0, 1, 0, 3, 1),
+                   has_rotten_berry = c(1, 0, 0, 1, 1, 0),
+                   berry_count = c(12, 1, 7, 100, 14, 4),
+                   weather = c(1, 0, 2, 0, 1, 1))
+> str(train_data)
+'data.frame':   6 obs. of  6 variables:
+ $ date            : chr  ""2022-01-01"" ""2022-01-07"" ""2022-02-09"" ""2022-05-01"" ...
+ $ bush_name       : chr  ""bush001"" ""bush001"" ""bush001"" ""bush043"" ...
+ $ bugs            : num  2 0 1 0 3 1
+ $ has_rotten_berry: num  1 0 0 1 1 0
+ $ berry_count     : num  12 1 7 100 14 4
+ $ weather         : num  1 0 2 0 1 1
+>
+> # Now let's add stringsAsFactors=TRUE to the data.frame function
+> train_data <- data.frame(date = c(""2022-01-01"", ""2022-01-07"", ""2022-02-09"", ""2022-05-01"", ""2022-11-01"", ""2022-11-02""),
+                   bush_name = c(""bush001"", ""bush001"", ""bush001"", ""bush043"", ""bush043"", ""bush043""),
+                   bugs = c(2, 0, 1, 0, 3, 1),
+                   has_rotten_berry = c(1, 0, 0, 1, 1, 0),
+                   berry_count = c(12, 1, 7, 100, 14, 4),
+                   weather = c(1, 0, 2, 0, 1, 1), stringsAsFactors=TRUE)
+> str(train_data)
+'data.frame':   6 obs. of  6 variables:
+ $ date            : Factor w/ 6 levels ""2022-01-01"",""2022-01-07"",..: 1 2 3 4 5 6
+ $ bush_name       : Factor w/ 2 levels ""bush001"",""bush043"": 1 1 1 2 2 2
+ $ bugs            : num  2 0 1 0 3 1
+ $ has_rotten_berry: num  1 0 0 1 1 0
+ $ berry_count     : num  12 1 7 100 14 4
+ $ weather         : num  1 0 2 0 1 1
+
+
+
+However, I'd recommend to use the default and change the type afterwards (so the 
+date
+ is not converted to a factor vector) by using:
+
+
+> train_data$bush_name <- factor(train_data$bush_name, levels=c(""bush001"", ""bush043""))
+
+
+
+Note the explicit enumeration of levels - you should use the same argument for 
+test_data
+ so that you ensure the same encoding of the factors.
+
+
+You'll probably also want to encode the date column. H2O doesn't do any clever date preprocessing - at best it will represent date as a number of seconds since 1st January 1970 which is not ideal for rotten berry prediction as seasonality will likely have a bigger effect than number of seconds since some date. You can use 
+step_date
+ for date preprocessing.",2024-05-09T08:15:01,Tomáš Frýda,https://stackoverflow.com/users/13566678/tom%c3%a1%c5%a1-fr%c3%bdda,591,78444040
+78492388,78492388,0,"Hi:  It looks like you are just trying to predict the rotten blueberries on a bush based on the predictors bugs, has_rotten_berry, berry_count and weather.  I will simply build a model with bugs, has_rotten_berry, berry_count and weather and ignore all the other columns.
+
+
+The name of the berry bush should not matter to rotten blueberries.  The date is not important because this should be reflected by the weather column.",2024-05-16T20:42:45,Wendy,https://stackoverflow.com/users/20736722/wendy,301,78444040
+78252702,78252702,2,"h2o.predict
+ returns an ""H2OFrame"". That is not expected as almost all predict methods return a data.frame. You transform the input data to a H2OFrame, but you also need to transform the output to a data.frame:
+
+
+dnn_pred <- function(model, data, ...) {
+   predict(model, newdata=as.h2o(data), ...) |> as.data.frame()
+}
+
+p <- predict(logo, model=dl_model, fun=dnn_pred)
+plot(p, nr=1, mar=c(1,2,1,4))",2024-03-31T20:12:28,,,,78250475
+78248479,78248479,1,"I guess this is getting close votes because it will be the data that is causing the problem, but the data is not given. But maybe your data cannot be given, or there is too much of it.
+
+
+So I'd suggest try just using the first/half second half of data, and if only one or the other trigger it then keep repeating, to see if you can narrow it down to just one row.
+
+
+And the same for columns, e.g. try 10-15 columns at a time, to see if it is just one column, or maybe certain types of column, triggering it.
+
+
+Of course, once you have that, you also have the solution: exclude the troublesome column/row.
+But you will also have enough to give a bug report to H2O (looks like this can be done at 
+https://github.com/h2oai/h2o-3/issues
+)",2024-03-30T15:28:57,Darren Cook,https://stackoverflow.com/users/841830/darren-cook,28.8k,78245999
+78201658,78201658,1,"Without more logs, I cannot see what the problem is.  However, I do frequently encounter the following problem:
+
+
+I started a H2O-3 cluster and start doing my work.  Then, I started another H2O-3 cluster.  My first cluster ended up shutting down because the two clusters try to form a H2O-3 cloud (they have the same default names) and my H2O-3 versions are not quite the same or the hash or something is not matching.
+
+
+The way to get around this problem is to start each of your h2o-3 cluster with a different name like this:
+
+
+java -jar h2o.jar -name ""cluster007""
+
+
+I hope this will resolve your issue.  If not, please give me more logs or codes to reproduce the error.",2024-03-21T16:56:54,Wendy,https://stackoverflow.com/users/20736722/wendy,301,78183646
+78181801,78181801,2,"Currently PCA does not support any rotation.  All it does is to decompose your datasets into factors and its corresponding coefficients in those factor directions.
+
+
+Given a dataset A of m rows by n predictors (or coordinates), PCA will do the following
+
+
+A = X*D where X is m by k, D is k by n and k < n.
+
+
+I assume when you say you want to specify a rotation, you really wanted
+
+
+A = Y*E where Y is m by k, E is k by n and E is given.
+
+
+I believe you can solve the problem by doing the following: :
+
+
+
+
+you can use H2O PCA to find: A = X*D.
+
+
+given E, use any conventional software (Matlab, R, Octave or Python packages), you can find D = R * E (R = D * inverse(E)).
+
+
+Substitue into A=X * D in terms of R and E: A = X * R * E = (X*R)*E
+
+
+Set Y = X * R and you will get your desired answer A = Y*E.
+
+
+
+
+Hope this helps.",2024-03-18T16:55:16,Wendy,https://stackoverflow.com/users/20736722/wendy,301,78180809
+77993564,77993564,0,"Could you also share the printed output, please?
+
+
+My first idea is you are using the same grid_id = ""gbm_grid""; please try to change the second one to be different.
+
+
+Also, in your grid settings, the only difference is setting the response column (the first grid y=61, the second grid y=2). I don't see an offset column setting.
+
+
+I will also try this suggestion with my generic data to see if this is the issue.
+
+
+Thanks!
+
+
+Edit:
+I tried your code with different data and got models with different RMSEs. So please check that your data makes sense.",2024-02-14T10:25:49,,,,77976819
+77911914,77911914,1,"I see there 2 issues:
+
+
+
+
+H2O-3 requires its internal keys to start with a letter. The internal key is derived from the file name. When shiny uploads the file it renames it and in this case the file was named 
+0.csv
+. To workaround this you can specify 
+destination_frame
+, e.g.:
+
+
+
+
+data <- h2o.uploadFile(path = path, destination_frame = paste0(""file_"", digest::digest(path)))
+
+
+
+
+
+The other issue is reading the csv. You use 
+read.csv(data)
+ where 
+data
+ is an H2OFrame, this will not work. You should use 
+as.data.frame(data)
+ or 
+read.csv(path, ...)
+.",2024-01-31T08:44:31,Tomáš Frýda,https://stackoverflow.com/users/13566678/tom%c3%a1%c5%a1-fr%c3%bdda,591,77908088
+77875297,77875297,0,"Check this page: 
+https://www.tensorflow.org/decision_forests/tutorials/model_composition_colab
+
+
+It combines CNN and decision forest just like what you are trying to do.
+
+
+If they do not have gridsearch, you will just have to run the chained models multiple times.  Each time you will use a different hyperparameter settings.",2024-01-24T18:02:09,Wendy,https://stackoverflow.com/users/20736722/wendy,301,77874825
+77841614,77841614,0,"Please add
+
+
+import h2o
+
+
+before you call anything from h2o toolboxes.",2024-01-18T18:16:22,Wendy,https://stackoverflow.com/users/20736722/wendy,301,77838561
+77680312,77680312,1,"Let me first say what you have done is very innovative!  We do not provide binary model support across the different H2O-3 versions but you found a way to do this by using Mojo and generic model.
+
+
+Here is the code I used to check out your issues.  However, I used the same version of H2O-3 3.44.0.3.  I was able to execute the code and get a prediction frame at the end of it.  If this does not help, please open an issue here (
+https://github.com/h2oai/h2o-3/issues
+) with versions of old H2O-3 and new H2O-3 that you use to create your old model and the version you try to load it with.
+
+
+import h2o
+import tempfile
+from h2o.estimators import H2ORandomForestEstimator, H2OGenericEstimator
+
+    airlines= h2o.import_file(path=pyunit_utils.locate(""smalldata/testng/airlines_train.csv""))
+drf = H2ORandomForestEstimator(ntrees=1)
+drf.train(x=x, y=y, training_frame=airlines)
+
+original_model_filename = tempfile.mkdtemp()
+original_dir = original_model_filename
+original_model_filename = drf.download_mojo(original_model_filename)
+  
+model = H2OGenericEstimator.from_file(original_model_filename)
+modelBinary = model.download_model(original_dir)
+model2 = h2o.load_model(modelBinary)
+pred2 = model2.predict(airlines)",2023-12-18T16:03:49,Wendy,https://stackoverflow.com/users/20736722/wendy,301,77679172
+77559928,77559928,0,"Actually, we have a toolbox just for this using GLM.  You are looking for the best K predictors to use to build your model.  The best model is chosen for the one with the highest R2.  ModelSelection will build a GLM model selecting the best 1 predictor model, best 2 predictors model, ...., the best K predictor models.  Please checkout our modelselection toolbox:  
+https://docs.h2o.ai/h2o/latest-stable/h2o-docs/data-science/model_selection.html?highlight=modelselection
+
+
+A sample code will look like this:
+
+
+import sys
+import h2o
+from h2o.estimators.model_selection import H2OModelSelectionEstimator
+
+train = h2o.import_file(""import your dataset"")
+response=""response"" # set your response column
+predictors = train.names
+predictors.remove(response)
+
+maxrsweep_model = H2OModelSelectionEstimator(mode=""maxrsweep"", max_predictor_number=100)
+maxrsweep_model.train(x=predictors, y=response, training_frame=train)
+
+# to get the best predictor subset
+best_100_predictors = maxrsweep_model.coef(predictor_size=100)
+print(best_100_predictors) # print predictor names and GLM coefficients
+
+
+
+I hope this helps.",2023-11-27T21:01:59,Wendy,https://stackoverflow.com/users/20736722/wendy,301,77549868
+77488166,77488166,0,"Thanks for the question.
+
+
+Every leaf node contains 
+predValue
+ = information regarding the final prediction made on that node.
+
+
+See tree structure info here:
+
+
+
+
+Python: 
+https://docs.h2o.ai/h2o/latest-stable/h2o-py/docs/tree.html
+
+
+R: 
+https://docs.h2o.ai/h2o/latest-stable/h2o-r/docs/reference/H2OTree-class.html
+
+
+
+
+To get information if the result prediction is 0 or 1, you must get the threshold (
+default_threshold
+) used for these decisions. You can find the 
+default_threshold
+ in the model info.
+
+
+You can get the decision path for the concrete node see 
+decision_paths
+ or decision paths for the whole tree, see 
+tree_decision_path
+.
+
+
+If you are interested in leaf node assignment, see 
+https://docs.h2o.ai/h2o/latest-stable/h2o-docs/performance-and-prediction.html?#predicting-leaf-node-assignment
+.
+
+
+Let me know if you have another question.",2023-11-15T13:39:15,Maurever,https://stackoverflow.com/users/5036600/maurever,157,77475890
+77209082,77209082,1,"Yes, Luis Felipe is correct.  Please make sure
+
+
+
+
+you set distribution=""multinomial""
+
+
+change your dat_h20 to H2O frame as data_h2o <- as.h2o(dat_h20)
+
+
+Make sure the response column is a factor: data_h2o[,4] <- as.factor(data_h2o[,4] assuming that the fourth column is the response column.
+
+
+
+
+Normally if you have 2 and 3, H2O deeplearning will be able to figure out that it is a multiclass classification automatically.",2023-10-01T02:59:24,Wendy,https://stackoverflow.com/users/20736722/wendy,301,77208586
+77208591,77208591,0,"Ensure Multi-Class Setting: In H2O's deep learning function, the default behavior for classification is to expect binary labels. For multi-class classification, the system should automatically handle it when provided with a categorical response column with more than two levels. If you've encoded your response variable as numeric, this might be the root of the problem. It's preferable to leave it as a factor",2023-09-30T22:01:31,Luis Felipe,https://stackoverflow.com/users/22597384/luis-felipe,1,77208586
+77220900,77220900,3,"I had exactly the same problem and I fixed it by setting 
+safe_serialization=True
+ when using the 
+save_pretrained()
+ method. Hope this works for you. However, I do want to know what was going on when loading a model with a vanilla .bin format.",2023-10-03T08:58:22,Luxin.Z,https://stackoverflow.com/users/7483499/luxin-z,39,77064065
+78046835,78046835,-1,"You can try this method:
+
+model = AutoModelForCausalLM.from_pretrained(model_path, device_map=""auto"",  trust_remote_code=True).eval()
+
+
+It may work.",2024-02-23T10:49:45,Joyanta J. Mondal,https://stackoverflow.com/users/9848043/joyanta-j-mondal,"1,037",77064065
+77052978,77052978,0,"Thanks for your questions. I try to answer:
+
+
+
+
+How are the scores from these trees combined into the final score vector?
+
+You are right. For each class, a ""one-vs-rest"" tree is trained. The final prediction vector is calculated as a prediction of each tree and then normalized to sum up to one.
+
+
+
+
+Why this approach was chosen?
+
+Good question. But I don't know. It is one of the oldest algorithms we implemented in H2O-3. My guess is it was easier to implement. :) You can open an issue and ask to implement another approach. We are open to improving our algorithm base.
+
+
+
+
+Should be multiclass classifier and one-vs-rest multiclass classifier similar in performance?
+
+Well, I am not sure. I think it depends on the data, too. Do you have any performance comparisons you can share? Which type of data you are using?",2023-09-06T14:39:48,Maurever,https://stackoverflow.com/users/5036600/maurever,157,77016904
+76952165,76952165,0,"Thank you for your interest in h2o-3!
+I'm having troubles reproducing that on the same Ubuntu and Java version, can you please share which git branch are you using? If you're not using git I would suggest cloning the project and using 
+rel-3.42.0
+ branch, which is the latest release branch.
+
+
+I also strongly suggest skipping the tests at first:
+
+./gradlew build -x test",2023-08-22T10:00:35,krasinski,https://stackoverflow.com/users/2922413/krasinski,69,76950243
+76957170,76957170,0,"can you please try enabling 
+convertUnknownCategoricalLevelsToNa
+?
+
+
+Here is the related documentation:
+
+https://s3.amazonaws.com/h2o-release/sparkling-water/spark-3.1/3.42.0.2-1-3.1/doc/deployment/load_mojo.html#customizing-the-mojo-settings",2023-08-22T22:25:05,krasinski,https://stackoverflow.com/users/2922413/krasinski,69,76931856
+76874347,76874347,0,"Solved. If I omit the ""start column"" it works. I don't know why, cause thought that this columns represents the beginning time of the observations, which means it could have zero values, but it can't.",2023-08-10T09:23:45,ilpadrino,https://stackoverflow.com/users/1974542/ilpadrino,13,76850663
+76871083,76871083,0,"Here is a suggestion:
+
+
+pseudotensor commented 3 days ago •
+Looks like you have a package ""utils"" installed and it's looking there instead of the local code.
+
+
+Maybe try:
+
+
+setenv PYTHONPATH=.:src:$PYTHONPATH
+
+
+python generate.py ...
+
+
+Here is the link to the same issue:  
+https://github.com/h2oai/h2ogpt/issues/622#issuecomment-1666898436",2023-08-09T20:31:49,Wendy,https://stackoverflow.com/users/20736722/wendy,301,76844317
+76790924,76790924,1,"To get around the error that you are getting, please try this:
+
+
+gbm_autoML = h2o.get_model(aml.leader)
+gbm_continued = H2OGradientBoostingEstimator(model_id = 'gbm_continued', max_depth = gbm_autoML.actual_params['max_depth'], ntrees = gbm_autoML.actual_params['ntrees']+2, checkpoint = aml.leader)
+
+
+To continue to train a GBM model meaning that you are adding more trees into the model.  That is why I have added 2 to the ntrees parameter.  Feel free to change the 2 to anything else that you want as long as it >= 1.
+
+
+Hope this helps and good luck.",2023-07-28T20:42:20,Wendy,https://stackoverflow.com/users/20736722/wendy,301,76790068
+76775726,76775726,1,"Currently h2o generic estimator loaded from mojo files can perform scoring but will not be able to be trained again.
+
+
+If you are interesting in training a previously build model, please consider using checkpoint.  Here is the documentation on it: 
+https://docs.h2o.ai/h2o/latest-stable/h2o-docs/data-science/algo-params/checkpoint.html#:~:text=The%20checkpoint%20option%20allows%20you,continuing%20building%20a%20previous%20model
+.",2023-07-26T23:53:24,Wendy,https://stackoverflow.com/users/20736722/wendy,301,76774699
+76723361,76723361,1,"The complete java command call is
+
+
+java -cp h2o.jar hex.genmodel.tools.PrintMojo --tree 0 -i ""path/to/model.zip"" -o model.gv -f 20 -d 3
+
+
+where the -f is for fontsize, -d is for number of decimal points and they are optional.  To convert this into a subprocess call in Python, the gv_call is probably this:
+
+
+gv_call="" "".join([""java"", ""-cp"", h2o_jar_path, ""hex.genmodel.tools.PrintMojo"", ""--tree"", str(tree_number), ""-i"", mojo_path, ""-o"", gv_file_path, ""-f"", str(20), ""-d"", str(3)])",2023-07-19T16:20:37,Wendy,https://stackoverflow.com/users/20736722/wendy,301,76722818
+76664005,76664005,0,"have a look at H2O's 
+partial_plot
+. With 
+plot=False
+ you can get just the data that you want for each feature (and target in case of multinomial classification) separately. The features in 
+explain
+ method are sorted using variable importance that you can retrieve for most models by using the 
+varimp
+ method.",2023-07-11T16:25:08,Tomáš Frýda,https://stackoverflow.com/users/13566678/tom%c3%a1%c5%a1-fr%c3%bdda,591,76659512
+76663826,76663826,0,"Using initial weights can be tricky because you need to make sure to get the dimension right.  Here is a code snippet on how to figure out the correct weight dimension and then use it in when calling the model:
+
+
+df <- as.h2o(iris)
+dl1 <- h2o.deeplearning(x=1:4,y=5,training_frame=df,hidden=c(10,10),export_weights_and_biases = TRUE, seed=1234, reproducible=TRUE)
+
+## get weights and biases.  This will give you the correct dimension.
+w1 <- h2o.weights(dl1,1)
+w2 <- h2o.weights(dl1,2)
+w3 <- h2o.weights(dl1,3)
+b1 <- h2o.biases(dl1,1)
+b2 <- h2o.biases(dl1,2)
+b3 <- h2o.biases(dl1,3)
+
+## make a model from given weights/biases
+dl2 <- h2o.deeplearning(x=1:4,y=5,training_frame=df,hidden=c(10,10),initial_weights=c(w1,w2,w3),initial_biases=c(b1,b2,b3), epochs=0)",2023-07-11T16:01:23,Wendy,https://stackoverflow.com/users/20736722/wendy,301,76659362
+76524767,76524767,0,"Let's call your original frame train_log2.
+
+
+If you want to pick out part of an H2OFrame which has certain characteristics like ID == 10, you can do the following:
+
+
+train_log2_ID10 <- train_log2[train_log2$ID==10,]
+
+
+Now, you can call and build your model with train_log2_ID10 as before just using dataset rows when the ID is 10.  You can do any kind of logical combinations like train_log2$ID==10 || train_log2$ID==20 or whatever you like.",2023-06-21T15:08:57,Wendy,https://stackoverflow.com/users/20736722/wendy,301,76523487
+76507433,76507433,0,"H2O deeplearning does not utilize GPU.  However, there is the parameter fast_mode you can use to speed up your training.",2023-06-19T14:09:47,Wendy,https://stackoverflow.com/users/20736722/wendy,301,76503651
+76490770,76490770,1,"Check the 
+reproducible
+ parameter of the autoencoder in 
+the h2o-3 documentation
+:
+
+
+
+
+reproducible: Specify whether to force reproducibility on small data.
+If this option is enabled, the model takes more time to generate
+because it uses only one thread. This option defaults to False
+(disabled).
+
+
+
+
+Also set the 
+seed
+ parameter to a fixed integer value.",2023-06-16T13:40:01,Community,https://stackoverflow.com/users/-1/community,1,76488419
+76435209,76435209,1,"The problem here is the number of columns.  While the number of rows control the overall training time, the number of columns control the training time per row.  Having 2232 is quite a lot.  If you can do some data munging and reduce the number of predictors you use, it will definitely speed up training.
+
+
+You can also try the following:
+
+
+
+
+set stopping_tolerance to a higher number: 0.1 or higher.  This will enable early stopping to stop training if the average improvement in some metrics does not improve by 0.1 compared to the last one;
+
+
+set max_runtime_secs=120 if you want to stop the model building after 120 seconds
+
+
+reduce score_training_samples from default of 10000 to say 5000.  This will perform scoring on a smaller number of samples and hence can reduce training time.
+
+
+
+
+Note that stopping the model early as in 1, 2 may reduce the model training time but will get you a model that may not be a good fit for your data.",2023-06-08T19:40:35,Wendy,https://stackoverflow.com/users/20736722/wendy,301,76428833
+76420161,76420161,0,"The PMML converter can only use information that was made available by the original ML framework. If partial predictions are not available for intermediate tree levels, then this is so because the original ML framework did not store this information in model dump file (the in-memory representation and the dumped representation are sometime different).
+
+
+Now, the information about intermediate tree levels is typically omitted, because this is useless for most application scenarios - when making predictions, then the prediction is computed exclusively based on terminal nodes.
+
+
+With probability distribution-type trees and their ensembles there are two sub-types. Some models present this information in 
+absolute
+ terms (class data record counts), whereas other model types present it in 
+relative
+ terms (class probabilities).
+
+
+If you are working with any model that has record counts available for terminal nodes, then you can re-construct record counts for all higher levels by aggregating them. Continue with the aggregation up until the root tree level - the sum of calculated record counts will equal to the size of the training dataset there.",2023-06-07T05:39:43,user1808924,https://stackoverflow.com/users/1808924/user1808924,"4,916",76412118
+76394821,76394821,0,"Could you specify the version of h2o you use and how you use it (are you using  IPython/bpython/Jupyter or some IDE like Spyder/PyCharm)?
+
+
+Since you have 
+pandas
+ installed you can use 
+print(hf.head().as_data_frame())
+ to convert the ""head"" of the hf to 
+pandas
+ and render it using 
+pandas
+.
+
+
+For the model object you can try 
+gbm_default.show()
+ or
+
+gbm_default.get_summary()
+ (or 
+gbm_default.summary()
+ if you have older versions).",2023-06-03T06:30:18,Tomáš Frýda,https://stackoverflow.com/users/13566678/tom%c3%a1%c5%a1-fr%c3%bdda,591,76391929
+76317334,76317334,2,"You could also try setting multiple repositories, e.g.
+
+
+options(repos = c(
+ h2o = ""http://h2o-release.s3.amazonaws.com/h2o/latest_stable_R"",
+ CRAN = ""https://cloud.r-project.org""
+))
+
+install.packages(""h2o"", type=""source"")
+
+
+
+This way, R can find the 
+h2o
+ package on its own repository, and install any dependencies from the regular CRAN repository.",2023-05-23T17:33:55,Kevin Ushey,https://stackoverflow.com/users/1342082/kevin-ushey,21.2k,76316226
+76316527,76316527,1,It looks like you need to install the R package jsonlite.,2023-05-23T15:43:50,Wendy,https://stackoverflow.com/users/20736722/wendy,301,76316226
+76316002,76316002,1,"it looks like some kind of a firewall is blocking the ports, I would suggest to investigate that",2023-05-23T14:43:40,krasinski,https://stackoverflow.com/users/2922413/krasinski,69,76310451
+76275385,76275385,0,"H2O is built to deal with large amounts of data.  Hence, your problem is perfect for h2O-3.  I would suggest you do the following: save your smaller datasets as .csv files into a folder say big_data_folder.  Say you have data1.csv, data2.csv, data3.csv, .... in your /Users/abcde/big_data_folder.  Then, in your R code, you call this:
+
+
+dataset <- h2o.importFile(""/Users/abcde/big_data_folder"")
+
+
+Then, you can call deeplearning algo with the proper parameters.
+
+
+To save a h2o frame data1, you can do h2o.downloadCSV(data1, ""/Users/abcde/big_data_folder/data1.csv"") in R.
+
+
+The reason that the merging does not work is because it is not implemented efficiently and can take up a lot of memory.  Please try my suggestion and let me know if you encounter problems.
+
+
+Thanks and good luck,
+Wendy",2023-05-17T18:56:28,,,,76274774
+76204054,76204054,2,"You would be better off using a MOJO wrapped in a web service.
+Using a full H2O-3 instance for real-time scoring is not recommended.
+
+
+Here is a link to a really old, but really simple, example:
+
+
+https://github.com/h2oai/app-consumer-loan/blob/master/src/main/java/org/gradle/PredictServlet.java
+
+
+The link you provided above to the eScorer tutorial assumes you have an H2O AI Cloud instance with the model already hosted.
+
+
+Whereas the simple OSS example directly instantiates a java servlet container and has the model inside.
+
+
+You can try to dockerize this simple example if you want, but that's probably overkill.  If you dockerize it, I suggest running 
+docker run
+ directly and not using 
+docker compose
+ at all.",2023-05-08T20:11:25,TomKraljevic,https://stackoverflow.com/users/2085461/tomkraljevic,"3,671",76201233

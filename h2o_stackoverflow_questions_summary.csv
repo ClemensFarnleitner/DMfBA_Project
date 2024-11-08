@@ -1,0 +1,116 @@
+,post_id,votes,answers,views,title,link,excerpt,tags,user_name,user_rep
+79045928,79045928,0,1,29,H2O GradientBoostingEstimator (GBM) - Group subitems of a feature together for training,https://stackoverflow.com/questions/79045928/h2o-gradientboostingestimator-gbm-group-subitems-of-a-feature-together-for-t,"I have the scenario where you have a feature, call it X, with possible values it can hold, say x1, x2, x3, x4. I want the GBM in H2O to train x1 and x3 together so that they are predicted with the ...","['h2o', 'gbm']",Adam,21
+79033110,79033110,0,1,54,How can I install JRE/Java in pydroid3,https://stackoverflow.com/questions/79033110/how-can-i-install-jre-java-in-pydroid3,"Everytime when I run h2o on pydroid3 then it says I need Java/JRE for it to work. ERROR:
+Checking whether there is an H2O instance running at http://localhost:54321..... not found.
+Attempting to start ...","['python', 'java', 'mobile', 'h2o']",XuhanChen,1
+78995266,78995266,0,2,50,h2o predict error: Test/Validation dataset has no columns in common with the training set,https://stackoverflow.com/questions/78995266/h2o-predict-error-test-validation-dataset-has-no-columns-in-common-with-the-tra,"I'm attempting to implement the deeplearning function in the h2o package and obtain a persistent error despite (seemingly) following the example given in the documentation for the package:
+https://www....","['r', 'deep-learning', 'h2o']",Max,569
+78986631,78986631,0,3,64,"Error with H2O in R - No active connection to an H2O cluster despite ""Successful Connection""",https://stackoverflow.com/questions/78986631/error-with-h2o-in-r-no-active-connection-to-an-h2o-cluster-despite-successful,"I would like to switch the parsinp engine to h2o and use h2o and agua packages to fit models. The following code is from the standard help site.
+With tune::tune_grid, I bump into the ""Warning: ...","['r', 'connection', 'h2o', 'hyperparameters', 'tidymodels']",Sasha Babaei,485
+78853756,78853756,0,2,78,h2o variable importance for GLM models in R,https://stackoverflow.com/questions/78853756/h2o-variable-importance-for-glm-models-in-r,"I ran a GLM model using h2o in r (the model was saved as an object called mod), the dataset contains categorical and continuous predictors. I called the h2o.varimp function on mod to retrieve the ...","['r', 'h2o']",ZTraveler,1
+78716974,78716974,0,1,48,"H20 error in R: Error en .Call(R_curl_fetch_memory, enc2utf8(url), handle, nonblocking): the elapsed time limit has been reached",https://stackoverflow.com/questions/78716974/h20-error-in-r-error-en-callr-curl-fetch-memory-enc2utf8url-handle-nonbl,"When I am trying to run the function h2o.splitFrame from H2O, I receive the following error:
+Error en .Call(R_curl_fetch_memory, enc2utf8(url), handle, nonblocking): 
+  se ha alcanzado el límite de ...","['r', 'h2o', 'h2o.ai']",user23479948,1
+78449790,78449790,0,0,64,H2O AutoML - reproducing results,https://stackoverflow.com/questions/78449790/h2o-automl-reproducing-results,I am running H2O AutoML on the same date set with the same seed on the same laptop multiple times and getting different predictions from time to time. I wonder if it is possible to get the same ...,"['h2o', 'automl', 'reproducible-research']",user1700890,"7,630"
+78444040,78444040,0,3,64,Need Guidance on Predictions with rand_forest and h2o with R,https://stackoverflow.com/questions/78444040/need-guidance-on-predictions-with-rand-forest-and-h2o-with-r,"I have a random forest model that I'm trying to understand better.
+For the sake of the example, lets say we have a grove of blueberry bushes. What we're interested in is predicting the production of ...","['r', 'machine-learning', 'classification', 'h2o', 'predict']",SqueakyBeak,432
+78250475,78250475,0,1,81,Error while using predict function for h2o.deeplearning model on raster stack,https://stackoverflow.com/questions/78250475/error-while-using-predict-function-for-h2o-deeplearning-model-on-raster-stack,"I am trying to use h2o.deeplearning model to predict on raster data. It returns me the following error
+
+Error: Not compatible with requested type: [type=character; target=double].
+
+Here is a minimal, ...","['r', 'h2o', 'predict', 'terra']",UseR10085,"8,062"
+78245999,78245999,-1,1,89,java.lang.AssertionError when trying to train certain datasets with h2o,https://stackoverflow.com/questions/78245999/java-lang-assertionerror-when-trying-to-train-certain-datasets-with-h2o,"I am getting an error for my desired dataset when trying to use an isolation forest method to detect anomalies. However I have another completely different dataset that it works fine for, what could ...","['python', 'java', 'h2o']",Amon,"2,931"
+78193739,78193739,1,0,34,RestApiCommunicationException: H2O node http://10.159.20.11:54321 responded with,https://stackoverflow.com/questions/78193739/restapicommunicationexception-h2o-node-http-10-159-20-1154321-responded-with,"everyone!
+I have a list of discounts, and for each discount, I iterate through them. Within each iteration, I generate a few new columns and then predict the sales amount for each product associated ...","['apache-spark', 'pyspark', 'databricks', 'h2o', 'sparkling-water']",Tiago,65
+78183646,78183646,1,1,56,How to prevent h2o cluster shutdown without notice using Python,https://stackoverflow.com/questions/78183646/how-to-prevent-h2o-cluster-shutdown-without-notice-using-python,"My code loads the h2o MOJO model to get prediction on a small dataset. However, h2o shutdown abruptly by itself. The same code is working fine on one machine with the same set of inputs but seeing ...","['python', 'h2o', 'h2o.ai']",mindstorm84,102
+78180809,78180809,0,1,23,Can you specify a rotation in h2o's PCA function?,https://stackoverflow.com/questions/78180809/can-you-specify-a-rotation-in-h2os-pca-function,"I'm running PCA in h2o (R version) and was wondering whether it's possible to specify/apply a rotation (like oblimin or promax).  I'm looking for the rotated loadings, and the reason I'm using h2o ...","['machine-learning', 'parallel-processing', 'pca', 'h2o', 'h2o.ai']",Tyler Moore,51
+78110316,78110316,1,0,37,How to deepcopy a fitted h2o.sklearn.H2OAutoMLRegressor object?,https://stackoverflow.com/questions/78110316/how-to-deepcopy-a-fitted-h2o-sklearn-h2oautomlregressor-object,"I'd like to deepcopy a fitted h2o.sklearn.H2OAutoMLRegressor object. I can deepcopy prior to calling fit but not after.
+Using H2O version 3.44.0.3, the following results in an error for the deepcopy ...",['h2o'],Joe Faraguna,11
+77976819,77976819,0,1,80,Tuning of GBM model with offset column using h2o and R,https://stackoverflow.com/questions/77976819/tuning-of-gbm-model-with-offset-column-using-h2o-and-r,"I am trying to train two GBM models, the first one takes the frequency as a response variable and the second takes number of claims as a response and exposure as on offset column, however, I did not ...","['r', 'offset', 'h2o', 'hyperparameters', 'gbm']",wej,21
+77973356,77973356,0,0,42,"h2o.automl in R is not terminating, same code with e.g. randomForest works fine",https://stackoverflow.com/questions/77973356/h2o-automl-in-r-is-not-terminating-same-code-with-e-g-randomforest-works-fine,"I'm using h2o in R and RStudio, and h2o is working fine. However, when I try to use the automl() function, the process starts, RStudio shows progress bars, but after the progress bar reaches 100% no ...","['r', 'h2o', 'automl']",jo_sh,1
+77908088,77908088,0,1,35,Upload csv and read it as h2o object in a shiny app,https://stackoverflow.com/questions/77908088/upload-csv-and-read-it-as-h2o-object-in-a-shiny-app,Im trying to upload a csv file to a shiny app as a h2o object based on this process but I get Warning: Error in .key.validate: key must match the regular expression '^[a-zA-Z_][a-zA-Z0-9_.]*$': ...,"['r', 'shiny', 'h2o']",firmo23,"8,384"
+77874825,77874825,1,1,89,Hybrid model (CNN +RF) hyperparameter optimization,https://stackoverflow.com/questions/77874825/hybrid-model-cnn-rf-hyperparameter-optimization,I am working on a hybrid model that uses CNN (time series input) and H2oRandom forest (tabular data input) combined at the fully connected layer to solve regression problems. I would like to optimize ...,"['optimization', 'deep-learning', 'conv-neural-network', 'random-forest', 'h2o']",Geerthy Thambiraj,21
+77849328,77849328,0,0,13,Is there an updated GLMBooklet.pdf for H2O.ai?,https://stackoverflow.com/questions/77849328/is-there-an-updated-glmbooklet-pdf-for-h2o-ai,"I'm interested in using h2o's suite of algorithms to perform some analysis on data, specifically with ordinal logistic regression. I was looking through the available GLMBooklet.pdf and on page 21 of ...",['h2o'],Rich,1
+77838561,77838561,0,1,86,Running H2o model prediction in Pysaprk dataframe,https://stackoverflow.com/questions/77838561/running-h2o-model-prediction-in-pysaprk-dataframe,"I have been getting error in pyspark while running h2o model prediction.
+file ""/usr/spark/python/pyspark/cloudpickle.py"", line 562, in subimport
+ModuleNotFoundError; No Modele named h2o
+i ...","['pyspark', 'h2o']",Nithin Reddy,1
+77774644,77774644,1,0,170,h2o XGBoost unavailable on MacOS (Apple M1),https://stackoverflow.com/questions/77774644/h2o-xgboost-unavailable-on-macos-apple-m1,"When I run h2o AutoML in python on my MacOS with Apple M1 chip, I get a message ""XGBoost is not available; skipping it."". I found a similar issue from more than a year ago. So I am wondering ...","['xgboost', 'apple-m1', 'h2o']",sofi,11
+77679172,77679172,2,1,100,Converting H2O MOJOmodels to Binary,https://stackoverflow.com/questions/77679172/converting-h2o-mojomodels-to-binary,I am trying to upgrade a binary (DRF) H2O model to a higher version (from v3.28.1.2 to v3.42.0.3). Due to tecnical restrictions I cannot use the MOJO format for deployment. Is it possible to do the ...,"['binary', 'version', 'h2o', 'mojo']",Simon M.,21
+77549868,77549868,0,1,94,Recursive Feature Elimination with H2O Random Forest,https://stackoverflow.com/questions/77549868/recursive-feature-elimination-with-h2o-random-forest,"I am using h2o package in python to build a fairly complex model.
+It has around 1500 features, but I know that most of them are not really important and I would like to extract the subset of a given ...","['python', 'machine-learning', 'random-forest', 'h2o', 'feature-selection']",Mirko,233
+77498397,77498397,2,0,77,How to set size of total memory for sparkling water cluster in Databricks,https://stackoverflow.com/questions/77498397/how-to-set-size-of-total-memory-for-sparkling-water-cluster-in-databricks,"I am working in Databricks with Sparkling Water 3.40.0.4; I have a total driver memory of 512 GB and six workers with 64 GB each. When I call
+hc = H2OContext.getOrCreate()
+
+the internal H2O cluster is ...","['python', 'apache-spark', 'databricks', 'h2o', 'sparkling-water']",omoshiroiii,693
+77476421,77476421,0,0,10,"DALEX error : Error in contribution[nrow(contribution), ] <- cumulative[nrow(contribution), : incorrect number of subscripts on matrix",https://stackoverflow.com/questions/77476421/dalex-error-error-in-contributionnrowcontribution-cumulativenrowcon,"Trying to use DALEX on my data. Getting following error in line pb_h2o_automl <- predict_parts(explainer_h2o_automl,new_observation = new_date_birth,type=""break_down"")
+Error
+Error in ...","['r', 'h2o', 'dalex']",Soumya Boral,"1,329"
+77475890,77475890,0,1,43,Meaning of predValue field in H2O Random forest model,https://stackoverflow.com/questions/77475890/meaning-of-predvalue-field-in-h2o-random-forest-model,I built an H2ORandomForestEstimator model using train() method on my spark dataframe with the target column containing values 0 or 1. I downloaded and printed its mojo files using model.download_mojo(...,"['machine-learning', 'pyspark', 'random-forest', 'decision-tree', 'h2o']",Vijay Kansal,839
+77208586,77208586,0,2,135,"How to fix ""Actual column must contain binary class labels, but found cardinality"" error in R when fitting the h2o model?",https://stackoverflow.com/questions/77208586/how-to-fix-actual-column-must-contain-binary-class-labels-but-found-cardinalit,"I am getting an error. It occurs when I use the deep learning function in h2o in R. My response is a categorical variable which takes on 3 values so I can't change it to binary labels.
+
+Error: java....","['r', 'deep-learning', 'h2o']",statsstudent,1
+77186876,77186876,1,0,111,I can't run h2o cluster in R,https://stackoverflow.com/questions/77186876/i-cant-run-h2o-cluster-in-r,"I can't seem to get h2o running in R.
+I can easily import h2o using library(h2o) which displays
+----------------------------------------------------------------------
+
+Your next step is to start H2O:
+ ...","['java', 'r', 'h2o', 'h2o.ai']",Rothschild,39
+77184526,77184526,0,0,54,Single column data in h2o model needs 2 columns to work,https://stackoverflow.com/questions/77184526/single-column-data-in-h2o-model-needs-2-columns-to-work,Having had AutoML() recommend a model after I experimented with a single column of data and needed to identify a target as a step-1 of the single data to train the successful model I now want to use ...,['h2o'],Wise Recruitment,1
+77064065,77064065,12,2,18k,Loading checkpoint shards takes too long,https://stackoverflow.com/questions/77064065/loading-checkpoint-shards-takes-too-long,I'm very new to generative AI. I have 64gb RAM and 20GB GPU. I used some opensource model from Huggingface and used Python to simply prompt it with out of box model and displaying the result. I ...,"['huggingface-transformers', 'h2o', 'huggingface', 'huggingface-tokenizers', 'llama']",Khaleel,"1,372"
+77016904,77016904,1,1,172,How does h2o's distributed random forest handle multi-class problems?,https://stackoverflow.com/questions/77016904/how-does-h2os-distributed-random-forest-handle-multi-class-problems,"The documentation  for distributed random forest in h2o states that, for multiclass problems, ""a tree is used to estimate the probability of each class separately"". I can see this in ...","['random-forest', 'h2o', 'multiclass-classification']",nickc,11
+76950243,76950243,0,1,47,"H2O build failed with error ""cannot find symbol"" in h2o-algos",https://stackoverflow.com/questions/76950243/h2o-build-failed-with-error-cannot-find-symbol-in-h2o-algos,"I tried to build H2O open source, nomatter stable version or clone version, build process via ./gradlew build are failed due to ""error: cannot find symbol"", the detailed error info as below:
+...",['h2o'],kevin,1
+76931856,76931856,0,1,47,Facing issues with H2O MOJO deployment using sparkling water on Google Dataproc,https://stackoverflow.com/questions/76931856/facing-issues-with-h2o-mojo-deployment-using-sparkling-water-on-google-dataproc,"I am trying to migrate a model from Hadoop to GCP. Model MOJO will not be retrained. I am running the model in Dataproc using Airflow spark submit.
+Source data format matches with Hadoop source and ...","['h2o', 'sparkling-water', 'h2o.ai']",trougc,405
+76850663,76850663,0,1,62,h2o and coxph ERRR on field: _train: Training data must have at least 2 features (incl. response),https://stackoverflow.com/questions/76850663/h2o-and-coxph-errr-on-field-train-training-data-must-have-at-least-2-features,I am trying to build a model of Cox Proportional Hazard with h2o. In fact a I have succesfully built a model using deeplearning about survival in gastric cancer dataset. When trying to do it with h2o....,"['r', 'h2o']",ilpadrino,13
+76844317,76844317,0,1,346,H2oGPT - cannot import name 'set_seed',https://stackoverflow.com/questions/76844317/h2ogpt-cannot-import-name-set-seed,"I'm stuck with H2oGPT, I can't let it run.
+I am running on a Windows PC with
+
+11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz   2.30 GHz
+32GB memory 64bit
+GPU Nvidia GeForce RTX 3050
+
+I followed all ...","['h2o', 'openai-api']",donnadulcinea,"1,864"
+76790068,76790068,0,1,62,h2o GBM checkpointing error when using h2o automl for the base model,https://stackoverflow.com/questions/76790068/h2o-gbm-checkpointing-error-when-using-h2o-automl-for-the-base-model,I want to retrain my h2o model on a new set of observations using checkpoint but facing errors. My code is failing on the train step when using checkpoint. My original model is created using h2o ...,"['python', 'h2o']",mindstorm84,102
+76774699,76774699,0,1,61,h2o H2OGenericEstimator training function not working,https://stackoverflow.com/questions/76774699/h2o-h2ogenericestimator-training-function-not-working,"I want to enable incremental training using H2O models. I save the trained model using MOJO format for existing dataset/observations. Upon receiving new observations, I would like to load the MOJO-...","['python', 'h2o']",mindstorm84,102
+76722818,76722818,-1,1,23,H2O Decision Tree,https://stackoverflow.com/questions/76722818/h2o-decision-tree,"I'm watching an H2O demo, but one of the code lines are cut off, and I have no clue what is supposed to be in the rest.
+
+the gv_call assignment is cut off. Does anyone know what is supposed to be in ...","['python', 'operating-system', 'subprocess', 'decision-tree', 'h2o']",Cade Jin,1
+76659512,76659512,0,1,34,H20 cluster - generate the values in a tabular format for pdp plots,https://stackoverflow.com/questions/76659512/h20-cluster-generate-the-values-in-a-tabular-format-for-pdp-plots,"I am using the h20 cluster to train the model using tuned random forest and plot pdp plots using the below code
+tx = tuned_rf.explain(test_data, top_n_features=5, include_explanations='pdp')
+
+This is ...","['python', 'h2o', 'h2o.ai', 'h2o4gpu', 'h2o-wave']",rqqa,25
+76659362,76659362,0,1,27,"how to use initial_weights in h2o from R, when I use it I am getting java.lang.NullPointerException error",https://stackoverflow.com/questions/76659362/how-to-use-initial-weights-in-h2o-from-r-when-i-use-it-i-am-getting-java-lang-n,"I want to do deeplearning using h2o with custom initial weights, if I do not add the initial_weights parameter the code runs fine, but if I add it, the error is keep showing.
+wt1 = as.h2o(weight1)
+   ...","['r', 'h2o']",Baglan Baglan,1
+76523487,76523487,-1,1,49,How to group by ID numbers in dataset when running H2O automl,https://stackoverflow.com/questions/76523487/how-to-group-by-id-numbers-in-dataset-when-running-h2o-automl,I'm using the H2O package for machine learning. The goal is to use my dataset to estimate new predicted ages for each participant in my dataset. My setup for the code was to get rid of all unnecessary ...,"['r', 'machine-learning', 'h2o', 'automl', 'longitudinal']",anonymous,5
+76503651,76503651,0,1,56,Deep learning in H2O4GPU,https://stackoverflow.com/questions/76503651/deep-learning-in-h2o4gpu,"Good day! I had initially built a deep learning estimator on the h2o library in R, and I was thinking of using the h2o4gpu library instead to build it in order to expedite the process. Does anyone ...","['r', 'deep-learning', 'h2o', 'autoencoder', 'h2o4gpu']",Aengus,13
+76488419,76488419,1,1,65,Are the results of training a H2O autoencoder on the same data and same hyperparameters supposed to always be the same?,https://stackoverflow.com/questions/76488419/are-the-results-of-training-a-h2o-autoencoder-on-the-same-data-and-same-hyperpar,"Good day! I was training a h2o autoencoder and everytime I did so, the anomaly results (reconstruction score) of the variables I received would always be different, although the data I am using was ...","['r', 'h2o', 'autoencoder']",Aengus,13
+76428833,76428833,0,1,108,Time issues with training a H2o Autoencoder,https://stackoverflow.com/questions/76428833/time-issues-with-training-a-h2o-autoencoder,I was wondering if anyone knows if there are any glaring problems with the way my H2o autoencoder is being trained that could cause it to take so long? Or if anyone knows of any way I can reduce the ...,"['pandas', 'deep-learning', 'h2o', 'autoencoder', 'one-hot-encoding']",Aengus,13
+76412118,76412118,1,1,43,How to get sample split probability values from tree-based models - esp via the h2o framework,https://stackoverflow.com/questions/76412118/how-to-get-sample-split-probability-values-from-tree-based-models-esp-via-the,"Following the proposed tree interpreter approach (http://blog.datadive.net/interpreting-random-forests/) one can explain a tree-based model prediction using info from the decision path.
+I've built ...","['scikit-learn', 'decision-tree', 'h2o', 'rpart', 'pmml']",kevin5jan,39
+76391929,76391929,0,1,38,h2o always returns memory address instead of actual content,https://stackoverflow.com/questions/76391929/h2o-always-returns-memory-address-instead-of-actual-content,"My h2o code used to return useful information like printing table and metrics but for some reason now always returns memory address.
+Example:
+import pandas as pd
+import h2o
+from h2o.estimators import ...","['python', 'h2o']",Vrael,13
+76316226,76316226,0,2,100,Installing h2o on Databricks under R: jsonlite error message:,https://stackoverflow.com/questions/76316226/installing-h2o-on-databricks-under-r-jsonlite-error-message,"I am trying to install h2o (R version) on Databricks.
+I started with the following:
+%sh
+apt-get install libcurl4-openssl-dev -y
+apt-get update -y
+apt-get install -y r-cran-jsonlite
+
+It all ran fine. ...","['r', 'databricks', 'h2o', 'jsonlite']",user1700890,"7,630"
+76310451,76310451,0,1,69,h2o.init() error ports are not available in R,https://stackoverflow.com/questions/76310451/h2o-init-error-ports-are-not-available-in-r,"I just installed h2o (3.40.0.4) in R. I ran the following:
+library(h2o)
+h2o.init()
+
+and got back the following:
+H2O is not running yet, starting it now...
+
+Note:  In case of errors look at the ...","['r', 'h2o']",user1700890,"7,630"
+76274774,76274774,0,1,77,Unclear about the purpose of using H2O.ai,https://stackoverflow.com/questions/76274774/unclear-about-the-purpose-of-using-h2o-ai,"I am trying to train a neural network with massive amounts of data. I have around 2million rows and 200k columns of data. My data is in a sparse matrix, which I cannot feed into a neural network. I am ...","['r', 'h2o']",Vortenzie,85
+76201233,76201233,0,1,334,Real time scoring with H2O in docker with initiating h2o once,https://stackoverflow.com/questions/76201233/real-time-scoring-with-h2o-in-docker-with-initiating-h2o-once,"I am quite new to docker. I am trying to deliver some scores via my h2o models through docker in real time (have not tried this yet: link). Here is my Dockerfile and docker-compose/yml.
+FROM python:3....","['docker', 'real-time', 'h2o', 'scoring']",mlee_jordan,832
