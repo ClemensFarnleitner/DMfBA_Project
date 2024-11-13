@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import json
 import pandas as pd
-import time  # for throttling requests
+import time  
 
 url = "https://stackoverflow.com/questions/tagged/h2o"
 response = requests.get(url)
@@ -31,7 +31,7 @@ for x, question in enumerate(questions_container.find_all("div",
                                                                                         class_="s-tag")]
     user_info = question.find("div", 
                             class_="s-user-card--info")
-    user_name = user_info.find("a").text if user_info else "Unknown"
+    user_name = user_info.find("a").text if user_info.find("a") else "Unknown"
     user_rep = user_info.find("li", class_="s-user-card--rep").text if user_info else "N/A"
     time_element = question.find("time", class_="s-user-card--time")
 

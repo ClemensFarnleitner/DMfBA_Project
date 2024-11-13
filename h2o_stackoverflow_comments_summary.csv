@@ -1,54 +1,63 @@
-,comment_id,content,creation_date,user_name,user_profile_link,reputation_score,answer_id
-139391547,139391547,"It is for regression. The problem with your solution, is you are loosing all the data for x3 in the training stage, and so the model will not perform as well as it could have.   Instead, I am looking for a way to group x1 and x3 together so that it trains them as the same, even thought their values aren't.",Oct 4 at 11:32,,,,79049681
-139463667,139463667,Hi Adam. I still don't understand your problem well. Could you please explain your issue using a simple example with concrete data? Thanks!,Oct 16 at 9:11,,,,79049681
-139285027,139285027,"Yes, the column names are the same. That's the reason why the error that I'm getting makes no sense to me. At first I thought that I had failed to convert some variable into an h2o frame, but that doesn't seem to be the case either.",Sep 17 at 20:27,,,,78995415
-139285078,139285078,"I also thought that in the test set I might need the y variable as a placeholder (even though it isn't used), but I get the same results with or without it in x_df_new",Sep 17 at 20:34,,,,78995415
-139032506,139032506,"Thanks for the response - I think using frequency to weigh the relative importance across the levels within a categorical predictor is reasonable; on the other hand, SHAP seems to work for only tree-based models and I'm curious if there are similar measures for GLMs.",Aug 11 at 0:57,,,,78854135
-139043415,139043415,"In newer versions of H2O, SHAP works for all the models that are available in H2O’s AutoML (DeepLearning, DRF, GBM, GLM, StackedEnsemble, XGBoost). You just need to specify 
-background_frame
-.  SHAP works on tree-based models even without background frame because we can use the structure of the trees to efficiently estimate how each feature influences the prediction. But even for tree-based models it’s usually better to estimate SHAP with background frame since it contains the information about distributions of individual variables.",Aug 12 at 20:21,,,,78854135
-139053710,139053710,Appreciated the feedback - do you know where I could find documentation regarding implementing SHAP on GLMs or non tree-based models in general?,Aug 14 at 5:21,,,,78854135
-139061995,139061995,"Most of the papers that were used for implementing the SHAP should be in h2o’s documentation 
-docs.h2o.ai/h2o/latest-stable/h2o-docs/…
- . You can also check the references from the PR that added the SHAP to H2O: 
-github.com/h2oai/h2o-3/pull/15734
- (I’m lazy and I didn’t update the PR’s description so some of the issues there mentioned are already resolved). If you want specifically GLM SHAP then you can have a look at this paper: 
-arxiv.org/abs/2006.16234
- and 
-nature.com/articles/s41467-022-31384-3
- for the conversion from link space.",Aug 15 at 6:34,,,,78854135
-139053756,139053756,Thanks - the idea of using standardized coefficients to measure variable importance makes sense to me as they are scale independent. What I'm struggling with is how to aggregate these coefficients so that I can have a single number for each predictor (given that each level within a categorical predictor has its own coefficient),Aug 14 at 5:31,,,,78862361
-138315359,138315359,"Thank you! So if I dont want the predictions of bush_name to be specific (as in I want to be able to predict future bushes that havent been planted yet, vs retraining the model each time), then should I still convert bush_name into a factor?",May 9 at 17:02,,,,78453131
-138320130,138320130,"For random forest you should probably remove the 
-bush_name
- from training. But for, e.g., mixed-effects models (e.g., HGLM) you can use it to separate the influence of the individual bush and the other variables (you can see why it can be useful when you look at Simpson's paradox).  I would probably try to train it with and without 
-bush_name
- and if the influence of having 
-bush_name
- is big (in CV metrics), I would try to add some more information if possible, e.g., environmental factors - is the bush in the shade, is it more exposed to wind etc.",May 10 at 8:05,,,,78453131
-138490543,138490543,If I do 'step_dummy(bush_name)' is this similar to the factorizing of the variable? Thank you,May 30 at 14:37,,,,78453131
-137950531,137950531,"Eureka!! Thank you Darren, I spliced the dataframe to only use the first 10 rows and I got a result, you're awesome. (I couldn't post the csv because the data in sensitive)",Mar 30 at 16:42,,,,78248479
-137927362,137927362,You are right. Launching h2o cluster manually resolved the randomness that I was facing. I was previously starting h2o within my code.,Mar 28 at 1:47,,,,78201658
-137832323,137832323,"Ahhh thank you!  I don't quite follow the matrix algebra above, but I think what you're saying is it's possible to rotate an orthogonal pattern matrix (which the unrotated PCA is) without having the correlation matrix.  It looks like the GPArotation R package can do that with functions like promax() and bifactor(). Thanks again!",Mar 18 at 18:20,,,,78181801
-137356950,137356950,Error:'file' must be a character string or connection with as.data.frame(),Jan 31 at 11:38,,,,77911914
-137242323,137242323,Yeah i did it but it says pyspark don't have h2o model,Jan 19 at 19:52,,,,77841614
-136976650,136976650,Many thanks! Weirdly enough that only works if the the (binary) model is loaded (using h2o.load_model()) in the same sessions as it was saved. Otherwise I still get error mentioned in the openingpost. I will open a ticket.,"Dec 21, 2023 at 8:50",,,,77680312
-136114462,136114462,"Thank you. I have used as.h2o on the train and validation data separately because when I use it on the data frame first, my train data runs an error.  I am still getting a cardinality error","Oct 1, 2023 at 8:25",,,,77209082
-136112479,136112479,"Before sending the data to the H2O model, ensure that your response column is a factor with three levels. For instance, if your data frame is df and your response column is response, you can convert it to a factor using somting like this, df$response <- as.factor(df$response)","Sep 30, 2023 at 22:03",,,,77208591
-136112855,136112855,Thank you very much for the helpful information. Do you know how to ensure the multi-class setting is on ?,"Sep 30, 2023 at 23:49",,,,77208591
-137996089,137996089,In my case it didn't work,Apr 4 at 14:51,,,,78046835
-135657219,135657219,"Krasinski, thank you for your response. I tried two github codes: 1. download the stable release 
-github.com/h2oai/h2o-3/archive/refs/tags/…
-; 2. git clone the master branch. Both have the same build problem.","Aug 22, 2023 at 11:14",,,,76952165
-135657384,135657384,"And 
-./gradlew build -x test
- also has this problem.","Aug 22, 2023 at 11:28",,,,76952165
-135662854,135662854,can you please share the full log building the newest revision of rel-3.42.0 branch?,"Aug 22, 2023 at 17:47",,,,76952165
-135666980,135666980,"Krasinski, I just updated the question with full log above, using the latest rel-3.42.0 branch.","Aug 23, 2023 at 3:35",,,,76952165
-135561796,135561796,Thank you. I also add that I solved this clash using a python virtual environment.,"Aug 14, 2023 at 8:34",,,,76871083
-135362388,135362388,"Checkpoint will address disk issue. I think the only catch is that I need to keep model up in memory in my server. If somehow my server goes down, then will need to retrain the complete dataset.","Jul 27, 2023 at 16:25",,,,76775726
-134745832,134745832,"I use h2o 3.34 (I cannot update it), and run it on Jupyter (Python 3.8).","Jun 6, 2023 at 14:38",,,,76394821
-134577167,134577167,"Ty!, I thought I did it with 
-apt-get install -y r-cran-jsonlite
-?","May 23, 2023 at 15:49",,,,76316527
-134522123,134522123,Your last state shows me how to save one csv file as a H2O dataframe. I already know how to do that. But I need to merge all the data together and then train it. Could you elaborate how your solution helps me do so,"May 18, 2023 at 20:28",,,,76275385
+""
+128902190,128902190,I have selected this has answered because it ran in local but still the issue exists in Azure Function. When I tried to run it as a Azure function it fails with no logs. Can you try it in a function?,"Jul 14, 2022 at 13:57",,,,72961595
+128902517,128902517,"In Azure Portal Function App, you're asking? If yes, could you please raise a new thread so that I'll try assisting separately for getting that fix on portal function app!","Jul 14, 2022 at 14:10",,,,72961595
+128903919,128903919,Yes @The6thSense,"Jul 14, 2022 at 15:11",,,,72961595
+128904163,128904163,Okay will do the same,"Jul 14, 2022 at 15:21",,,,72961595
+128905951,128905951,"Thanks @The6thSense, I'll look into the issue in Portal also and get back to you in that post!","Jul 14, 2022 at 16:45",,,,72961595
+128019789,128019789,"Thanks TheFon.  With the Java/CVE-201200507 file quarantined, I downloaded and installed the current version of Java from java.com (version 8 333). I then attempted another initialization of h2o.  It indicated it was performing a one time install of h2o.jar as it did this morning before the malware was detected and quarantined.  I immediately scanned the downloaded version of h2o.jar, and I received the exact same malware quarantine notification again.  Thoughts?","Jun 1, 2022 at 23:08",,,,72468521
+128043066,128043066,"I tried scanning the last release and I was able to reproduce the issue. We do not believe there is any malware in the h2o.jar and we expect this to be a false alarm. We do have security scans on our products and this vulnerability was never flagged, also the description of the vulnerability doesn't match what the content of the jar has.","Jun 2, 2022 at 22:13",,,,72468521
+128043762,128043762,"H2O bundles this library that is being flagged by the antivirus software: org.threeten:threetenbp:1.5.2 - this library is safe and doesn't present any risk to the users. We will be reporting the issue to the makers of VirusBarrier here: 
+intego.com/support/submit-malware","Jun 2, 2022 at 23:26",,,,72468521
+128059435,128059435,"Thank you, Michal.  That's peace of mind.","Jun 3, 2022 at 16:21",,,,72468521
+127861968,127861968,"Thanks. The more specific question here is: Can i use an already existing model from AutoML to create a stack/ metalearner model? If yes, then how?","May 25, 2022 at 12:15",,,,72377082
+127871899,127871899,@PayalSengupta You can use models from AutoML just as base models but you can't use them as metalearner. Metalearner gets predictions of the base models as its input.,"May 25, 2022 at 19:06",,,,72377082
+127872135,127872135,"The 
+metalearner_algorithm
+ param is an algorithm, not a trained model.  You train the metalearner as part of the StackedEnsemble training, so that's why you can't pass an already trained model to the 
+metalearner_algorithm
+ argument.","May 25, 2022 at 19:19",,,,72377082
+127392753,127392753,"I considered this as a possible solution as well, but was put off with the hope of another solution. However it seems like this is the only possible way to extract the feature contribution. I guess this isn't really considered as a clean way of doing so.  If it was up to you would you still prefer the EIF from h2o (with the benefit of possible better outlier detection due to removing the tree branching bias) over the IF from Sklearn which is able to extract shap values? Or is this fully depended on the intended result?","May 3, 2022 at 12:31",,,,72099329
+127393080,127393080,"I can't give you ""unbiased"" answer - I work for h2o. But generally speaking I'd consider the size of the data (h2o should scale better) and also the importance of the information from SHAP. IIRC there is 
+KernelExplainer
+ in 
+shap
+ package that should work on any algorithm (but it is slower) but maybe that could be used as well on the Isolation Forest.","May 3, 2022 at 12:46",,,,72099329
+127393341,127393341,"I will have a look at the KernelExplainer, really appreciate it!","May 3, 2022 at 12:58",,,,72099329
+127330017,127330017,"Thanks for the quick response! Sorry, my question wasn’t clear. I’m referring to a continuous variable that I’m modeling with splines, but there are 1000 possible values of the continuous variable and I’d like to know the effect of each possible value on the response.","Apr 29, 2022 at 18:53",,,,72062440
+127341692,127341692,"As it’s currently written, your answer is unclear. Please 
+edit
+ to add additional details that will help others understand how this addresses the question asked. You can find more information on how to write good answers 
+in the help center
+.","Apr 30, 2022 at 14:48",,,,72062440
+126721573,126721573,"Thank you Erin! Yes the doc was not very clear, but I could have guessed from the example given","Apr 1, 2022 at 8:40",,,,71699115
+126722157,126722157,"I am still getting an error: 
+Error: DistributedException from localhost/127.0.0.1:54321: 'null', caused by java.lang.NullPointerException","Apr 1, 2022 at 9:10",,,,71699115
+126722289,126722289,"I edited my question to report the new error. I tried on two different machine, one windows, one linux, and got the same error","Apr 1, 2022 at 9:17",,,,71699115
+126737950,126737950,There was a typo in my code above (wrong column index) but I fixed it and the bug is still there (will try to follow-up soon with an answer/fix).,"Apr 1, 2022 at 23:36",,,,71699115
+126844461,126844461,I added a link to the JIRA ticket -- this is indeed a bug.,"Apr 7, 2022 at 6:07",,,,71699115
+126575047,126575047,"I've removed all references to old H2O installations using # REMOVE PRIOR INSTALLS OF H2O if (""package:h2o"" %in% search()) { detach(""package:h2o"", unload=TRUE) } if (""h2o"" %in% rownames(installed.packages())) { remove.packages(""h2o"") }","Mar 25, 2022 at 13:54",,,,71617486
+126575057,126575057,Is there something else I should be doing to flush out old versions?,"Mar 25, 2022 at 13:54",,,,71617486
+126576861,126576861,"What do you get when you execute: 
+packageVersion(""h2o"")
+?","Mar 25, 2022 at 15:06",,,,71617486
+126576914,126576914,"or 
+getNamespaceVersion(""h2o"")","Mar 25, 2022 at 15:08",,,,71617486
+126577448,126577448,"getNamespaceVersion(""h2o"") returned an old version of h20. I am in the process of restarting R and unloading the namespace to clear any old references.","Mar 25, 2022 at 15:31",,,,71617486
+126573072,126573072,"thanks for the reply. I've just opened a new question here which references this exact approach except with an error 
+stackoverflow.com/questions/71616995/…","Mar 25, 2022 at 12:28",,,,71616883
+131555000,131555000,"This failed for me too. Raised a ticket, and still waiting for a response. 
+github.com/h2oai/sparkling-water/issues/2838","Nov 21, 2022 at 22:00",,,,71616883
+125851838,125851838,"I understand.  But what is the pre-processing to downstream models then ?  What is ""TE""?","Feb 20, 2022 at 19:19",,,,71150782
+125906450,125906450,"TE = Target Encoding. The individual models might drop some features (eg. constant columns), might explicitly encode categoricals when needed (eg. xgboost).   I think for your use case of re-training, you do not need to worry about any kind of pre-processing the model does. It doesn't apply here.","Feb 22, 2022 at 23:23",,,,71150782
+125837791,125837791,Thanks after many days of playing with the h2o package Ive seen that as you hypothesised 5 mins run time was much too short. Running for several hours leads to much more robust estimation comparing IS and OOS AUC.,"Feb 19, 2022 at 21:51",,,,71150717
+125634115,125634115,Thank you so much!,"Feb 10, 2022 at 18:14",,,,71069800
+128615069,128615069,"you need to set few other parameters to find the same too, see 
+stackoverflow.com/questions/43324287/…","Jun 30, 2022 at 13:18",,,,71069800
+124821568,124821568,"Just to be clear, the bug is that I'm allowed to successfully export the GLM+Interactions as a MOJO at all? And that the fix that is coming in the next release will be to prevent people from exporting GLMs with interactions?","Jan 6, 2022 at 16:36",,,,70609024
+124895976,124895976,@Jdclark Exactly.,"Jan 10, 2022 at 11:07",,,,70609024
+124539684,124539684,"Thanks for this suggestion, @Karthikeyan Rasipalay Durairaj. The scope is not relevant for me per se. In your example, it looks like you're specifying the H2O version after the == in the install command, so I will try this as it may be the mechanism I was thinking about rather than specifying the H2O version in code when starting the H2OContext. I will give this a whirl and report back (or just check your answer as accepted). In any event, I appreciate your help!","Dec 22, 2021 at 17:27",,,,70442318
+125828322,125828322,I managed to calculate the threshold from the model and saved it in a DB. So I can now refer to the calculated threshold values ​​using a repo call.,"Feb 19, 2022 at 9:52",,,,71150953
+125091925,125091925,Thank you @pveentjer,"Jan 18, 2022 at 17:15",,,,70211830
+125091968,125091968,Thank you @Erin LeDell,"Jan 18, 2022 at 17:17",,,,70719466
+124114105,124114105,Thanks for your answer but my question is about H2O.ai not Apache Spark,"Dec 3, 2021 at 7:25",,,,70186489
+124169032,124169032,My bad. My question is unclear and misleading. I have added more details to it.,"Dec 6, 2021 at 7:40",,,,70186489

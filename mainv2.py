@@ -126,18 +126,21 @@ class StackOverFlowFetcher:
             user_name = user_info_container.find("div", class_="user-details").find(
                 "a").text.strip() if user_info_container.find("div", "user-details").find("a") else None
             user_profile_link = "https://stackoverflow.com" + user_info_container.find("a")['href']
-            reputation_score = user_info_container.find("span",
-                                                        class_="reputation-score").text.strip() if user_info_container.find(
+            reputation_score = user_info_container.find("span", class_="reputation-score").text.strip() if user_info_container.find(
                 "span", "reputation-score") else None
             badges = {
-                "bronze": user_info_container.find("span", class_="badgecount").text.strip() if user_info_container.find(
-                    "span", "badgecount") else None
+                "gold": user_info_container.find("span", class_="badge1").text.strip() if user_info_container.find(
+                    "span", class_="badge1") else None,
+                "silver": user_info_container.find("span", class_="badge2").text.strip() if user_info_container.find(
+                    "span", class_="badge2") else None,
+                "bronze": user_info_container.find("span", class_="badge3").text.strip() if user_info_container.find(
+                    "span", class_="badge3") else None
             }
         else:
             user_name = "Unknown"
             user_profile_link = None
             reputation_score = "N/A"
-            badges = {"bronze": "0"}
+            badges = None
 
         # Add user details to questions_details dictionary
         questions_details[post_id] = {
@@ -161,6 +164,7 @@ class StackOverFlowFetcher:
     def answer_summary(self, link, post_id):
         response = requests.get(link)
         soup = BeautifulSoup(response.content, "html.parser")
+        print(link)
 
         answers_container = soup.find("div", id="answers")
         if answers_container:
@@ -171,9 +175,14 @@ class StackOverFlowFetcher:
                 answer_content = answer.find("div", "s-prose js-post-body").get_text(separator="\n").strip()
                 creation_date = answer.find("time", itemprop="dateCreated")["datetime"]
                 user_info = answer.find("div", "user-details")
-                user_name = user_info.find("a").text.strip() if user_info.find("a") else None
-                user_profile_link = "https://stackoverflow.com" + user_info.find("a")["href"] if user_info.find("a") else None
-                reputation_score = user_info.find("span", "reputation-score").text if user_info.find("span", "reputation-score") else None
+                try :
+                    user_name = user_info.find("a").text.strip()
+                    user_profile_link = "https://stackoverflow.com" + user_info.find("a")["href"]
+                    reputation_score = user_info.find("span", "reputation-score").text
+                except AttributeError:
+                    user_name = None
+                    user_profile_link = None
+                    reputation_score = None
 
                 # Fetch comments to the answer
                 self.comment_summary(answer, answer_id)
@@ -225,17 +234,17 @@ if __name__ == "__main__":
     print(f"Max number of pages: {max_pages}")
 
     # Comment this number in order to fetch all pages
-    max_pages = 1
+    max_pages = 3
 
-    for page in range(1, max_pages + 1):
+    for page in range(3, max_pages + 1):
+        print("=" * 50)
+        print(f"Start fetching page {page}")
+        print("=" * 50)
         response = fetcher.fetch_page(page)
         questions_container = fetcher.question_extraction(response)
         fetcher.question_summary(questions_container)
         time.sleep(2)  # Longer pause between page fetches
-        print("=" * 50)
-        print(f"Data fetched for page {page}")
-        print("Switching to next page...")
-        print("=" * 50)
+        print("Finished scraping page...")
     print("Data fetched for all pages.")
     print("=" * 50)
 
@@ -244,7 +253,8 @@ if __name__ == "__main__":
     df_answers = pd.read_csv("h2o_stackoverflow_answers_summary.csv")
     df_comments = pd.read_csv("h2o_stackoverflow_comments_summary.csv")
 
-    print(f"Total number of questions: {len(df_questions)}")
+    # count the unique values in the post_id column
+    print(f"Total number of questions: {len(df_questions.post_id.unique())}")
     print(f"Total number of question details: {len(df_questions_details)}")
     print(f"Total number of answers: {len(df_answers)}")
     print(f"Total number of comments: {len(df_comments)}")
