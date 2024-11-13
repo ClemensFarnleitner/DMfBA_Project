@@ -29,7 +29,7 @@ This project is a Python-based web scraper designed to collect and organize data
 ### Question Details
 | Checkbox               | Column               | Description                                        |
 |------------------------|----------------------|----------------------------------------------------|
-| :x:                    | `post_id`            | Unique identifier of the question post.            |
+| :heavy_check_mark:     | `post_id`            | Unique identifier of the question post.            |
 | :heavy_check_mark:     | `date_created`       | Date and time when the question was created.       |
 | :heavy_check_mark:     | `last_activity_date` | Date and time of the last activity on the question. |
 | :heavy_check_mark:     | `view_count`         | Number of times the question has been viewed.      |
@@ -38,7 +38,6 @@ This project is a Python-based web scraper designed to collect and organize data
 | :heavy_check_mark:     | `user_name`          | Name of the user who posted the question.          |
 | :heavy_check_mark:     | `user_profile_link`  | URL link to the profile of the user who posted the question. |
 | :heavy_check_mark:     | `reputation_score`   | Reputation score of the user who posted the question. |
-| :x:                    | `badges`             | Badges earned by the user (e.g., bronze, silver, gold). |
 
 ### Answer
 | Checkbox               | Column             | Description                                     |
@@ -64,7 +63,7 @@ This project is a Python-based web scraper designed to collect and organize data
 | :heavy_check_mark:     | `answer_id`        | Identifier of the answer that the comment belongs to. |
 
 ### Author
-| Checkbox               | Field                  | Description                                         |
+| Checkbox               | Column                  | Description                                         |
 |------------------------|------------------------|-----------------------------------------------------|
 | :x:                    | `username`             | Name of the author.                                 |
 | :x:                    | `member_since`         | Date the author joined.                             |
@@ -77,3 +76,6 @@ This project is a Python-based web scraper designed to collect and organize data
 | :x:                    | `community_reputation` | Author's reputation within the community.           |
 | :x:                    | `badge_name`           | Name of the badge earned by the author.             |
 | :x:                    | `badge_awarded_date`   | Date when the badge was awarded to the author.      |
+| :x:                    | `answer_id`            | Identifier of the answer that the author belongs to. |
+| :x:                    | `comment_id`           | Identifier of the comment that the author belongs to  |
+
