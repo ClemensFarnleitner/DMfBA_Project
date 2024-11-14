@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 import os
+import re
 
 class CSVWriter:
     def __init__(self):
@@ -31,6 +32,12 @@ class CSVWriter:
         file_name = "h2o_stackoverflow_comments_summary.csv"
         file_exists = os.path.isfile(file_name)
         df.to_csv(file_name, mode="a", header=not file_exists, index="comment_id")
+
+    def write_author_csv(self, data):
+        df = pd.DataFrame(data).T
+        file_name = "h2o_stackoverflow_authors_summary.csv"
+        file_exists = os.path.isfile(file_name)
+        df.to_csv(file_name, mode="a", header=not file_exists, index="author_id")
 
 class StackOverFlowFetcher:
     def __init__(self):
@@ -80,6 +87,10 @@ class StackOverFlowFetcher:
 
             # Fetch question details
             self.question_details(link, post_id)
+
+            if user_info:
+                author_data = self.extract_author_data(user_info)
+                self.csv_writer.write_author_csv(author_data)  # Write author data to CSV
 
             # Store summary in dictionary using post_id as key
             questions_summary[post_id]= {
@@ -226,6 +237,88 @@ class StackOverFlowFetcher:
 
             # Write comments into CSV
             self.csv_writer.write_comment_csv(comments_summary)
+
+    def extract_author_data(self, user_info_container):
+        authors_summary = {}
+
+        try:
+            # Extract basic user info
+            user_id = user_info_container.find("a")["href"].split("/")[2] if user_info_container.find("a") else "Unknown"
+            user_name = user_info_container.find("a").text.strip() if user_info_container.find("a") else "Unknown"
+            user_profile_link = "https://stackoverflow.com" + user_info_container.find("a")["href"] if user_info_container.find("a") else None
+
+            # Fetch user's full profile page HTML
+            profile_html = requests.get(user_profile_link).text
+            profile_soup = BeautifulSoup(profile_html, "html.parser")
+
+            # Extract badges using sibling divs
+            badge_counts = {
+                "gold": 0,
+                "silver": 0,
+                "bronze": 0
+            }
+
+            badge_types = profile_soup.find_all('div', class_='fs-caption')
+
+            for badge in badge_types:
+                # Find the sibling div with the count (fs-title)
+                count_div = badge.find_previous_sibling('div', class_='fs-title fw-bold fc-black-600')
+                if count_div:
+                    count = int(count_div.get_text(strip=True))
+                    badge_text = badge.get_text(strip=True).lower()
+
+                    # Update the badge count based on the badge type
+                    if 'bronze' in badge_text:
+                        badge_counts['bronze'] = count
+                    elif 'silver' in badge_text:
+                        badge_counts['silver'] = count
+                    elif 'gold' in badge_text:
+                        badge_counts['gold'] = count
+
+
+            # Extract other profile statistics (reputation, reached, answer count, question count)
+            stats = profile_soup.find_all("div", class_="fs-body3 fc-black-600")
+            if len(stats) >= 4:
+                reputation = stats[0].text.strip()
+                reached_text = stats[1].text.strip()
+                reached = convert_to_number(reached_text)
+                answer_count = stats[2].text.strip()
+                questions_count = stats[3].text.strip()
+            else:
+                reputation, reached, answer_count, questions_count = "0", "0", "0", "0"
+
+
+            # Regex to directly match the date from the HTML content
+            html_content = str(profile_soup)
+            match = re.search(r'<span title="(\d{4}-\d{2}-\d{2}) \d{2}:\d{2}:\d{2}Z">', html_content)
+            member_since = match.group(1) if match else "Unknown"
+
+            authors_summary[user_id] = {
+                "user_id": user_id,
+                "user_name": user_name,
+                "user_profile_link": user_profile_link,
+                "badges": badge_counts,
+                "reputation": reputation,
+                "reached": reached,
+                "answer_count": answer_count,
+                "questions_count": questions_count,
+                "member_since": member_since,
+            }
+
+        except Exception as e:
+            print(f"Error extracting author data for user {user_name}: {e}")
+
+        return authors_summary
+
+def convert_to_number(reached_text):
+    # Handle different suffixes like "k" for thousands and "m" for millions
+    multipliers = {"k": 1_000, "m": 1_000_000}
+    match = re.match(r"(\d+(?:\.\d+)?)([km]?)", reached_text, re.IGNORECASE)
+    if match:
+        number = float(match.group(1))
+        suffix = match.group(2).lower()
+        return int(number * multipliers.get(suffix, 1))
+    return int(reached_text.replace(",", "")) if reached_text.isdigit() else 0
 
 if __name__ == "__main__":
     timestamp_start = time.time()
