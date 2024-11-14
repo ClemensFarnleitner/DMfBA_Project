@@ -20,7 +20,7 @@ class CSVWriter:
         file_name = "h2o_stackoverflow_answers_summary.csv"
         file_exists = os.path.isfile(file_name)
         df.to_csv(file_name, mode="a", header=not file_exists, index="answer_id")
-    
+
     def write_question_details_csv(self, data):
         df = pd.DataFrame(data).T
         file_name = "h2o_stackoverflow_questions_details.csv"
@@ -39,6 +39,7 @@ class CSVWriter:
         file_exists = os.path.isfile(file_name)
         df.to_csv(file_name, mode="a", header=not file_exists, index="author_id")
 
+
 class StackOverFlowFetcher:
     def __init__(self):
         self.base_url = "https://stackoverflow.com/questions/tagged/h2o?tab=newest&pagesize=50"
@@ -47,7 +48,7 @@ class StackOverFlowFetcher:
     def fetch_page(self, page=1):
         response = requests.get(f"{self.base_url}&page={page}")
         return response
-    
+
     def get_max_pages(self):
         response = self.fetch_page(1)
         soup = BeautifulSoup(response.content, "html.parser")
@@ -65,35 +66,33 @@ class StackOverFlowFetcher:
         soup = BeautifulSoup(response.content, "html.parser")
         questions_container = soup.find("div", id="questions")
         return questions_container
-    
+
     def question_summary(self, questions_container):
-        questions_summary = {}
+        questions_summary = []
         for question in questions_container.find_all("div", class_="s-post-summary"):
-            post_id = question.get("data-post-id")
-            votes = question.find("span", class_="s-post-summary--stats-item-number").text
-            answers_count = question.find("div", class_="has-answers").find("span", class_="s-post-summary--stats-item-number").text if question.find("div", "has-answers") else "0"
-            views = question.find("div", title=lambda x: x and "views" in x).find("span", "s-post-summary--stats-item-number").text
+            post_id = question.get("data-post-id", "N/A")
+            votes = question.find("span", class_="s-post-summary--stats-item-number")
+            votes = votes.text if votes else "0"
+
+            # Answers count handling
+            answers_count = question.find("div", class_="has-answers")
+            answers_count = answers_count.find("span", class_="s-post-summary--stats-item-number").text if answers_count else "0"
+
+            views = question.find("div", title=lambda x: x and "views" in x)
+            views = views.find("span", "s-post-summary--stats-item-number").text if views else "0"
+
             title_element = question.find("h3", "s-post-summary--content-title").find("a")
-            title = title_element.text
-            link = "https://stackoverflow.com" + title_element['href']
+            title = title_element.text if title_element else "N/A"
+            link = "https://stackoverflow.com" + title_element['href'] if title_element else "N/A"
             excerpt = question.find("div", "s-post-summary--content-excerpt").text.strip()
             tags = [tag.text for tag in question.find("div", "s-post-summary--meta-tags").find_all("a", "s-tag")]
-            user_info = question.find("div", "s-user-card--info")
-            user_name = user_info.find("a").text if user_info else "Unknown"
-            user_rep = user_info.find("li", "s-user-card--rep").text if user_info else "N/A"
 
-            # Fetch answers to the question
+            # Fetch answers and details
             self.answer_summary(link, post_id)
-
-            # Fetch question details
             self.question_details(link, post_id)
 
-            if user_info:
-                author_data = self.extract_author_data(user_info)
-                self.csv_writer.write_author_csv(author_data)  # Write author data to CSV
-
-            # Store summary in dictionary using post_id as key
-            questions_summary[post_id]= {
+            # Append to summary list
+            questions_summary.append({
                 "post_id": post_id,
                 "votes": votes,
                 "answers": answers_count,
@@ -101,16 +100,12 @@ class StackOverFlowFetcher:
                 "title": title,
                 "link": link,
                 "excerpt": excerpt,
-                "tags": tags,
-                "user_name": user_name,
-                "user_rep": user_rep
-            }
-            
-            time.sleep(1)
+                "tags": tags
+            })
 
-        # Write questions into CSV
+        # Write questions to CSV
         self.csv_writer.write_question_csv(questions_summary)
-    
+
     def question_details(self, link, post_id):
         questions_details = {}
         question_response = requests.get(link)
@@ -130,28 +125,24 @@ class StackOverFlowFetcher:
         question_text_element = question_soup.find("div", class_="s-prose js-post-body", itemprop="text")
         question_text = question_text_element.get_text(separator="\n").strip() if question_text_element else None
         tags_container = question_soup.find("div", class_="post-taglist")
-        detailed_tags = [tag.text for tag in tags_container.find_all("a", class_="s-tag post-tag")] if tags_container else []
+        detailed_tags = [tag.text for tag in
+                         tags_container.find_all("a", class_="s-tag post-tag")] if tags_container else []
 
+        # User info
         user_info_container = question_soup.find("div", class_="user-info")
         if user_info_container:
-            user_name = user_info_container.find("div", class_="user-details").find(
-                "a").text.strip() if user_info_container.find("div", "user-details").find("a") else None
-            user_profile_link = "https://stackoverflow.com" + user_info_container.find("a")['href']
-            reputation_score = user_info_container.find("span", class_="reputation-score").text.strip() if user_info_container.find(
-                "span", "reputation-score") else None
-            badges = {
-                "gold": user_info_container.find("span", class_="badge1").text.strip() if user_info_container.find(
-                    "span", class_="badge1") else None,
-                "silver": user_info_container.find("span", class_="badge2").text.strip() if user_info_container.find(
-                    "span", class_="badge2") else None,
-                "bronze": user_info_container.find("span", class_="badge3").text.strip() if user_info_container.find(
-                    "span", class_="badge3") else None
-            }
-        else:
-            user_name = "Unknown"
-            user_profile_link = None
-            reputation_score = "N/A"
-            badges = None
+            user_details = user_info_container.find("div", class_="user-details")
+            if user_details:
+                user_name = user_details.find("a").text.strip() if user_details.find("a") else "Unknown"
+                user_profile_link = "https://stackoverflow.com" + user_details.find("a")['href'] if user_details.find(
+                    "a") else None
+            else:
+                user_name = "Unknown"
+                user_profile_link = None
+
+            reputation_score = user_info_container.find("span",
+                                                        class_="reputation-score").text.strip() if user_info_container.find(
+                "span", class_="reputation-score") else "N/A"
 
         # Add user details to questions_details dictionary
         questions_details[post_id] = {
@@ -163,15 +154,14 @@ class StackOverFlowFetcher:
             "detailed_tags": detailed_tags,
             "user_name": user_name,
             "user_profile_link": user_profile_link,
-            "reputation_score": reputation_score,
-            "badges": badges
+            "reputation_score": reputation_score
         }
 
         time.sleep(1)
 
         # Write question details into CSV
         self.csv_writer.write_question_details_csv(questions_details)
-    
+
     def answer_summary(self, link, post_id):
         response = requests.get(link)
         soup = BeautifulSoup(response.content, "html.parser")
@@ -186,7 +176,7 @@ class StackOverFlowFetcher:
                 answer_content = answer.find("div", "s-prose js-post-body").get_text(separator="\n").strip()
                 creation_date = answer.find("time", itemprop="dateCreated")["datetime"]
                 user_info = answer.find("div", "user-details")
-                try :
+                try:
                     user_name = user_info.find("a").text.strip()
                     user_profile_link = "https://stackoverflow.com" + user_info.find("a")["href"]
                     reputation_score = user_info.find("span", "reputation-score").text
@@ -198,7 +188,7 @@ class StackOverFlowFetcher:
                 # Fetch comments to the answer
                 self.comment_summary(answer, answer_id)
 
-                answers_summary [answer_id]= {
+                answers_summary[answer_id] = {
                     "answer_id": answer_id,
                     "vote_count": vote_count,
                     "answer_content": answer_content,
@@ -211,7 +201,7 @@ class StackOverFlowFetcher:
 
                 # Write answer into CSV
                 self.csv_writer.write_answer_csv(answers_summary)
-    
+
     def comment_summary(self, answer, answer_id):
         comments_container = answer.find("div", class_="js-comments-container")
         comments_summary = {}
@@ -225,7 +215,7 @@ class StackOverFlowFetcher:
                 user_profile_link = "https://stackoverflow.com" + user_info.find("a")["href"] if user_info else None
                 reputation_score = user_info.find("span", "reputation-score").text if user_info else None
 
-                comments_summary [comment_id]= {
+                comments_summary[comment_id] = {
                     "comment_id": comment_id,
                     "content": comment_content,
                     "creation_date": comment_date,
@@ -243,9 +233,11 @@ class StackOverFlowFetcher:
 
         try:
             # Extract basic user info
-            user_id = user_info_container.find("a")["href"].split("/")[2] if user_info_container.find("a") else "Unknown"
+            user_id = user_info_container.find("a")["href"].split("/")[2] if user_info_container.find(
+                "a") else "Unknown"
             user_name = user_info_container.find("a").text.strip() if user_info_container.find("a") else "Unknown"
-            user_profile_link = "https://stackoverflow.com" + user_info_container.find("a")["href"] if user_info_container.find("a") else None
+            user_profile_link = "https://stackoverflow.com" + user_info_container.find("a")[
+                "href"] if user_info_container.find("a") else None
 
             # Fetch user's full profile page HTML
             profile_html = requests.get(user_profile_link).text
@@ -275,18 +267,18 @@ class StackOverFlowFetcher:
                     elif 'gold' in badge_text:
                         badge_counts['gold'] = count
 
-
             # Extract other profile statistics (reputation, reached, answer count, question count)
             stats = profile_soup.find_all("div", class_="fs-body3 fc-black-600")
             if len(stats) >= 4:
-                reputation = stats[0].text.strip()
+                # Extract reputation and remove commas
+                reputation = stats[0].text.strip().replace(',', '')  # Remove commas
+                reputation = int(reputation)  # Convert to integer after removing commas
                 reached_text = stats[1].text.strip()
                 reached = convert_to_number(reached_text)
                 answer_count = stats[2].text.strip()
                 questions_count = stats[3].text.strip()
             else:
                 reputation, reached, answer_count, questions_count = "0", "0", "0", "0"
-
 
             # Regex to directly match the date from the HTML content
             html_content = str(profile_soup)
@@ -310,6 +302,7 @@ class StackOverFlowFetcher:
 
         return authors_summary
 
+
 def convert_to_number(reached_text):
     # Handle different suffixes like "k" for thousands and "m" for millions
     multipliers = {"k": 1_000, "m": 1_000_000}
@@ -320,6 +313,7 @@ def convert_to_number(reached_text):
         return int(number * multipliers.get(suffix, 1))
     return int(reached_text.replace(",", "")) if reached_text.isdigit() else 0
 
+
 if __name__ == "__main__":
     timestamp_start = time.time()
     fetcher = StackOverFlowFetcher()
@@ -327,15 +321,21 @@ if __name__ == "__main__":
     print(f"Max number of pages: {max_pages}")
 
     # Comment this number in order to fetch all pages
-    max_pages = 3
+    #max_pages = 3
 
-    for page in range(3, max_pages + 1):
+    for page in range(4, max_pages + 1):
         print("=" * 50)
         print(f"Start fetching page {page}")
         print("=" * 50)
+
+        # Try loop only for debugging purpose
+        #try:
         response = fetcher.fetch_page(page)
         questions_container = fetcher.question_extraction(response)
         fetcher.question_summary(questions_container)
+        #except Exception as e:
+        #print(f"Error while processing page {page}: {e}")
+
         time.sleep(2)  # Longer pause between page fetches
         print("Finished scraping page...")
     print("Data fetched for all pages.")
@@ -345,11 +345,13 @@ if __name__ == "__main__":
     df_questions_details = pd.read_csv("h2o_stackoverflow_questions_details.csv")
     df_answers = pd.read_csv("h2o_stackoverflow_answers_summary.csv")
     df_comments = pd.read_csv("h2o_stackoverflow_comments_summary.csv")
+    df_authors = pd.read_csv("h2o_stackoverflow_authors_summary.csv")
 
     # count the unique values in the post_id column
     print(f"Total number of questions: {len(df_questions.post_id.unique())}")
     print(f"Total number of question details: {len(df_questions_details)}")
     print(f"Total number of answers: {len(df_answers)}")
     print(f"Total number of comments: {len(df_comments)}")
+    print(f"Total number of authors: {len(df_authors)}")
 
-    print(f"Time taken: {round((time.time() - timestamp_start),1)} seconds")
+    print(f"Time taken: {round((time.time() - timestamp_start), 1)} seconds")
