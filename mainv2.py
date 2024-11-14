@@ -68,31 +68,31 @@ class StackOverFlowFetcher:
         return questions_container
 
     def question_summary(self, questions_container):
-        questions_summary = []
+        questions_summary = {}
         for question in questions_container.find_all("div", class_="s-post-summary"):
-            post_id = question.get("data-post-id", "N/A")
-            votes = question.find("span", class_="s-post-summary--stats-item-number")
-            votes = votes.text if votes else "0"
-
-            # Answers count handling
-            answers_count = question.find("div", class_="has-answers")
-            answers_count = answers_count.find("span", class_="s-post-summary--stats-item-number").text if answers_count else "0"
-
-            views = question.find("div", title=lambda x: x and "views" in x)
-            views = views.find("span", "s-post-summary--stats-item-number").text if views else "0"
-
+            post_id = question.get("data-post-id")
+            votes = question.find("span", class_="s-post-summary--stats-item-number").text
+            answers_count = question.find("div", class_="has-answers").find("span", class_="s-post-summary--stats-item-number").text if question.find("div", "has-answers") else "0"
+            views = question.find("div", title=lambda x: x and "views" in x).find("span", "s-post-summary--stats-item-number").text
             title_element = question.find("h3", "s-post-summary--content-title").find("a")
-            title = title_element.text if title_element else "N/A"
-            link = "https://stackoverflow.com" + title_element['href'] if title_element else "N/A"
+            title = title_element.text
+            link = "https://stackoverflow.com" + title_element['href']
             excerpt = question.find("div", "s-post-summary--content-excerpt").text.strip()
             tags = [tag.text for tag in question.find("div", "s-post-summary--meta-tags").find_all("a", "s-tag")]
+            user_info = question.find("div", "s-user-card--info")
 
-            # Fetch answers and details
+            # Fetch answers to the question
             self.answer_summary(link, post_id)
+
+            # Fetch question details
             self.question_details(link, post_id)
 
+            if user_info:
+                author_data = self.extract_author_data(user_info)
+                self.csv_writer.write_author_csv(author_data)  # Write author data to CSV
+
             # Append to summary list
-            questions_summary.append({
+            questions_summary[post_id] = {
                 "post_id": post_id,
                 "votes": votes,
                 "answers": answers_count,
@@ -101,7 +101,7 @@ class StackOverFlowFetcher:
                 "link": link,
                 "excerpt": excerpt,
                 "tags": tags
-            })
+            }
 
         # Write questions to CSV
         self.csv_writer.write_question_csv(questions_summary)
@@ -321,20 +321,16 @@ if __name__ == "__main__":
     print(f"Max number of pages: {max_pages}")
 
     # Comment this number in order to fetch all pages
-    #max_pages = 3
+    max_pages = 3
 
-    for page in range(4, max_pages + 1):
+    for page in range(3, max_pages + 1):
         print("=" * 50)
         print(f"Start fetching page {page}")
         print("=" * 50)
 
-        # Try loop only for debugging purpose
-        #try:
         response = fetcher.fetch_page(page)
         questions_container = fetcher.question_extraction(response)
         fetcher.question_summary(questions_container)
-        #except Exception as e:
-        #print(f"Error while processing page {page}: {e}")
 
         time.sleep(2)  # Longer pause between page fetches
         print("Finished scraping page...")
