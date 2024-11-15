@@ -320,7 +320,7 @@ if __name__ == "__main__":
     print(f"Max number of pages: {max_pages}")
 
     # Comment this number in order to fetch all pages
-    max_pages = 3
+    # max_pages = 3
 
     for page in range(1, max_pages + 1):
         print("=" * 50)

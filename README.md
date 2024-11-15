@@ -65,17 +65,17 @@ This project is a Python-based web scraper designed to collect and organize data
 ### Author
 | Checkbox               | Column                  | Description                                         |
 |------------------------|------------------------|-----------------------------------------------------|
-| :x:                    | `username`             | Name of the author.                                 |
-| :x:                    | `member_since`         | Date the author joined.                             |
-| :x:                    | `last_seen`            | Last seen activity of the author.                   |
-| :x:                    | `reputation`           | Total reputation score of the author.               |
-| :x:                    | `people_reached`       | Number of people reached by the author's contributions. |
-| :x:                    | `answers_count`        | Total number of answers provided by the author.     |
-| :x:                    | `questions_count`      | Total number of questions asked by the author.      |
-| :x:                    | `community_name`       | Name of the community the author is a part of.      |
-| :x:                    | `community_reputation` | Author's reputation within the community.           |
-| :x:                    | `badge_name`           | Name of the badge earned by the author.             |
-| :x:                    | `badge_awarded_date`   | Date when the badge was awarded to the author.      |
-| :x:                    | `answer_id`            | Identifier of the answer that the author belongs to. |
-| :x:                    | `comment_id`           | Identifier of the comment that the author belongs to  |
+| :heavy_check_mark:                     | `username`             | Name of the author.                                 |
+| :heavy_check_mark:                     | `member_since`         | Date the author joined.                             |
+| :heavy_check_mark:                     | `last_seen`            | Last seen activity of the author.                   |
+| :heavy_check_mark:                     | `reputation`           | Total reputation score of the author.               |
+| :heavy_check_mark:                     | `people_reached`       | Number of people reached by the author's contributions. |
+| :heavy_check_mark:                     | `answers_count`        | Total number of answers provided by the author.     |
+| :heavy_check_mark:                     | `questions_count`      | Total number of questions asked by the author.      |
+| :heavy_check_mark:                     | `community_name`       | Name of the community the author is a part of.      |
+| :heavy_check_mark:                     | `community_reputation` | Author's reputation within the community.           |
+| :heavy_check_mark:                     | `badge_name`           | Name of the badge earned by the author.             |
+| :heavy_check_mark:                     | `badge_awarded_date`   | Date when the badge was awarded to the author.      |
+| :heavy_check_mark:                     | `answer_id`            | Identifier of the answer that the author belongs to. |
+| :heavy_check_mark:                     | `comment_id`           | Identifier of the comment that the author belongs to  |
 
