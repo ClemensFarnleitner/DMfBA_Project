@@ -1,2372 +1,1773 @@
-,post_id,date_created,last_activity_date,view_count,question_text,detailed_tags,user_name,user_profile_link,reputation_score,badges
-73138864,73138864,2022-07-27T13:30:00,2022-07-27 13:30:00Z,0,"Recently I started working with the h2o package in R-Studio. But now I have a different problem: everytime I try to 
-load_all()
- my own project package, which has absolutely nothing to do with h2o, it initiates h2o without me saying. This causes different problems with functions that are masked by h2o.
+,post_id,date_created,last_activity_date,view_count,question_text,detailed_tags,user_name,user_profile_link,reputation_score
+79045928,79045928,2024-10-02T08:26:43,2024-10-03 08:20:49Z,36,"I have the scenario where you have a feature, call it X, with possible values it can hold, say x1, x2, x3, x4. I want the GBM in H2O to train x1 and x3 together so that they are predicted with the same output value.
 
 
-> devtools::load_all()
+Any suggestions how to do this would be appreciated. :)","['h2o', 'gbm']",Adam,https://stackoverflow.com/users/12979649/adam,21
+79033110,79033110,2024-09-27T23:03:19,2024-09-30 07:34:12Z,56,"Everytime when I run h2o on pydroid3 then it says I need Java/JRE for it to work. ERROR:
 
-ℹ Loading my_own_package
- Connection successful!
 
-R is connected to the H2O cluster: 
-    H2O cluster uptime:        blabla 
-    H2O cluster timezone:       blabla 
-    H2O data parsing timezone:  blabla
-    H2O cluster version:        blabla
-    H2O cluster version age:    blabla 
-    H2O cluster name:           blabla
-    H2O cluster total nodes:    blabla
-    H2O cluster total memory:   blabla
-    H2O cluster total cores:    blabla 
-    H2O cluster allowed cores:  blabla
-    H2O cluster healthy:        blabla
-    H2O Connection ip:          blabla
-    H2O Connection port:        blabla
-    H2O Connection proxy:       blabla
-    H2O Internal Security:      blabla
-    R Version:                  blabla 
+Checking whether there is an H2O instance running at http://localhost:54321..... not found.
 
-Error in UseMethod(""mutate"") : 
-  no applicable method for 'mutate' applied to an object of class ""function""
-In addition: There were 50 or more warnings (use warnings() to see the first 50)
 
-
-
-Is there a way such that I can 
-devtools::load_all()
- my own package but not load h2o?","['r', 'h2o', 'devtools']",MJimitater,https://stackoverflow.com/users/12097191/mjimitater,939,"{'gold': '', 'silver': '', 'bronze': ''}"
-73137419,73137419,2022-07-27T11:51:28,2022-07-27 13:17:59Z,0,"im getting different output for feature importance, when I run the automl in azure, google and h2o. even though the data is same and all the features are also same. what would be the reason for it.
-is there any other method to compare the models","['azure', 'h2o', 'automl', 'google-cloud-vertex-ai']",molbdnilo,https://stackoverflow.com/posts/73137419/revisions,66.2k,"{'gold': '', 'silver': '', 'bronze': ''}"
-72960854,72960854,2022-07-13T04:11:13,2022-07-14 02:20:06Z,80,"I'm using the 
-h2o
- package in Python.
-
-
-When 
-binomial_double_trees == True
-, I want to know information about internal all trees for a class.
-
-
-This is my parameter:
-
-
-h2o_rfe = H2ORandomForestEstimator(ntrees=3, max_depth=12, min_rows=10, binomial_double_trees=True)
-
-
-
-If I use:
-
-
-h2o_rfe.predict_leaf_node_assignment()
-
-
-
-I can see that each tree is classified according to a separate tree and is also in 
-h2o
- flow web page.
-
-
-However, if I use:
-
-
-list_of_trees = [H2OTree(model=h2o_rfe, tree_number=t, tree_class=None) for t in range(h2o_rfe.params['ntrees']['actual'])]'
-
-
-
-I can't know the information of each internal tree according to the class.
-
-
-Also I tried to set the 
-tree_class
- (domain is 0,1):
-
-
-list_of_trees = [H2OTree(model=h2o_rfe, tree_number=t, tree_class=""0"") for t in range(h2o_rfe.params['ntrees']['actual'])]'
-
-
-
-When 
-tree_class
- is 
-'0'
-, it is okay:
-
-
-list_of_trees = [H2OTree(model=h2o_rfe, tree_number=t, tree_class=""1"") for t in range(h2o_rfe.params['ntrees']['actual'])]'
-
-
-
-But when 
-tree_class
- is 
-'1'
-, this error occurs:
-
-
-
-
-Error: For binomial, only one tree class has been built per each iteration: 0
-
-
-
-
-How to check the internal trees?","['python-3.x', 'random-forest', 'decision-tree', 'h2o', 'h2o.ai']",Daniel Walker,https://stackoverflow.com/posts/72960854/revisions,"6,638","{'gold': '', 'silver': '', 'bronze': ''}"
-72900276,72900276,2022-07-07T15:10:38,2022-07-07 20:19:43Z,0,"I am trying to understand how the confusion matrix in h2o.explain is generated.
-If I use the following code:
-h2o.explain(model@leader, test_set, include_explanations=""confusion_matrix""), is the generated confusion matrix evaluating the model accuracy on the test set?
-How would this be different from using h2o.predict on the test set (e.g. h2o.predict(model@leader, test_set)?","['r', 'h2o', 'confusion-matrix', 'automl']",M--,https://stackoverflow.com/posts/72900276/revisions,28.4k,"{'gold': '', 'silver': '', 'bronze': ''}"
-72888069,72888069,2022-07-06T18:02:36,2022-07-13 06:02:57Z,0,"I am trying to create an Azure python function which uses H20 module. When I tried to test it locally I am getting module not available error even though I have specified it in requirements.txt and it seem to be installed in the virtual env and I am able to run using virtual environment manually.
-
-
-Minimal Python code:
-
-
-import datetime
-import logging
-
-import h2o
-import azure.functions as func
-
-def main(mytimer: func.TimerRequest) -> None:
-    utc_timestamp = datetime.datetime.utcnow().replace(
-        tzinfo=datetime.timezone.utc).isoformat()
-    if mytimer.past_due:
-        logging.info('The timer is past due!')
-    logging.info('Python timer trigger function ran at %s', utc_timestamp)
-
-
-
-requirement.txt
-
-
-h2o==3.32.0.2
-
-
-
-Error.txt:
-
-
-
-
-Python version 3.9m Windows 10 OS.","['python-3.x', 'azure-functions', 'h2o']",The6thSense,https://stackoverflow.com/users/4251775/the6thsense,"8,325","{'gold': '', 'silver': '', 'bronze': ''}"
-72665283,72665283,2022-06-17T22:16:33,2022-06-17 22:37:50Z,156,"I just installed the most recent version of h2o for Python.
-
-
-And it generates the following error:
-
-
-import h2o
-h2o.init()
-h2o_df = h2o.H2OFrame(some_df)
-
-
-
-the error:
+Attempting to start a local H2O server...
 
 
 Traceback (most recent call last):
-  File ""C:\Users\some_user\AppData\Local\JetBrains\DataSpell 2022.1\plugins\python-ce\helpers\pydev\_pydev_bundle\pydev_console_utils.py"", line 417, in execTableCommand
-    success, res = exec_table_command(command, command_type,
-  File ""C:\Users\some_user\AppData\Local\JetBrains\DataSpell 2022.1\plugins\python-ce\helpers\pydev\_pydevd_bundle\pydevd_tables.py"", line 43, in exec_table_command
-    res += repr(tmp_var.head().to_html(notebook=True,
-AttributeError: 'H2OFrame' object has no attribute 'to_html'
+
+
+File ""/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.11/site-packages/h2o/h2o.py"", line 270, in init
+
+
+h2oconn = H2OConnection.open(url=url, ip=ip, port=port, name=name, https=https,
+
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+File ""/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.11/site-packages/h2o/backend/connection.py"", line 406, in open
+
+
+conn._cluster = conn._test_connection(retries, messages=msgs)
+
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+
+File ""/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.11/site-packages/h2o/backend/connection.py"", line 713, in _test_connection
+
+
+raise H2OConnectionError(""Could not establish link to the H2O cloud %s after %d retries\n%s""
+
+
+
+h2o.exceptions.H2OConnectionError: Could not establish link to the H2O cloud http://localhost:54321 after 5 retries
+
+
+[22:07.97] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Metadata/schemas/CloudV3 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x79554692d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+
+
+[22:08.19] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Metadata/schemas/CloudV3 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x795546b1d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+
+
+[22:08.41] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Metadata/schemas/CloudV3 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x795546b810>: Failed to establish a new connection: [Errno 111] Connection refused'))
+
+
+[22:08.63] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Metadata/schemas/CloudV3 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7955065450>: Failed to establish a new connection: [Errno 111] Connection refused'))
+
+
+[22:08.85] H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Metadata/schemas/CloudV3 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7955067390>: Failed to establish a new connection: [Errno 111] Connection refused'))
+
+
+During handling of the above exception, another exception occurred:
+
+
 Traceback (most recent call last):
-  File ""C:\Users\some_user\AppData\Local\JetBrains\DataSpell 2022.1\plugins\python-ce\helpers\pydev\_pydev_bundle\pydev_console_utils.py"", line 417, in execTableCommand
-    success, res = exec_table_command(command, command_type,
-  File ""C:\Users\some_user\AppData\Local\JetBrains\DataSpell 2022.1\plugins\python-ce\helpers\pydev\_pydevd_bundle\pydevd_tables.py"", line 43, in exec_table_command
-    res += repr(tmp_var.head().to_html(notebook=True,
-AttributeError: 'H2OFrame' object has no attribute 'to_html'
-Traceback (most recent call last):
-  File ""C:\Users\some_user\AppData\Local\JetBrains\DataSpell 2022.1\plugins\python-ce\helpers\pydev\_pydev_bundle\pydev_console_utils.py"", line 417, in execTableCommand
-    success, res = exec_table_command(command, command_type,
-  File ""C:\Users\some_user\AppData\Local\JetBrains\DataSpell 2022.1\plugins\python-ce\helpers\pydev\_pydevd_bundle\pydevd_tables.py"", line 43, in exec_table_command
-    res += repr(tmp_var.head().to_html(notebook=True,
-AttributeError: 'H2OFrame' object has no attribute 'to_html'
-Traceback (most recent call last):
-  File ""C:\Users\some_user\AppData\Local\JetBrains\DataSpell 2022.1\plugins\python-ce\helpers\pydev\_pydev_bundle\pydev_console_utils.py"", line 417, in execTableCommand
-    success, res = exec_table_command(command, command_type,
-  File ""C:\Users\some_user\AppData\Local\JetBrains\DataSpell 2022.1\plugins\python-ce\helpers\pydev\_pydevd_bundle\pydevd_tables.py"", line 43, in exec_table_command
-    res += repr(tmp_var.head().to_html(notebook=True,
-AttributeError: 'H2OFrame' object has no attribute 'to_html'
-Traceback (most recent call last):
-  File ""C:\Users\some_user\AppData\Local\JetBrains\DataSpell 2022.1\plugins\python-ce\helpers\pydev\_pydev_bundle\pydev_console_utils.py"", line 417, in execTableCommand
-    success, res = exec_table_command(command, command_type,
-  File ""C:\Users\some_user\AppData\Local\JetBrains\DataSpell 2022.1\plugins\python-ce\helpers\pydev\_pydevd_bundle\pydevd_tables.py"", line 43, in exec_table_command
-    res += repr(tmp_var.head().to_html(notebook=True,
-AttributeError: 'H2OFrame' object has no attribute 'to_html'
-Traceback (most recent call last):
-  File ""C:\Users\some_user\AppData\Local\JetBrains\DataSpell 2022.1\plugins\python-ce\helpers\pydev\_pydev_bundle\pydev_console_utils.py"", line 417, in execTableCommand
-    success, res = exec_table_command(command, command_type,
-  File ""C:\Users\some_user\AppData\Local\JetBrains\DataSpell 2022.1\plugins\python-ce\helpers\pydev\_pydevd_bundle\pydevd_tables.py"", line 43, in exec_table_command
-    res += repr(tmp_var.head().to_html(notebook=True,
-AttributeError: 'H2OFrame' object has no attribute 'to_html'
 
 
+File ""/data/user/0/ru.iiec.pydroid3/files/accomp_files/iiec_run/iiec_run.py"", line 31, in 
 
-It also dumps all previous calls and output of h2o. What is wrong here?
 
+start(fakepyfile,mainpyfile)
 
-UPDATE
 
 
-I guess I have to add that I am running it in DataSpell. Everything seems to be fine in Jupyter notebook.","['python', 'h2o', 'dataspell']",,https://stackoverflow.com/posts/72665283/revisions,,"{'gold': None, 'silver': None, 'bronze': None}"
-72562340,72562340,2022-06-09T14:44:20,2022-07-07 11:55:28Z,775,"I am trying to save the output images (graphs) I get when I use 
-explain()
- in H2O models. Currently I am just saving the SHAP output using the 
-model.shap_summary_plot(test, save_plot_path=`shap_summary.png`)
-. There is no 
-save_plot_path
- for explain.
+File ""/data/user/0/ru.iiec.pydroid3/files/accomp_files/iiec_run/iiec_run.py"", line 30, in start
 
 
+exec(open(mainpyfile).read(),  __main__.__dict__)
 
 
 
+File """", line 19, in 
 
-import h2o
-from h2o.automl import H2OAutoML
 
-h2o.init()
+File ""/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.11/site-packages/h2o/h2o.py"", line 287, in init
 
-df = h2o.import_file(""https://h2o-public-test-data.s3.amazonaws.com/smalldata/wine/winequality-redwhite-no-BOM.csv"")
 
-response = ""quality""
+hs = H2OLocalServer.start(nthreads=nthreads, enable_assertions=enable_assertions, max_mem_size=mmax,
 
-predictors = [
-  ""fixed acidity"", ""volatile acidity"", ""citric acid"", ""residual sugar"", ""chlorides"", ""free sulfur dioxide"",
-  ""total sulfur dioxide"", ""density"", ""pH"", ""sulphates"", ""alcohol"",  ""type""
-]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-train, test = df.split_frame(seed=1)
 
-aml = H2OAutoML(max_runtime_secs=120, seed=1)
-aml.train(x=predictors, y=response, training_frame=train)
+File ""/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.11/site-packages/h2o/backend/server.py"", line 139, in start
 
-leader_model = aml.leader 
 
-leader_model.explain(test) # save this output
+hs._launch_server(port=port, baseport=baseport, nthreads=int(nthreads), ea=enable_assertions,
 
 
 
+File ""/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.11/site-packages/h2o/backend/server.py"", line 271, in _launch_server
 
 
+java = self._find_java()
 
+       ^^^^^^^^^^^^^^^^^
 
 
-However I want to save all the graphs generated via 
-explain()
- instead of creating them individually. Also I want it to run as a script and not as a jupyter notebook.
 
+File ""/data/user/0/ru.iiec.pydroid3/files/aarch64-linux-android/lib/python3.11/site-packages/h2o/backend/server.py"", line 453, in _find_java
 
-Here is sample code,(edited 
-Explain-wine-example
-)
 
+raise H2OStartupError(""Cannot find Java. Please install the latest JRE from\n""
 
-H2O explain docs","['python', 'h2o', 'h2o.ai']",Andreas Rossberg,https://stackoverflow.com/posts/72562340/revisions,36k,"{'gold': '', 'silver': '', 'bronze': ''}"
-72560442,72560442,2022-06-09T12:40:15,2022-06-09 17:41:56Z,150,"It is a strange error when I use the 
-col_names=
- argument in 
-h2o.import_file
-. However, setting the column names by a separate line works fine.
 
 
-import os
-import h2o
+h2o.exceptions.H2OStartupError: Cannot find Java. Please install the latest JRE from
 
-h2o.init() # It shows H2O_cluster_version 3.36.1.2 and Python version 3.9.7 final
 
-os.system(""wget https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary/ijcnn1.tr.bz2"")
-os.system(""bzip2 -d ijcnn1.tr.bz2"")
+http://docs.h2o.ai/h2o/latest-stable/h2o-docs/welcome.html#java-requirements
 
-# These lines work
-col_names = ['class'] + ['F' + str(i) for i in range(22)]
-df1 = h2o.import_file(path=""ijcnn1.tr"")
-df1.columns = col_names
 
-# But this line does not work
-df2 = h2o.import_file(path=""ijcnn1.tr"", col_names=col_names)
+[Program finished]
 
----------------------------------------------------------------------------
-ValueError                                Traceback (most recent call last)
-/tmp/ipykernel_20191/3817572867.py in <module>
-----> 1 df2 = h2o.import_file(path=""ijcnn1.tr"", col_names=col_names)
 
-~/anaconda3/lib/python3.9/site-packages/h2o/h2o.py in import_file(path, destination_frame, parse, header, sep, col_names, col_types, na_strings, pattern, skipped_columns, custom_non_data_line_markers, partition_by, quotechar, escapechar)
-    498         return lazy_import(path, pattern)
-    499     else:
---> 500         return H2OFrame()._import_parse(path, pattern, destination_frame, header, sep, col_names, col_types, na_strings,
-    501                                         skipped_columns, custom_non_data_line_markers, partition_by, quotechar, escapechar)
-    502 
+I tried nothing, cant find any information to download it.","['python', 'java', 'mobile', 'h2o']",XuhanChen,https://stackoverflow.com/users/27513799/xuhanchen,1
+78995266,78995266,2024-09-17T17:55:20,2024-09-18 12:11:50Z,0,"I'm attempting to implement the deeplearning function in the h2o package and obtain a persistent error despite (seemingly) following the example given in the documentation for the package:
 
-~/anaconda3/lib/python3.9/site-packages/h2o/frame.py in _import_parse(self, path, pattern, destination_frame, header, separator, column_names, column_types, na_strings, skipped_columns, custom_non_data_line_markers, partition_by, quotechar, escapechar)
-    459             path = os.path.abspath(path)
-    460         rawkey = h2o.lazy_import(path, pattern)
---> 461         self._parse(rawkey, destination_frame, header, separator, column_names, column_types, na_strings,
-    462                     skipped_columns, custom_non_data_line_markers, partition_by, quotechar, escapechar)
-    463         return self
 
-~/anaconda3/lib/python3.9/site-packages/h2o/frame.py in _parse(self, rawkey, destination_frame, header, separator, column_names, column_types, na_strings, skipped_columns, custom_non_data_line_markers, partition_by, quotechar, escapechar)
-    476                na_strings=None, skipped_columns=None, custom_non_data_line_markers=None, partition_by=None, quotechar=None,
-    477                escapechar=None):
---> 478         setup = h2o.parse_setup(rawkey, destination_frame, header, separator, column_names, column_types, na_strings,
-    479                                 skipped_columns, custom_non_data_line_markers, partition_by, quotechar, escapechar)
-    480         return self._parse_raw(setup)
+https://www.rdocumentation.org/packages/h2o/versions/3.44.0.3/topics/h2o.deeplearning
 
-~/anaconda3/lib/python3.9/site-packages/h2o/h2o.py in parse_setup(raw_frames, destination_frame, header, separator, column_names, column_types, na_strings, skipped_columns, custom_non_data_line_markers, partition_by, quotechar, escapechar)
-    872                     % (len(column_names), parse_column_len))
-    873         else:
---> 874             if len(column_names) != len(j[""column_types""]): raise ValueError(
-    875                 ""length of col_names should be equal to the number of columns: %d vs %d""
-    876                 % (len(column_names), len(j[""column_types""])))
 
-ValueError: length of col_names should be equal to the number of columns: 23 vs 22","['import', 'h2o']",rozyang,https://stackoverflow.com/users/2669433/rozyang,619,"{'gold': '', 'silver': '', 'bronze': ''}"
-72527070,72527070,2022-06-07T06:58:36,2022-06-07 06:58:36Z,44,"Trying out the h2o autoML option preprocessing = [""target_encoding""].The test performance did improve. How do I apply similar transformation on the unseen/ out of time data to check performance?","['python', 'target', 'h2o', 'automl', 'data-preprocessing']",Payal Sengupta,https://stackoverflow.com/users/19196718/payal-sengupta,21,"{'gold': None, 'silver': None, 'bronze': ''}"
-72465078,72465078,2022-06-01T16:16:20,2022-06-01 22:02:04Z,107,"I ceased using h2o a few yeas back when I discovered a malware issue.
-
-
-After obtaining a new Mac, I decided to give it another shot and install h2o.  The problem still persists.  I use VirusBarrier Scanner and rarely experience any inflected files of any type.
-
-
-Has anyone else experienced the same problem?",['h2o'],,https://stackoverflow.com/posts/72465078/revisions,,"{'gold': None, 'silver': None, 'bronze': None}"
-72456723,72456723,2022-06-01T05:17:18,2022-06-01 14:49:21Z,145,"i have a few questions regarding H2O AI. As per my understanding, h2o AI powers Auto ML functionality. but need to integrate my own python jupyetr ML model. so my questions are,
-
-
-
-
-Can we use H2O AI without Auto ML and with our own python jupyter ML algorithm?
-
-
-If yes, can we integrate that own manual scripted ML with Snowflake?
-
-
-If we can integrate our own scripted ml algorithm with snowflake, what are the advantages of doing it that way? instead of an own manually-created python ML algorithm?","['python', 'snowflake-cloud-data-platform', 'h2o', 'automl', 'h2o.ai']",johnson,https://stackoverflow.com/users/11409289/johnson,429,"{'gold': None, 'silver': '', 'bronze': ''}"
-72400864,72400864,2022-05-27T05:31:47,2022-05-27 21:04:54Z,0,"I am running a loop to upload a csv file from my local machine, convert it to a h2o data frame, then run a h2o model. I then remove the h2o data frame from my r environment and the loop continues. These data frames are massive so I can only have one data frame loaded at a time (hence the reason for me removing the data frame from my environment).
-
-
-My problem is that h2o creates temporary files which quickly max out my memory. I know I can restart my r session, but is there another way to flush this out in code so my loop can run happily? When I look at my task manager the all my memory is sucked up in Java(TM) Platform SE Binary.","['r', 'h2o']",chipsin,https://stackoverflow.com/users/13326190/chipsin,675,"{'gold': '', 'silver': '', 'bronze': ''}"
-72376952,72376952,2022-05-25T11:39:23,2022-05-25 12:19:19Z,169,"I tried using the 2 best models from AutoML and used one of them as Meta learner for stacking. Named the new model stack_test. Code that I used is:
-
-
-stack_test = H2OStackedEnsembleEstimator(base_models=[model1_xg, model2_xg],
-metalearner_algorithm=model1_xg)
-
-stack_test.train(x=x, y=y, training_frame=h2o_train)
-stack_test.model_performance(h2o_test).auc()
-
-
-
-Error I am getting:
-
-
-NameError: name 'stack_test' is not defined
-
-
-
-What am I doing wrong here?","['python', 'h2o']",medium-dimensional,https://stackoverflow.com/posts/72376952/revisions,"2,203","{'gold': None, 'silver': '', 'bronze': ''}"
-72253927,72253927,2022-05-16T03:35:18,2022-05-23 17:06:19Z,0,"I have started using 
-h2o
- for aggregating large datasets and I have found peculiar behaviour when trying to aggregate the maximum value using h2o's 
-h2o.group_by
- function. My dataframe often has variables which comprise some or all NA's for a given grouping. Below is an example dataframe.
-
-
-df <- data.frame(""ID"" = 1:16)
-df$Group<- c(1,1,1,1,2,2,2,3,3,3,4,4,5,5,5,5)
-df$VarA <- c(NA_real_,1,2,3,12,12,12,12,0,14,NA_real_,14,16,16,NA_real_,16)
-df$VarB <- c(NA_real_,NA_real_,NA_real_,NA_real_,10,12,14,16,10,12,14,16,10,12,14,16)
-df$VarD <- c(10,12,14,16,10,12,14,16,10,12,14,16,10,12,14,16)
-
-   ID Group VarA VarB VarD
-1   1     1   NA   NA   10
-2   2     1    1   NA   12
-3   3     1    2   NA   14
-4   4     1    3   NA   16
-5   5     2   12   10   10
-6   6     2   12   12   12
-7   7     2   12   14   14
-8   8     3   12   16   16
-9   9     3    0   10   10
-10 10     3   14   12   12
-11 11     4   NA   14   14
-12 12     4   14   16   16
-13 13     5   16   10   10
-14 14     5   16   12   12
-15 15     5   NA   14   14
-16 16     5   16   16   16
-
-
-
-In this dataframe Group == 1 is completely missing data for VarB (but this is important information to know, so the output for aggregating for the maximum should be NA), while for Group == 1 VarA only has one missing value so the maximum should be 3.
-
-
-This is a link which includes the behaviour of the behaviour of the 
-na.methods
- argument (
-https://docs.h2o.ai/h2o/latest-stable/h2o-docs/data-munging/groupby.html
-).
-
-
-If I set the 
-na.methods = 'all'
- as below then the aggregated output is NA for Group 1 for both Vars A and B (which is not what I want, but I completely understand this behaviour).
-
-
-h2o_agg <-  h2o.group_by(data = df_h2o, by = 'Group', max(), gb.control = list(na.methods = ""all""))
-
-  Group max_ID max_VarA max_VarB max_VarD
-1     1      4      NaN      NaN       16
-2     2      7       12       14       14
-3     3     10       14       16       16
-4     4     12      NaN       16       16
-5     5     16      NaN       16       16
-
-
-
-If I set the 
-na.methods = 'rm'
- as below then the aggregated output for Group 1 is 3 for VarA (which is the desired output and makes complete sense) but for VarB is -1.80e308 (which is not what I want, and I do not understand this behaviour).
-
-
-h2o_agg <-  h2o.group_by(data = df_h2o, by = 'Group', max(), gb.control = list(na.methods = ""rm""))
-
-  Group max_ID max_VarA  max_VarB max_VarD
-  <int>  <int>    <int>     <dbl>    <int>
-1     1      4        3 -1.80e308       16
-2     2      7       12  1.4 e  1       14
-3     3     10       14  1.6 e  1       16
-4     4     12       14  1.6 e  1       16
-5     5     16       16  1.6 e  1       16
-
-
-
-Similarly I get the same output if set the 
-na.methods = 'ignore'
-.
-
-
-h2o_agg <-  h2o.group_by(data = df_h2o, by = 'Group', max(), gb.control = list(na.methods = ""ignore""))
-
-  Group max_ID max_VarA  max_VarB max_VarD
-  <int>  <int>    <int>     <dbl>    <int>
-1     1      4        3 -1.80e308       16
-2     2      7       12  1.4 e  1       14
-3     3     10       14  1.6 e  1       16
-4     4     12       14  1.6 e  1       16
-5     5     16       16  1.6 e  1       16
-
-
-
-I am not sure why something as common as completely missing data for a given variable within a specific group is being given a value of -1.80e308? I tried the same workflow in dplyr and got results which match my expectations (but this is not a solution as I cannot process datasets of this size in dplyr, and hence my need for a solution in h2o). I realise dplyr is giving me 
--inf
- values rather than NA, and I can easily recode both 
--1.80e308
- and 
--Inf
- to NA, but I am trying to make sure that this isn't a symptom of a larger problem in 
-h2o
- (or that I am not doing something fundamentally wrong in my code when attempting to aggregate in 
-h2o
-). I also have to aggregate normalised datasets which often have values which are approximately similar to -1.80e308, so I do not want to accidentally recode legitimate values to NA.
-
-
-library(dplyr)
-df %>%
-  group_by(Group) %>% 
-  summarise(across(everything(), ~max(.x, na.rm = TRUE)))
-
-  Group    ID  VarA  VarB  VarD
-  <dbl> <int> <dbl> <dbl> <dbl>
-1     1     4     3  -Inf    16
-2     2     7    12    14    14
-3     3    10    14    16    16
-4     4    12    14    16    16
-5     5    16    16    16    16","['r', 'dplyr', 'h2o']",,https://stackoverflow.com/posts/72253927/revisions,,"{'gold': None, 'silver': None, 'bronze': None}"
-72098968,72098968,2022-05-03T11:52:42,2022-05-03 19:50:29Z,389,"I have been struggling with this error for a few hours now, but seem lost even after reading through the documentation.
-
-
-I'm using H2O's Extended Isolation Forest (EIF), an unsupervised model, to detect anomalies in an unlabelled dataset. Which is working as intended, however for the project i'm working on the model explainability is extremely important. I discovered the 
-explain
- function, which supposedly returns several explainablity methods for a model. I'm particularly interested in the SHAP values from this function.
-
-
-The documentation states
-
-
-
-
-The main functions, h2o.explain() (global explanation) and h2o.explain_row() (local explanation) work for individual 
-H2O models,
- as well a list of models or an H2O AutoML object.  The h2o.explain() function generates a list of explanations.
-
-
-
-
-Since the H2O models link brings me to a page which covers both supervised and unsupervised models I assume the explain function would work for both types of models.
-
-
-When trying to run my code the following code works just fine.
-
-
-import h2o
-from h2o.estimators import H2OExtendedIsolationForestEstimator
-
-h2o.init()
-df_EIF = h2o.H2OFrame(df_EIF)
-predictors = df_EIF.columns[0:37]
-
-eif = H2OExtendedIsolationForestEstimator(ntrees = 75, sample_size =500, extension_level = (len(predictors) -1)  )
-
-eif.train(x=predictors, training_frame = df_EIF)
-eif_result = eif.predict(df_EIF)
-df_EIF['anomaly_score_EIF') = eif_result['anomaly_score']
-
-
-
-However when trying to call explain over the model (eif)
-
-
-eif.explain(df_EIF)
-
-
-
-Gives me the following KeyError
-
-
-KeyError                                  Traceback (most recent call last)
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx.py in <module>
-----> 1 eif.explain(df_EIF)
-      2 
-      3 
-      4 
-      5 
-
-C:\ProgramData\Anaconda3\lib\site-packages\h2o\explanation\_explain.py in explain(models, frame, columns, top_n_features, include_explanations, exclude_explanations, plot_overrides, figsize, render, qualitative_colormap, sequential_colormap)
-   2895     plt = get_matplotlib_pyplot(False, raise_if_not_available=True)
-   2896     (is_aml, models_to_show, classification, multinomial_classification, multiple_models, targets,
--> 2897      tree_models_to_show, models_with_varimp) = _process_models_input(models, frame)
-   2898 
-   2899     if top_n_features < 0:
-
-C:\ProgramData\Anaconda3\lib\site-packages\h2o\explanation\_explain.py in _process_models_input(models, frame)
-   2802         models_with_varimp = [model for model in models if _has_varimp(model)]
-   2803     tree_models_to_show = _get_tree_models(models, 1 if is_aml else float(""inf""))
--> 2804     y = _get_xy(models_to_show[0])[1]
-   2805     classification = frame[y].isfactor()[0]
-   2806     multinomial_classification = classification and frame[y].nlevels()[0] > 2
-
-C:\ProgramData\Anaconda3\lib\site-packages\h2o\explanation\_explain.py in _get_xy(model)
-   1790     """"""
-   1791     names = model._model_json[""output""][""original_names""] or model._model_json[""output""][""names""]
--> 1792     y = model.actual_params[""response_column""]
-   1793     not_x = [
-   1794                 y,
-
-KeyError: 'response_column
-
-
-
-From my understanding this response column refers to a column that you are trying to predict. However, since i'm dealing with an unlabelled dataset this response column doesn't exist. Is there a way for me to bypass this error? Is it even possible to utilize the explain() function on unsupervised models? If, so how do I do this? If it is not possible, is there another way to extract the Shap values of each variable from the model? Since the shap.TreeExplainer also doesn't seem to work on a H2O model.
-
-
-TL;DR: Is it possible to use the .explain() function from h2o on an (Extended) Isolation forest? If so how?","['pandas', 'dataframe', 'h2o', 'isolation-forest']",Sebastiaan van Dijk,https://stackoverflow.com/users/19023547/sebastiaan-van-dijk,3,"{'gold': None, 'silver': None, 'bronze': ''}"
-72048657,72048657,2022-04-28T18:30:00,2022-04-29 18:42:43Z,156,"I have fit a GAM model in h2o with several gam variables (P-splines) using the h2o.estimators.gam package. I'd like to get a table with the factor loading for every level of each gam variable. For example, one of my variables is age, and I need a table of the coefficient for each age.","['python', 'h2o', 'gam', 'bspline', 'h2o.ai']",Carver Coleman,https://stackoverflow.com/users/18977015/carver-coleman,11,"{'gold': None, 'silver': None, 'bronze': ''}"
-71996637,71996637,2022-04-25T08:34:59,2022-04-26 07:15:13Z,206,"I have trained a stacked ensemble model with automl() function provided by H2O (3.36.0.4)for R. Once the model is trained, i have exported it to .zip format with the download_mojo() function.
-
-
-I have created a Java app following instructions, but when running the program, the model always predicts the same value.
-
-
-This is the app developed in Java:
-
-
-import java.io.*;
-import hex.genmodel.easy.RowData;
-import hex.genmodel.easy.EasyPredictModelWrapper;
-import hex.genmodel.easy.prediction.*;
-import hex.genmodel.MojoModel;
-
-public class App {
-    public static void main(String[] args) throws Exception {
-
-        EasyPredictModelWrapper model = new EasyPredictModelWrapper(MojoModel.load(""StackedEnsemble_BestOfFamily_8_AutoML_1_20220407_144828.zip""));
-
-        BufferedReader csvReader = new BufferedReader(new FileReader(""dataset.csv""));
-        RowData inputrow = new RowData();
-        String row;
-        String[] colnames = new String[36];
-        String[] data;
-        for (int i = 0; i <= 10; i++) {
-            row = csvReader.readLine();
-            if (i == 0) {
-                colnames = row.split("","");
-            } else {
-                data = row.split("","");
-                for (int k = 0; k < colnames.length - 2; k++) {
-                    inputrow.put(colnames[k], data[k]);
-                }
-                RegressionModelPrediction prediction = model.predictRegression(inputrow);
-                System.out.println(""Prediction ""+i+"": "" + prediction.value);
-            }
-        }
-        System.out.println("""");
-    }
-}
-
-
-
-It returns this:
-
-
-Prediction 1: 0.09239077248718583
-Prediction 2: 0.09239077248718583
-Prediction 3: 0.09239077248718583
-Prediction 4: 0.09239077248718583
-Prediction 5: 0.09239077248718583
-Prediction 6: 0.09239077248718583
-Prediction 7: 0.09239077248718583
-Prediction 8: 0.09239077248718583
-Prediction 9: 0.09239077248718583
-Prediction 10: 0.09239077248718583
-
-
-
-For more details, training and test datasets have the same variables and the model have been trained with following parameters:
-
-
-aml <- h2o::h2o.automl(y = y,
-                       training_frame = df_h2o,
-                       nfolds = 10,
-                       max_models = 150,
-                       max_runtime_secs = NULL,
-                       keep_cross_validation_predictions = TRUE,
-                       stopping_metric = 'RMSE',
-                       sort_metric ='RMSE',
-                       verbosity = ""info"")
-
-
-
-And I have performed the following checks, with the same dataset used in java:
-
-
-modelPath <- paste0(getwd(), ""/StackedEnsemble_BestOfFamily_8_AutoML_1_20220407_144828"")
-loaded_model <- h2o.loadModel(modelPath)
-
-
-val_df <-  read.csv(""dataset.csv"")
-input_row <- val_df[1:10 ,1:36]
-new_data <- as.h2o(input_row)
-
-h2omodel_preditions <-as.vector(h2o.predict(loaded_model, new_data, exact_quantiles=TRUE))
-
-
-original_mojo_path <- paste0(getwd(), ""/StackedEnsemble_BestOfFamily_8_AutoML_1_20220407_144828.zip"")
-mojo_model <- h2o.upload_mojo(original_mojo_path)
-mojo_predictions  <- as.vector( h2o.predict(mojo_model, new_data))
-
-
-> h2omodel_preditions
- [1] 0.27564401 0.25663341 0.17848737 0.05179671 0.02977053 0.28588998 0.29157313 0.19800770 0.06251480 0.23992213
-> mojo_predictions
- [1] 0.27564401 0.25663341 0.17848737 0.05179671 0.02977053 0.28588998 0.29157313 0.19800770 0.06251480 0.23992213","['java', 'prediction', 'h2o', 'mojo']",,https://stackoverflow.com/posts/71996637/revisions,,"{'gold': None, 'silver': None, 'bronze': None}"
-71928885,71928885,2022-04-19T17:20:01,2022-12-03 17:16:48Z,216,"I am try to using 
-pysparkling.ml.H2OMOJOModel
- for predict a spark dataframe using a MOJO model trained with h2o==3.32.0.2 in AWS Glue Jobs, how ever a got the error: TypeError: 'JavaPackage' object is not callable.
-
-
-I opened a ticket in AWS support and they confirmed that Glue environment is ok and the problem is probably with sparkling-water (pysparkling). It seems that some dependency library is missing, but I have no idea which one.
-The simple code bellow works perfectly if I run in my local computer (I only need to change the mojo path for GBM_grid__1_AutoML_20220323_233606_model_53.zip)
-
-
-Could anyone ever run sparkling-water in Glue jobs successfully?
-
-
-Job Details:
--Glue version 2.0
---additional-python-modules, h2o-pysparkling-2.4==3.36.0.2-1
--Worker type: G1.X
--Number of workers: 2
--Using script ""createFromMojo.py""
-
-
-createFromMojo.py:
-
-
-import sys
-from awsglue.transforms import *
-from awsglue.utils import getResolvedOptions
-from pyspark.context import SparkContext
-from awsglue.context import GlueContext
-from awsglue.job import Job
-import pandas as pd
-from pysparkling.ml import H2OMOJOSettings
-from pysparkling.ml import H2OMOJOModel
-# from pysparkling.ml import *
-
-## @params: [JOB_NAME]
-args = getResolvedOptions(sys.argv, [""JOB_NAME""])
-
-#Job setup
-sc = SparkContext()
-glueContext = GlueContext(sc)
-spark = glueContext.spark_session
-
-job = Job(glueContext)
-job.init(args[""JOB_NAME""], args)
-
-caminho_modelo_mojo='s3://prod-lakehouse-stream/modeling/approaches/GBM_grid__1_AutoML_20220323_233606_model_53.zip'
-print(caminho_modelo_mojo)
-print(dir())
-
-settings = H2OMOJOSettings(convertUnknownCategoricalLevelsToNa = True, convertInvalidNumbersToNa = True)
-model = H2OMOJOModel.createFromMojo(caminho_modelo_mojo, settings)
-
-data = {'days_since_last_application': [3, 2, 1, 0], 'job_area': ['a', 'b', 'c', 'd']}
-
-base_escorada = model.transform(spark.createDataFrame(pd.DataFrame.from_dict(data)))
-
-print(base_escorada.printSchema())
-
-print(base_escorada.show())
-
-job.commit()","['python', 'apache-spark', 'h2o', 'sparkling-water']",MaxReis86,https://stackoverflow.com/users/14055804/maxreis86,26,"{'gold': None, 'silver': None, 'bronze': ''}"
-71849829,71849829,2022-04-12T22:33:47,2022-04-12 22:33:47Z,0,"So I wrote a script that takes the weights of a h2o model and plants them into a keras model. I then found that the results from running the model through keras do not match up with h2o.
-
-
-
-Here's the code I used to get this graph:
+My inputs are y, a length-n vector of 0,1 indicating binary outcomes, and an nxm matrix of integers x which are my predictor variables.
 
 
 library(h2o)
-library(keras)
-library(tensorflow)
+h2o.init()
 
-# create data
+y = as.factor(y)
+xnew = cbind(y,x)
+xnew = data.frame(xnew)
+#create a single data frame with response variable y and predictor variables x
+x_df = as.h2o(xnew)
+# formats dataframe as h2o data object
+nn_model_training = h2o.deeplearning(y=1,training_frame = x_df)
 
-x <- rnorm(10000,sd=3)
-y <- 2*x + rnorm(10000,sd=0.4) + 0.3*rt(10000,5) -0.1*x^2 + 2.4*sin(1.2*x)
-plot(x,y, main=""h2o model vs keras model with h2o weights"" )
 
-df <- data.frame(x=x,y=y)
 
-# apply h2o fit to data
+which executes without issue. I now wish to use the nn_model_training to predict outcomes for a test set. To have the same column names as in the model, I take 2...m from the training_frame (i.e. exclude outcome variable y):
+
+
+keep_names = names(x_df)[2:length(x_df[1,])]
+x_new = Test_Mat
+x_new = data.frame(x_new)
+names(x_new) = keep_names
+x_df_new = as.h2o(x_new)
+
+nn_predicted = h2o.predict(nn_model_training, x_df_new)
+
+
+
+which immediately results in the error
+
+
+*Error: java.lang.IllegalArgumentException: Test/Validation dataset has no columns in common with the training set*
+
+
+
+despite the fact that I renamed the columns to match the names of the x-variables in the training set.
+
+
+What am I doing incorrectly when implementing the h2o.predict() ?","['r', 'deep-learning', 'h2o']",Max,https://stackoverflow.com/users/5904690/max,569
+78986631,78986631,2024-09-15T04:36:28,2024-09-19 21:19:57Z,0,"I would like to switch the parsinp engine to h2o and use h2o and agua packages to fit models. The following code is from the standard help site.
+
+
+With 
+tune::tune_grid
+, I bump into the 
+""Warning: All models failed ...""
+, which is due to ""
+Error in
+ 
+h2o.getConnection()
+: 
+No active connection to an H2O cluster ...""
+. Although the output of 
+h2o.getConnection()
+ immediately before and after 
+tune_grid
+ suggest everything should be OK.
+
+
+library(ggplot2)
+library(tidymodels)
+library(agua)
+#> 
+#> Attaching package: 'agua'
+#> The following object is masked from 'package:workflowsets':
+#> 
+#>     rank_results
+library(h2o)
+#> 
+#> ----------------------------------------------------------------------
+#> 
+#> Your next step is to start H2O:
+#>     > h2o.init()
+#> 
+#> For H2O package documentation, ask for help:
+#>     > ??h2o
+#> 
+#> After starting H2O, you can use the Web UI at http://localhost:54321
+#> For more information visit https://docs.h2o.ai
+#> 
+#> ----------------------------------------------------------------------
+#> 
+#> Attaching package: 'h2o'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     cor, sd, var
+#> The following objects are masked from 'package:base':
+#> 
+#>     %*%, %in%, &&, ||, apply, as.factor, as.numeric, colnames,
+#>     colnames<-, ifelse, is.character, is.factor, is.numeric, log,
+#>     log10, log1p, log2, round, signif, trunc
+
+doParallel::registerDoParallel()
+
+h2o::h2o.init()
+#>  Connection successful!
+#> 
+#> R is connected to the H2O cluster: 
+#>     H2O cluster uptime:         50 minutes 51 seconds 
+#>     H2O cluster timezone:       America/New_York 
+#>     H2O data parsing timezone:  UTC 
+#>     H2O cluster version:        3.46.0.5 
+#>     H2O cluster version age:    16 days 
+#>     H2O cluster name:           H2O_started_from_R_siava_dqu656 
+#>     H2O cluster total nodes:    1 
+#>     H2O cluster total memory:   13.28 GB 
+#>     H2O cluster total cores:    32 
+#>     H2O cluster allowed cores:  32 
+#>     H2O cluster healthy:        TRUE 
+#>     H2O Connection ip:          localhost 
+#>     H2O Connection port:        54321 
+#>     H2O Connection proxy:       NA 
+#>     H2O Internal Security:      FALSE 
+#>     R Version:                  R version 4.4.1 (2024-06-14 ucrt)
+h2o::h2o.connect()
+#>  Connection successful!
+#> 
+#> R is connected to the H2O cluster: 
+#>     H2O cluster uptime:         50 minutes 54 seconds 
+#>     H2O cluster timezone:       America/New_York 
+#>     H2O data parsing timezone:  UTC 
+#>     H2O cluster version:        3.46.0.5 
+#>     H2O cluster version age:    16 days 
+#>     H2O cluster name:           H2O_started_from_R_siava_dqu656 
+#>     H2O cluster total nodes:    1 
+#>     H2O cluster total memory:   13.28 GB 
+#>     H2O cluster total cores:    32 
+#>     H2O cluster allowed cores:  32 
+#>     H2O cluster healthy:        TRUE 
+#>     H2O Connection ip:          localhost 
+#>     H2O Connection port:        54321 
+#>     H2O Connection proxy:       NA 
+#>     H2O Internal Security:      FALSE 
+#>     R Version:                  R version 4.4.1 (2024-06-14 ucrt)
+h2o::h2o.getConnection()
+#> IP Address: localhost 
+#> Port      : 54321 
+#> Name      : NA 
+#> Session ID: _sid_b5d8 
+#> Key Count : 0
+
+data(ames)
+
+set.seed(4595)
+data_split <- ames |>
+  mutate(Sale_Price = log10(Sale_Price)) |>
+  initial_split(strata = Sale_Price)
+ames_train <- training(data_split)
+ames_test <- testing(data_split)
+cv_splits <- vfold_cv(ames_train, v = 10, strata = Sale_Price)
+
+ames_rec <-
+  recipe(Sale_Price ~ Gr_Liv_Area + Longitude + Latitude, data = ames_train) |>
+  step_log(Gr_Liv_Area, base = 10) |>
+  step_ns(Longitude, deg_free = tune(""long df"")) |>
+  step_ns(Latitude, deg_free = tune(""lat df""))
+
+lm_mod <- linear_reg(penalty = tune()) |>
+  set_engine(""h2o"")
+
+lm_wflow <- workflow() |>
+  add_model(lm_mod) |>
+  add_recipe(ames_rec)
+
+grid <- lm_wflow |>
+  extract_parameter_set_dials() |>
+  grid_regular(levels = 5)
+
+h2o.getConnection()
+#> IP Address: localhost 
+#> Port      : 54321 
+#> Name      : NA 
+#> Session ID: _sid_b5d8 
+#> Key Count : 0
+
+ames_res <- tune_grid(
+  lm_wflow,
+  resamples = cv_splits,
+  grid = grid,
+  control = control_grid(save_pred = TRUE,
+                         backend_options = agua_backend_options(parallelism = 5))
+)
+#> Warning: All models failed. Run `show_notes(.Last.tune.result)` for more
+#> information.
+
+h2o.getConnection()
+#> IP Address: localhost 
+#> Port      : 54321 
+#> Name      : NA 
+#> Session ID: _sid_b5d8 
+#> Key Count : 0
+
+agua::h2o_running(verbose = FALSE)
+#> [1] TRUE
+
+show_notes(.Last.tune.result)
+#> unique notes:
+#> ────────────────────────────────────────────────────────────────────────────────
+#> Error in h2o.getConnection(): No active connection to an H2O cluster. Did you run `h2o.init()` ?
+Created on 2024-09-15 with reprex v2.1.1
+
+
+
+Latest RStudio is run with both normal and administrative privileges (same issue - although we should not need admin rights) on Windows 11 Pro x64 machine. JRE (1.8.0_421) and JDK (22) are installed, and all Java paths (
+JRE_HOME
+, 
+JDK_HOME
+, 
+JAVA_HOME = JRE_HOME
+) are all A-OK! I went so-far as to use rJava to manually initialize a Java VM instance with no effect. The command 
+demo(h2o.kmeans)
+ runs without a problem and produces expected results.
+
+
+The only other thing of note is that running 
+agua::h2o_start()
+ produces weird output that it should not be. I get ""permission denied error"" on user folder which should be accessible even without admin rights (folder-access issue is the same with h2o package) and I get ""no Java error"" that shouldn't be there.
+
+
+Warning message:
+JAVA not found, H2O may take minutes trying to connect. 
+
+
+
+Could this be the root of the issue: 
+""h2o cluster connection is there as far as h2o package is concerned but agua (which adds supports for tidymodels) does not recognize Java and the existing h2o connection""
+?!","['r', 'connection', 'h2o', 'hyperparameters', 'tidymodels']",Unknown,,N/A
+78853756,78853756,2024-08-09T16:16:57,2024-08-12 15:02:37Z,0,"I ran a GLM model using h2o in r (the model was saved as an object called mod), the dataset contains categorical and continuous predictors. I called the h2o.varimp function on mod to retrieve the variable importance for this GLM model, for categorical predictors, it seemed to calculate the relative importance for each level within that same categorical predictor. Is there a way for me to aggregate the importance across all levels so that I get a single importance metric for each unique predictor?
+
+
+I first tried summing the relative importance but since they are based on standardized coefficients, I'm not sure if this is the right way.","['r', 'h2o']",ZTraveler,https://stackoverflow.com/users/22456747/ztraveler,1
+78716974,78716974,2024-07-07T09:57:06,2024-07-08 13:33:34Z,0,"When I am trying to run the function 
+h2o.splitFrame
+ from H2O, I receive the following error:
+
+
+Error en .Call(R_curl_fetch_memory, enc2utf8(url), handle, nonblocking): 
+  se ha alcanzado el límite de tiempo transcurrido
+
+
+
+I tried to check the admin task to liberate the memory from my laptop, and tried other combinations but nothing worked. Find below my complete code.
+
+
+# Establecer el tiempo de espera de CURL
+options(RCurlOptions = list(timeout = 600))
+
+library(h2o)
+library(parallel)
+library(doParallel)
+
+# Detectar el número de núcleos disponibles
+n_cores <- parallel::detectCores()
+registerDoParallel(cores=4)
+
+# Inicializar H2O con parámetros mejorados
+h2o.init(
+  ip = ""localhost"",
+  nthreads = max(1, n_cores - 1),
+  max_mem_size = ""6g""
+)
+
+# Deshabilitamos la salida de progreso
+h2o.no_progress()
+
+data <- as.h2o(ordata.ren)
+
+splits <- h2o.splitFrame(
+  data = data, 
+  ratios = c(0.7, 0.15),  # partition data into 70%, 15%, 15% chunks
+  destination_frames = c(""train"", ""valid"", ""test""),  # frame ID (not required)
+  seed = 1  # setting a seed will guarantee reproducibility
+)
+
+# When I run this part of the code, I receive the error message mentioned before:
+# Error en .Call(R_curl_fetch_memory, enc2utf8(url), handle, nonblocking): 
+#   se ha alcanzado el límite de tiempo transcurrido.
+
+train <- splits[[1]]
+valid <- splits[[2]]
+test <- splits[[3]]
+
+y <- ""Price""
+x <- setdiff(names(data), y)
+print(x)","['r', 'h2o', 'h2o.ai']",user23479948,https://stackoverflow.com/users/23479948/user23479948,1
+78449790,78449790,2024-05-08T15:58:11,2024-05-08 20:57:55Z,64,"I am running H2O AutoML on the same date set with the same seed on the same laptop multiple times and getting different predictions from time to time. I wonder if it is possible to get the same numbers on every run. Here is my code:
+
+
+import h2o
+h2o.init()
+aml = h2o.automl.H2OAutoML(max_models = 25,
+ balance_classes = False, seed = 1)
+aml.train(predictors, response, training_frame = h2o_df_train)
+aml.leader.predict(h2o_df_test)
+
+
+
+It looks like it is possible for 
+GBM
+, but I wonder if it is possible for whole AutoML run?
+
+
+My appologies for cross posting, but here is a complete example:
+
+
+H2O forum
+
+
+Problem solved
+
+
+From 
+H2O docs
+:
+
+
+""seed: Integer. Set a seed for reproducibility. AutoML can only guarantee reproducibility under certain conditions. H2O Deep Learning models are not reproducible by default for performance reasons, 
+so if the user requires reproducibility, then exclude_algos must contain ""DeepLearning"".
+ In addition max_models must be used because max_runtime_secs is resource limited, meaning that if the available compute resources are not the same between runs, AutoML may be able to train more models on one run vs another. Defaults to NULL/None.""","['h2o', 'automl', 'reproducible-research']",Unknown,,N/A
+78444040,78444040,2024-05-07T16:58:00,2024-05-16 20:42:45Z,0,"I have a random forest model that I'm trying to understand better.
+
+
+For the sake of the example, lets say we have a grove of blueberry bushes. What we're interested in is predicting the production of rotten blueberries on a specific bush, among harvest of all blueberries of the individual bushes.
+
+
+Each bush has an identifying name: 
+bush_name
+, such as 
+'bush001'
+, and we want predictions based on each individual bush. For example, I want to know if bush025 produced a rotten berry on 2/2/22.
+
+
+Inputs are in a df with the following dummy structure for the sake of this example:
+
+
+train_data <- data.frame(date = c(""2022-01-01"", ""2022-01-07"", ""2022-02-09"", ""2022-05-01"", ""2022-11-01"", ""2022-11-02""),
+                   bush_name = c(""bush001"", ""bush001"", ""bush001"", ""bush043"", ""bush043"", ""bush043""),
+                   bugs = c(2, 0, 1, 0, 3, 1),
+                   has_rotten_berry = c(1, 0, 0, 1, 1, 0),
+                   berry_count = c(12, 1, 7, 100, 14, 4),
+                   weather = c(1, 0, 2, 0, 1, 1))
+
+
+
+I've got a random forest model that I have set up with the following high level set up:
+
+
+library(agua)
+library(parsnip)
+library(h2o)
+
+h2o.init(nthreads = -1)
+
+model_fit <- rand_forest(mtry = 10,  trees = 100) %>%
+  set_engine(""h2o"") %>%
+  set_mode(""classification"") %>%
+  fit(has_rotten_berry ~  .,
+      data = train_data) %>% 
+  step_dummy(bush_name) %>%
+  step_zv(all_predictors()) %>%
+  step_normalize(all_predictors())
+
+
+
+I do get this message after training:
+
+
+Warning message:
+In .h2o.processResponseWarnings(res) :
+  Dropping bad and constant columns: [bush_name].
+
+
+
+What I want to know is:
+
+
+When I try to then predict on new data in the trained model, it seems that I am only able to input new test data with the bush_names of bushes I already trained on. 
+Am I correct in assuming this model is creating bush-specific predictions? And therefore would have to input new bush information in the training in order to output a future prediction for those new bushes?
+
+
+Example: I plant a new bush, bush700, and it was not present in the original training data set. If I try to predict with the new bush data without it being present in the training data, is giving me a message that there are new levels in the data. So 
+I'm assuming that because it seems these predictions are bush-specific, and we can't get any new bush predictions for newly-added bushes.
+
+
+Is this correct to assume?","['r', 'machine-learning', 'classification', 'h2o', 'predict']",desertnaut,https://stackoverflow.com/users/4685471/desertnaut,60.1k
+78250475,78250475,2024-03-31T06:26:06,2024-03-31 20:30:59Z,0,"I am trying to use 
+h2o.deeplearning
+ model to predict on raster data. It returns me the following error
+
+
+
+
+Error: Not compatible with requested type: [type=character; target=double].
+
+
+
+
+Here is a minimal, reproducible, self-contained example
+
+
+library(terra)
+library(h2o)
+library(tidyverse)
 
 h2o.init()
-h2odf <- as.h2o(df)
+
+# create a RasterStack or RasterBrick with with a set of predictor layers
+logo <- rast(system.file(""external/rlogo.grd"", package=""raster""))
+names(logo)
+
+# known presence and absence points
+p <- matrix(c(48, 48, 48, 53, 50, 46, 54, 70, 84, 85, 74, 84, 95, 85,
+              66, 42, 26, 4, 19, 17, 7, 14, 26, 29, 39, 45, 51, 56, 46, 38, 31,
+              22, 34, 60, 70, 73, 63, 46, 43, 28), ncol=2)
+a <- matrix(c(22, 33, 64, 85, 92, 94, 59, 27, 30, 64, 60, 33, 31, 9,
+              99, 67, 15, 5, 4, 30, 8, 37, 42, 27, 19, 69, 60, 73, 3, 5, 21,
+              37, 52, 70, 74, 9, 13, 4, 17, 47), ncol=2)
+
+# extract values for points
+xy <- rbind(cbind(1, p), cbind(0, a))
+v <- data.frame(cbind(pa=xy[,1], terra::extract(logo, xy[,2:3]))) %>% 
+  mutate(pa = as.factor(pa))
+
+str(v) 
+
+#### Import data to H2O cluster
+df <- as.h2o(v)
+
+#### Split data into train, validation and test dataset
+splits <- h2o.splitFrame(df, c(0.70,0.15), seed=1234)
+train  <- h2o.assign(splits[[1]], ""train.hex"")
+valid  <- h2o.assign(splits[[2]], ""valid.hex"")
+test   <- h2o.assign(splits[[3]], ""test.hex"")
+
+#### Create response and features data sets
+y <- ""pa""
+x <- setdiff(names(train), y)
+
+### Deep Learning Model
+dl_model <- h2o.deeplearning(training_frame=train,                      
+  validation_frame=valid,                    
+  x=x,                                       
+  y=y,                                      
+  standardize=TRUE,                          
+  seed=125)
+
+dnn_pred <- function(model, data, ...) {
+  predict(model, newdata=as.h2o(data), ...)
+}
+
+p <- predict(logo, model=dl_model, fun=dnn_pred)
+plot(p)","['r', 'h2o', 'predict', 'terra']",UseR10085,https://stackoverflow.com/users/6123824/user10085,"8,062"
+78245999,78245999,2024-03-29T21:21:16,2024-03-30 15:28:57Z,91,"I am getting an error for my desired dataset when trying to use an isolation forest method to detect anomalies. However I have another completely different dataset that it works fine for, what could cause this issue?
 
 
-model <- h2o.deeplearning(x = 1, y = 2,
-                    training_frame = h2odf,
-                    hidden = c(100,10),
-                    activation = ""Tanh"",        # use ""Rectifier"" for relu
-                    export_weights_and_biases = TRUE,
-                    export_checkpoints_dir=getwd(),
-                    verbose=TRUE)
+isolationforest Model Build progress: | (failed) | 0% Traceback (most recent call last): File 
+""h2o_test.py"", line 149, in <module> isoforest.train(x=iso_forest.col_names[0:65], 
+training_frame=iso_forest) File ""/home/ec2-user/.local/lib/python3.7/site- 
+packages/h2o/estimators/estimator_base.py"", line 107, in train self._train(parms, 
+verbose=verbose) File ""/home/ec2-user/.local/lib/python3.7/site- 
+packages/h2o/estimators/estimator_base.py"", line 199, in _train 
+job.poll(poll_updates=self._print_model_scoring_history if verbose else None) File 
+""/home/ec2-user/.local/lib/python3.7/site-packages/h2o/job.py"", line 89, in poll 
+""\n{}"".format(self.job_key, self.exception, self.job[""stacktrace""])) OSError: Job with key 
+$03017f00000132d4ffffffff$_92ee3e892f7bc86460e80153eaec4b70 failed with an exception: 
 
-newdf <- as.h2o(data.frame(x=seq(-10,10,by=0.01)))
+java.lang.AssertionError stacktrace: java.lang.AssertionError at 
+hex.tree.DHistogram.init(DHistogram.java:350) at 
+hex.tree.DHistogram.init(DHistogram.java:343) at 
+hex.tree.ScoreBuildHistogram2$ComputeHistoThread.computeChunk(ScoreBuildHistogram2.java:427) 
+at hex.tree.ScoreBuildHistogram2$ComputeHistoThread.map(ScoreBuildHistogram2.java:408) at 
+water.LocalMR.compute2(LocalMR.java:89) at water.LocalMR.compute2(LocalMR.java:81) at 
+water.H2O$H2OCountedCompleter.compute(H2O.java:1704) at 
+jsr166y.CountedCompleter.exec(CountedCompleter.java:468) at 
+jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:263) at 
+jsr166y.ForkJoinPool$WorkQueue.popAndExecAll(ForkJoinPool.java:906) at 
+jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:979) at 
+jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) at 
+jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104)
 
-predict <- as.data.frame(predict(model,newdf))
-lines(seq(-10,10,by=0.01),predict$predict,col=2,lwd=2)
 
 
-# Get the weights from h2o and convert them into a format that tensorflow will accept
+with open('/home/webapp/flask-api/tmp_rows/temp_file2.csv', 'w+') as tmp_file:
+        temp_name = ""/tmp_rows/temp_file2.csv""
+        tmp_file.write(text_stream.getvalue())
+        tmp_file.close()
 
-layers <- model@parameters$hidden
-activation <- model@parameters$activation
-weights <- list()
+h2o.init()
+print(""TEMP_nAME"", temp_name)
+iso_forest = h2o.import_file('/home/webapp/flask-api/{0}'.format(temp_name))
+seed = 12345
+ntrees = 100
+isoforest = h2o.estimators.H2OIsolationForestEstimator(
+ntrees=ntrees, seed=seed)
+isoforest.train(x=iso_forest.col_names[0:65], training_frame=iso_forest)
+predictions = isoforest.predict(iso_forest)
+print(predictions)
+h2o.cluster().shutdown()
 
-for(i in 1:(1+length(layers))){
-    W <- as.matrix(h2o.weights(model,matrix_id=i))
-    B <- as.array(as.vector(h2o.biases(model,vector_id=i)))
-    colnames(W) <- NULL
-    W <- t(W)
-    weights[[2*i-1]] <- W
-    weights[[2*i]] <- B
+
+
+
+The CSV is being created fine, so there doesn't seem to be an issue with that, what is causing this Java error? I even increased the size of my ec2 to have more RAM, that didn't solve it either.","['python', 'java', 'h2o']",Amon,https://stackoverflow.com/users/2621316/amon,"2,931"
+78193739,78193739,2024-03-20T13:32:59,2024-03-20 13:32:59Z,34,"everyone!
+
+
+I have a list of discounts, and for each discount, I iterate through them. Within each iteration, I generate a few new columns and then predict the sales amount for each product associated with that discount. I aim to compile all the results from these iterations into a single dataframe to have a comprehensive view of every discount on the list along with the predictions. This process has already been successfully implemented in native H2O using Pandas. However, I am now attempting to replicate it in Spark H2O and PySpark.
+
+
+Unfortunately, when attempting to read the dataframe, I encounter the following error:
+
+
+RestApiCommunicationException: H2O node http://10.159.20.11:54321 responded with org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 256.0 failed 4 times, most recent failure: Lost task 0.3 in stage 256.0 (TID 3451) (10.159.20.11 executor 0): ai.h2o.sparkling.backend.exceptions.RestApiCommunicationException: H2O node http://10.159.20.11:54321 responded with Status code: 400 : Bad Request
+
+
+
+I am seeking a workaround or advice on whether I might be making a mistake.
+
+
+Expected Behavior: I should be able to access and manipulate the dataframe without issues.
+
+
+Observed Behavior: The error ""RestApiCommunicationException: H2O node 
+http://10.159.20.11:54321/
+ responded with"" prevents further progress.
+
+
+What I am doing now is saving the predictions to a delta table and then access it, but that takes a little more time than what I expected. I know that loops are not very recommended for PySpark but I am also not seeing a better way of doing this.
+
+
+Thank you so much!","['apache-spark', 'pyspark', 'databricks', 'h2o', 'sparkling-water']",Tiago,https://stackoverflow.com/users/20954952/tiago,65
+78183646,78183646,2024-03-19T00:17:40,2024-03-25 17:42:30Z,58,"My code loads the h2o MOJO model to get prediction on a small dataset. However, h2o shutdown abruptly by itself. The same code is working fine on one machine with the same set of inputs but seeing abnormal h2o shutdowns on other machine.
+
+
+self.test = h2o.import_file(dataset_file)
+preds = imported_model.predict(self.test)
+
+
+
+I am running this on 1TB machine with 72 cores. I can't believe this is memory issues. The most puzzling the fact is that the same code is working on other machine with the same inputs (configured differently). I don't know the full list of differences.  I was previously running with python frozen binary build and couldn't see error messages in detail. I am running python code directly and can see error messages in more detail.
+
+
+ File ""h2o_model_eval.py"", line 160, in ModelEval
+    preds = imported_model.predict(self.test)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "".venv/lib/python3.11/site-packages/h2o/model/model_base.py"", line 334, in predict
+    j.poll()
+  File "".venv/lib/python3.11/site-packages/h2o/job.py"", line 71, in poll
+    pb.execute(self._refresh_job_status)
+  File "".venv/lib/python3.11/site-packages/h2o/utils/progressbar.py"", line 187, in execute
+    res = progress_fn()  # may raise StopIteration
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "".venv/lib/python3.11/site-packages/h2o/job.py"", line 136, in _refresh_job_status
+    jobs = self._query_job_status_safe()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "".venv/lib/python3.11/site-packages/h2o/job.py"", line 132, in _query_job_status_safe
+    raise last_err
+  File "".venv/lib/python3.11/site-packages/h2o/job.py"", line 114, in _query_job_status_safe
+    result = h2o.api(""GET /3/Jobs/%s"" % self.job_key)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "".venv/lib/python3.11/site-packages/h2o/h2o.py"", line 123, in api
+    return h2oconn.request(endpoint, data=data, json=json, filename=filename, save_to=save_to)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "".venv/lib/python3.11/site-packages/h2o/backend/connection.py"", line 507, in request
+    raise H2OConnectionError(""Unexpected HTTP error: %s"" % e)
+h2o.exceptions.H2OConnectionError: Unexpected HTTP error: HTTPConnectionPool(host='localhost', port=54321): Max retries exceeded with url: /3/Jobs/$03017f00000132d4ffffffff$_acab67512114e05db6ec9865ea9849d3 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x2aab3f59ea90>: Failed to establish a new connection: [Errno 111] Connection refused'))
+~                                                                               
+
+
+
+How to debug this issue?","['python', 'h2o', 'h2o.ai']",Unknown,,N/A
+78180809,78180809,2024-03-18T14:10:31,2024-03-18 16:55:16Z,24,"I'm running PCA in h2o (R version) and was wondering whether it's possible to specify/apply a rotation (like oblimin or promax).  I'm looking for the rotated loadings, and the reason I'm using h2o instead of other common packages for that (like ""psych"") is that my data set is huge (100000 columns) so I need to take advantage of h2o's nice parallel computing in Windows. The code I'm using currently is:
+
+
+library(h2o)
+
+h2o.init(nthreads=64)
+
+x <- read.csv(""file_with_100000_columns.csv"")
+
+for (i in 1:ncol(x)) {x[,i] <- as.factor(x[,i])}
+
+x <- as.h2o(x)
+
+mod <- h2o.prcomp(training_frame=x,k=5,use_all_factor_levels=TRUE)
+
+
+
+Thanks!","['machine-learning', 'parallel-processing', 'pca', 'h2o', 'h2o.ai']",Tyler Moore,https://stackoverflow.com/users/10504648/tyler-moore,51
+78110316,78110316,2024-03-05T20:10:23,2024-03-05 20:12:04Z,38,"I'd like to deepcopy a fitted h2o.sklearn.H2OAutoMLRegressor object. I can deepcopy prior to calling fit but not after.
+
+
+Using H2O version 3.44.0.3, the following results in an error for the deepcopy of the fitted model.
+
+
+import copy
+import numpy as np
+import h2o
+from h2o.sklearn import H2OAutoMLRegressor
+
+print(f""H2O version: {h2o.__version__}"")
+
+X = np.random.rand(1000)
+y = np.random.rand(1000)
+
+m = H2OAutoMLRegressor(max_models=5, max_runtime_secs_per_model=30);
+
+print(copy.deepcopy(m))
+
+m.fit(X,y)
+
+print(copy.deepcopy(m))
+
+
+
+I cannot post the full trace because of StackOverflow code limits, but it looks like:
+
+
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+Cell In[7], line 17
+     13 print(copy.deepcopy(m))
+     15 m.fit(X,y)
+---> 17 print(copy.deepcopy(m))
+
+File ~/.pyenv/versions/3.11.7/lib/python3.11/copy.py:172, in deepcopy(x, memo, _nil)
+    170                 y = x
+    171             else:
+--> 172                 y = _reconstruct(x, memo, *rv)
+    174 # If is its own copy, don't memoize.
+    175 if y is not x:
+
+File ~/.pyenv/versions/3.11.7/lib/python3.11/copy.py:271, in _reconstruct(x, memo, func, args, state, listiter, dictiter, deepcopy)
+    269 if state is not None:
+    270     if deep:
+--> 271         state = deepcopy(state, memo)
+    272     if hasattr(y, '__setstate__'):
+    273         y.__setstate__(state)
+
+...
+
+File ~/.pyenv/versions/3.11.7/lib/python3.11/copy.py:231, in _deepcopy_dict(x, memo, deepcopy)
+    229 memo[id(x)] = y
+    230 for key, value in x.items():
+--> 231     y[deepcopy(key, memo)] = deepcopy(value, memo)
+    232 return y
+
+File ~/.pyenv/versions/3.11.7/lib/python3.11/copy.py:172, in deepcopy(x, memo, _nil)
+    170                 y = x
+    171             else:
+--> 172                 y = _reconstruct(x, memo, *rv)
+    174 # If is its own copy, don't memoize.
+    175 if y is not x:
+
+File ~/.pyenv/versions/3.11.7/lib/python3.11/copy.py:265, in _reconstruct(x, memo, func, args, state, listiter, dictiter, deepcopy)
+    263 if deep and args:
+    264     args = (deepcopy(arg, memo) for arg in args)
+--> 265 y = func(*args)
+    266 if deep:
+    267     memo[id(x)] = y
+
+File ~/.pyenv/versions/3.11.7/lib/python3.11/copyreg.py:105, in __newobj__(cls, *args)
+    104 def __newobj__(cls, *args):
+--> 105     return cls.__new__(cls, *args)
+
+TypeError: H2OResponse.__new__() missing 1 required positional argument: 'keyvals'",['h2o'],Unknown,,N/A
+77976819,77976819,2024-02-11T12:47:46,2024-02-14 12:56:50Z,0,"I am trying to train two GBM models, the first one takes the frequency as a response variable and the second takes number of claims as a response and exposure as on offset column, however, I did not see any difference between the two best models when I make hyperparameters tuning.
+I get the same RMSE.
+
+
+
+DF=data[-extreme_ind, ] 
+DF[,c(4:60)]<- lapply(DF[,c(4:60)], factor)
+
+
+df=as.h2o(DF)
+splits <- h2o.splitFrame(df, 0.8, seed=1234)  
+train <- h2o.assign(splits[[1]], ""train.hex"")  
+valid <- h2o.assign(splits[[2]], ""valid.hex"") 
+
+MOD_1_v2 <- h2o.gbm(x=c(4:56, 58:60),y = 61, training_frame = train, validation_frame =valid, ntrees=200) #100
+summary(MOD_1_v2)
+
+plot(MOD_1_v2,timestep=""number_of_trees"",metric=""RMSE"") 
+
+
+
+
+
+gbm1_parameters <- list(learn_rate = c(0.01,0.05, 0.1),
+                        max_depth = c(3, 5, 6),
+                        sample_rate = c(0.7, 0.75, 0.8),  
+                        col_sample_rate = c(0.2, 0.5, 1.0))
+
+
+
+gbm1_grid <- h2o.grid(""gbm"", x = c(4:56, 58:60), y = 61,
+                      grid_id = ""gbm_grid"",
+                      training_frame = train,
+                      validation_frame = valid,  
+                      ntrees=20, #30
+                      seed = 1,
+                      hyper_params = gbm1_parameters)
+
+
+
+gbm1_gridp<- h2o.getGrid(grid_id = ""gbm_grid"",
+                         sort_by = ""rmse"",
+                         decreasing  = FALSE)
+print(gbm1_gridp)
+
+
+best_MOD_1=h2o.getModel(gbm1_gridp@model_ids[[1]])
+
+summary(best_MOD_1)
+
+
+
+
+best_gbm_perf1 <- h2o.performance(model = best_MOD_1,newdata = valid)
+best_gbm_perf1
+
+
+
+plot(best_MOD_1,timestep=""number_of_trees"",metric=""rmse"")
+h2o.varimp_plot(best_MOD_1)
+
+
+
+MOD_2_v2 <- h2o.gbm(x=c(4:56, 58:60),y = 2,offset_column=""APVI"", training_frame = train, validation_frame = valid,ntrees=55) 
+
+summary(MOD_2_v2) #apres supp outliers 
+
+plot(MOD_2_v2,timestep=""number_of_trees"",metric=""RMSE"")
+
+
+gbm2_parameters <- list(learn_rate = c(0.01,0.05, 0.1),
+                        max_depth = c(3, 5),
+                        sample_rate = c(0.7, 0.75, 0.8),  
+                        col_sample_rate = c(0.2, 0.5, 1.0))
+
+
+
+
+gbm2_grid <- h2o.grid(""gbm"", x = c(4:56, 58:60), y = 2,
+                      grid_id = ""gbm_grid"",
+                      training_frame = train,
+                      validation_frame = valid, 
+                      ntrees=55, #10
+                      seed = 123,
+                      hyper_params = gbm2_parameters)
+
+
+gbm2_gridp<- h2o.getGrid(grid_id = ""gbm_grid"",
+                         sort_by = ""rmse"",
+                         decreasing  = FALSE)
+print(gbm2_gridp)
+
+
+
+best_MOD_2=h2o.getModel(gbm2_gridp@model_ids[[1]])
+summary(best_MOD_2)
+
+
+best_gbm_perf2 <- h2o.performance(model = best_MOD_2,newdata = valid)
+best_gbm_perf2
+
+
+
+How Can I fix this problem ?","['r', 'offset', 'h2o', 'hyperparameters', 'gbm']",wej,https://stackoverflow.com/users/14061266/wej,21
+77973356,77973356,2024-02-10T14:04:40,2024-02-13 09:03:02Z,0,"I'm using 
+h2o
+ in R and RStudio, and 
+h2o
+ is working fine. However, when I try to use the 
+automl()
+ function, the process starts, RStudio shows progress bars, but after the progress bar reaches 100% no results are returned. The R session and the process just continues running and the R session remains busy. Using the exact same code with 
+randomForest()
+ works fine.
+
+
+Training frame:
+
+
+h2o.init()
+peng <- as.h2o(penguins)
+
+
+
+This doesn't worK:
+
+
+aml <- h2o.automl(y = c(""body_mass_g""), training_frame = peng, max_runtime_secs = 30)
+
+
+
+however, this does:
+
+
+rf <- h2o.randomForest(y = c(""body_mass_g""), training_frame = peng, max_runtime_secs = 30)","['r', 'h2o', 'automl']",L Tyrone,https://stackoverflow.com/users/2530121/l-tyrone,"6,579"
+77908088,77908088,2024-01-30T16:54:19,2024-01-31 08:44:31Z,0,"Im trying to upload a csv file to a 
+shiny
+ app as a 
+h2o
+ object based on this 
+process
+ but I get 
+Warning: Error in .key.validate: 
+key
+ must match the regular expression '^[a-zA-Z_][a-zA-Z0-9_.]*$': 0_sid_b018_4
+. Im not sure if there is a problem with path reading or the table
+
+
+#install h2o first
+if (""package:h2o"" %in% search()) { detach(""package:h2o"", unload=TRUE) }
+if (""h2o"" %in% rownames(installed.packages())) { remove.packages(""h2o"") }
+
+
+if (! (""methods"" %in% rownames(installed.packages()))) { install.packages(""methods"") }
+if (! (""statmod"" %in% rownames(installed.packages()))) { install.packages(""statmod"") }
+if (! (""stats"" %in% rownames(installed.packages()))) { install.packages(""stats"") }
+if (! (""graphics"" %in% rownames(installed.packages()))) { install.packages(""graphics"") }
+if (! (""RCurl"" %in% rownames(installed.packages()))) { install.packages(""RCurl"") }
+if (! (""jsonlite"" %in% rownames(installed.packages()))) { install.packages(""jsonlite"") }
+if (! (""tools"" %in% rownames(installed.packages()))) { install.packages(""tools"") }
+if (! (""utils"" %in% rownames(installed.packages()))) { install.packages(""utils"") }
+
+
+install.packages(""h2o"", type = ""source"", repos = (c(""http://h2o-release.s3.amazonaws.com/h2o/latest_stable_R"")))
+library(h2o)
+h2o.init()
+
+#app
+library(shiny)
+library(h2o)
+h2o.init()
+
+# Define UI for data upload app ----
+ui <- fluidPage(
+  
+  # App title ----
+  titlePanel(""Uploading Files""),
+  
+  # Sidebar layout with input and output definitions ----
+  sidebarLayout(
     
-}
-
-
-
-# set up Keras model with the same layers and activation functions
-
-k_clear_session()
-model2 <- keras_model_sequential()
-model2 %>% layer_dense(units=layers[1],input_shape=1,activation=tolower(activation))
-
-for(i in 2:(length(layers))){
-    model2 %>% layer_dense(units = layers[i],
-                    activation = tolower(activation))
-}
-                
-model2 %>% layer_dense(name=""output"",units = 1,activation = ""linear"")       # Can try tanh activation here, still doesn't make it right.    
-
-
-# Inject h2o weights into the keras model
-
-set_weights(model2,weights)
-
-newdf <- data.frame(x=seq(-10,10,by=0.01))
-predict2 <- predict(model2,as.matrix(newdf))
-
-lines(seq(-10,10,by=0.01),predict2,col=4,lwd=2)
-legend(""topleft"",legend=c(""h2o"",""keras""),col=c(2,4),lwd=2)
-
-
-
-Now one thing you might notice is that the blue line is a scaled down version of the red line.
-I manually tweaked the scale until it matched up, and the scaling factor was 3 * x in the horizontal direction and 6.45 * y - 1 in the vertical direction. Weird scaling but ok.
-
-
-plot(x,y, main=""h2o model vs stretched keras model with h2o weights"" )
-s <- seq(-10,10,by=0.01)
-lines(s,predict$predict,col=2,lwd=2)
-
-lines(3*s,6.45*predict2-1,col=4,lwd=2)
-legend(""topleft"",legend=c(""h2o"",""keras""),col=c(2,4),lwd=2)
-
-
-
-
-
-I tried the same process on a dummy classification task. I found that typically, the two lines wouldn't match up even under scaling.
-
-
-
-
-# classification task
-
-# generate binary classification data from the nonlinear function y_gen
-
-x <- rnorm(10000,sd=2.6)
-y_gen <-   20*dnorm(x,sd=1.2)*x #2*(0.6*x +0.2*sin(2*x)+0.1-0.01*x^3)
-
-y <-vector(length=length(x))
-for(i in 1:length(x)){
-    y[i] <- sample(0:1,prob=c(exp(y_gen[i]),1),replace=TRUE)
-}
-
-y <- as.logical(y)
-df <- data.frame(x=x,y=y)
-
-
-# generate the h2o fit
-
-h2odf <- as.h2o(df)
-
-
-model <- h2o.deeplearning(x = 1, y = 2,
-                    training_frame = h2odf,
-                    hidden = c(100,10),
-                    activation = ""Tanh"",
-                    export_weights_and_biases = TRUE,
-                    export_checkpoints_dir=getwd(),
-                    verbose=TRUE)
-
-newdf <- as.h2o(data.frame(x=seq(-10,10,by=0.01)))
-
-predict <- as.data.frame(predict(model,newdf)[,3])
-names(predict) <- ""y""
-
-plot(x,1-exp(y_gen)/(1+exp(y_gen)),main=c(""h2o model vs keras model with h2o weights"",""classification test""))
-lines(seq(-10,10,by=0.01),predict$y,col=2,lwd=2)
-
-
-layers <- model@parameters$hidden
-activation <- model@parameters$activation
-weights <- list()
-
-for(i in 1:(1+length(layers))){
-    W <- as.matrix(h2o.weights(model,matrix_id=i))
-    B <- as.array(as.vector(h2o.biases(model,vector_id=i)))
-    colnames(W) <- NULL
-    W <- t(W)
-
+    # Sidebar panel for inputs ----
+    sidebarPanel(
+      # Input: Select a file ----
+      fileInput(""file1"", ""Choose CSV File"",
+                multiple = FALSE,
+                accept = c(""text/csv"",
+                           ""text/comma-separated-values,text/plain"","".xlsx"",
+                           "".csv"")),
+      
+      # Horizontal line ----
+      tags$hr(),
+      
+      # Input: Checkbox if file has header ----
+      checkboxInput(""header"", ""Header"", TRUE),
+      
+      # Input: Select separator ----
+      radioButtons(""sep"", ""Separator"",
+                   choices = c(Comma = "","",
+                               Semicolon = "";"",
+                               Tab = ""\t""),
+                   selected = "",""),
+      
+      # Input: Select quotes ----
+      radioButtons(""quote"", ""Quote"",
+                   choices = c(None = """",
+                               ""Double Quote"" = '""',
+                               ""Single Quote"" = ""'""),
+                   selected = '""'),
+      
+      # Horizontal line ----
+      tags$hr(),
+      
+      # Input: Select number of rows to display ----
+      radioButtons(""disp"", ""Display"",
+                   choices = c(Head = ""head"",
+                               All = ""all""),
+                   selected = ""head"")
+      
+    ),
     
-    if(i == 1+length(layers)){
-        weights[[2*i-1]] <- as.matrix(W[,2])    # h2o output for a classification task is of length 2. value 1 is the negative probability, value 2 is the positive probability.
-        weights[[2*i]] <- as.array(B[2])        # so here we only need one of them so we take only one of them
-    } else {
-        weights[[2*i-1]] <- W
-        weights[[2*i]] <- B
-    }   
+    # Main panel for displaying outputs ----
+    mainPanel(
+      
+      # Output: Data file ----
+      tableOutput(""contents"")
+      
+    )
+    
+  )
+)
+
+# Define server logic to read selected file ----
+server <- function(input, output) {
+  file_info <- reactive({
+    # input$file1 will be NULL initially. After the user selects
+    # and uploads a file, head of that data file by default,
+    # or all rows if selected, will be shown.
+    
+    req(input$file1)
+   
+      # when reading semicolon separated files,
+      # having a comma separator causes `read.csv` to error
+      tryCatch(
+        {
+          path <- input$file1$datapath
+          data <- h2o.uploadFile(path = path)
+          df <- read.csv(data,
+                         header = input$header,
+                         sep = input$sep,
+                         quote = input$quote)
+        },
+        error = function(e) {
+          # return a safeError if a parsing error occurs
+          stop(safeError(e))
+        }
+      )
+      
+      if(input$disp == ""head"") {
+        return(head(df))
+      }
+      else {
+        return(df)
+      }
+    
+    
+  })
+  output$contents <- renderTable({
+    
+    file_info()
+  })
+  
 }
 
+# Create Shiny app ----
+shinyApp(ui, server)","['r', 'shiny', 'h2o']",firmo23,https://stackoverflow.com/users/9198260/firmo23,"8,384"
+77874825,77874825,2024-01-24T16:50:31,2024-01-24 18:02:09Z,91,"I am working on a hybrid model that uses CNN (time series input) and H2oRandom forest (tabular data input) combined at the fully connected layer to solve regression problems. I would like to optimize the hyperparameters of CNN and RF. The only way I figured out is to optimize two models separately and combine them at the FC layer to obtain the output. I use RandomSeach Keras Tuner for CNN and Grid RandomSearch for H2O Random Forest hyperparameters.
 
 
-# set up tensorflow
+I am uncertain if optimizing the models separately is the most effective way to enhance the model's performance. Is there a different approach to optimizing hybrid models? Please let me know if there is a better approach.","['optimization', 'deep-learning', 'conv-neural-network', 'random-forest', 'h2o']",Geerthy Thambiraj,https://stackoverflow.com/users/11698173/geerthy-thambiraj,21
+77849328,77849328,2024-01-19T23:37:26,2024-01-22 23:55:53Z,13,"I'm interested in using h2o's suite of algorithms to perform some analysis on data, specifically with ordinal logistic regression. I was looking through the available GLMBooklet.pdf and on page 21 of the version available it references a loss function that actually doesn't appear; does anyone know where I can get the details of the loss function, or an updated version of GLMBooklet.pdf with the loss function present? Thanks!
 
-k_clear_session()
-model2 <- keras_model_sequential()
-model2 %>% layer_dense(units=layers[1],input_shape=1,activation=tolower(activation))
 
-for(i in 2:(length(layers))){
-    model2 %>% layer_dense(units = layers[i],
-                    activation = tolower(activation))
+I haven't been able to find the loss function anywhere, but maybe I'm not looking in the right places?",['h2o'],Rich,https://stackoverflow.com/users/23271364/rich,1
+77838561,77838561,2024-01-18T10:15:28,2024-01-18 18:16:22Z,86,"I have been getting error in pyspark while running h2o model prediction.
+
+
+file ""/usr/spark/python/pyspark/cloudpickle.py"", line 562, in subimport
+ModuleNotFoundError; No Modele named h2o
+
+
+i created pandas udf
+
+
+`def predict_h2o_model(*cols)
+    x=pd.concat(cols,axis=1)
+    h2odataframe=h2o.H2OFrame(x)
+    scores=model.predict(h2odataframe)
+    return pd.series(scores)`
+
+
+
+I' scoring using pyspark dataframe
+
+
+`df_scores=sparf_df.select(F.col(""cust_id""),predict_h2o_model(*cols).alias('model_score'))`
+
+
+
+I was expecting h2o model scores in spark_df dataframe","['pyspark', 'h2o']",Nithin Reddy,https://stackoverflow.com/users/22314796/nithin-reddy,1
+77774644,77774644,2024-01-07T20:01:26,2024-01-07 20:01:26Z,174,"When I run h2o AutoML in python on my MacOS with Apple M1 chip, I get a message ""
+XGBoost is not available; skipping it.
+"". I found a 
+similar issue
+ from more than a year ago. So I am wondering if there has been any progress (and therefore my issue has different causes), or XGBoost has still not been compiled for Apple M1.
+
+
+Python: 3.9.2
+
+h2o: 3.44.0.2
+
+processor: Apple M1","['xgboost', 'apple-m1', 'h2o']",sofi,https://stackoverflow.com/users/23209807/sofi,11
+77679172,77679172,2023-12-18T12:44:49,2023-12-18 16:03:49Z,103,"I am trying to upgrade a binary (DRF) H2O model to a higher version (from v3.28.1.2 to v3.42.0.3). Due to tecnical restrictions I cannot use the MOJO format for deployment. Is it possible to do the following instead?
+
+
+
+
+load the binary model in the older version
+
+
+export the model as MOJO format
+
+
+load the model in MOJO format in the newer version
+
+
+save the model in Binary in the newer version
+
+
+
+
+I am able to save the model in the newer version. However, when I try to load the model object (using h2o.load_model()), I get the following error:
+
+
+
+H2OServerError: HTTP 500 Server Error:
+Server error java.lang.NullPointerException:
+  Error: Caught exception: java.lang.NullPointerException
+  Request: None
+  Stacktrace: java.lang.NullPointerException
+      hex.generic.GenericModel$GenModelSource.backingByteVec(GenericModel.java:391)
+      hex.generic.GenericModel$GenModelSource.get(GenericModel.java:373)
+      hex.generic.GenericModel.genModel(GenericModel.java:325)
+      hex.generic.GenericModel.havePojo(GenericModel.java:546)
+      water.api.schemas3.ModelSchemaV3.fillFromImpl(ModelSchemaV3.java:80)
+      water.api.schemas3.ModelSchemaV3.fillFromImpl(ModelSchemaV3.java:22)
+      water.api.ModelsHandler.importModel(ModelsHandler.java:263)
+      sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+      sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)","['binary', 'version', 'h2o', 'mojo']",Unknown,,N/A
+77549868,77549868,2023-11-25T23:03:26,2023-11-27 21:01:59Z,94,"I am using h2o package in python to build a fairly complex model.
+It has around 1500 features, but I know that most of them are not really important and I would like to extract the subset of a given size (let's say 100) that maximizes the R squared of my model.
+
+Is there some method that is already implementing this for h2o in python?
+
+
+Otherwise I would need to code it myself, but that also implies to run the model multiple times and I am not sure i would code it in the correct way.
+
+
+One possible way to code it is this one:
+
+
+
+
+Save the R2 for the model, then remove the k less important features
+
+
+Create a second model without the removed features
+
+
+Calculate the R2 for the new model and compare to the previous R2. Use a metric to decide whether to keep the new model or stick with the old.
+
+
+Iterate these steps until the previous step chooses the old model as the best one
+I am pretty sure this will not give me the 'best subset' of feature but I really hope it would be sufficient.
+
+
+
+
+The second method I thought of is the following:
+
+
+
+
+set the number of feature 
+N
+ you want in the new model and the number of iterations 
+K
+
+
+Save the original model R2 as reference
+
+
+Extract 
+N
+ features at random from the original model, using their relative importance as probability of being extracted (more important features more likely extracted)
+
+
+For each model save the list of features and the new R2
+
+
+After iterating 
+K
+ times stop the algorithm and compare the R2
+
+
+Choose the set of features with the closest R2 to the original one","['python', 'machine-learning', 'random-forest', 'h2o', 'feature-selection']",Mirko,https://stackoverflow.com/users/7214340/mirko,233
+77498397,77498397,2023-11-16T22:38:15,2023-11-17 14:07:48Z,78,"I am working in Databricks with Sparkling Water 3.40.0.4; I have a total driver memory of 512 GB and six workers with 64 GB each. When I call
+
+
+hc = H2OContext.getOrCreate()
+
+
+
+the internal H2O cluster is created across six workers, but the total cluster memory size is roughly 60 GB. I can create a normal, non-sparkling water H2O cluster and pass the max_mem_size and min_mem_size arguments to the init() method, which will return a much larger sized cluster, but I can't seem to find how to do that on Databricks.
+
+
+h2o.init(max_mem_size=""200g"")
+
+
+
+That returns roughly 200 GB of memory for the cluster.
+
+
+I created a local Spark installation and changed the spark.driver.memory property, and changing this resulted in a larger sparkling water cluster size, but explicitly setting that property in Data Bricks has no change on the sparkling water cluster there.
+
+
+Is there a configuration I can pass to Spark or an internal H2O cluster to set a larger memory size on Databricks?","['python', 'apache-spark', 'databricks', 'h2o', 'sparkling-water']",Alex Ott,https://stackoverflow.com/users/18627/alex-ott,86.7k
+77476421,77476421,2023-11-13T19:36:59,2023-11-13 19:36:59Z,0,"Trying to use DALEX on my data. Getting following error in line 
+pb_h2o_automl <- predict_parts(explainer_h2o_automl,new_observation = new_date_birth,type=""break_down"")
+
+
+Error
+
+
+Error in contribution[nrow(contribution), ] <- cumulative[nrow(contribution),  : 
+  incorrect number of subscripts on matrix
+
+
+
+Code
+
+
+rm( list = ls() )
+
+library(DALEX) ; library(h2o) ; library(DALEXtra) ; library(readxl) ; library(dplyr)
+set.seed(17)
+
+setwd( 'E:\\projects\\political_analysis' )
+
+df0 = read_excel('training.xlsx')
+
+df0$age = as.numeric( df0$age)
+
+df1 <- df0[c(""area"", ""district"", ""assembly_constituency"", ""gender"", ""age"", ""party_assembly_election_2018"",
+             ""party_current_year_election"", ""chief_minister"", ""leader_vote_for_mla"", ""benefit_govt_scheme"",
+             ""benefit_current_budget_scheme"", ""occupation"", ""education"", ""social_category"", ""caste"", ""caste_other"",'party_upcoming_election')]
+
+df1 <- df1 %>% mutate_all(~ifelse(is.na(.), as.character(names(which.max(table(na.omit(.))))), as.character(.))) %>% mutate_at(vars(-age), as.factor)
+
+h2o.init()
+
+target <- ""party_upcoming_election""
+df <- as.h2o(df1)
+
+model_h2o_automl <- h2o.automl(y = target, training_frame = df, max_models = 5, max_runtime_secs = 600  )
+
+leader_board <- h2o.get_leaderboard(model_h2o_automl)
+head(leader_board)
+
+test_df_0 = df1[1,]
+
+explainer_h2o_automl <- DALEXtra::explain_h2o(model = model_h2o_automl, 
+                                              data = test_df_0,
+                                              y = test_df_0$party_upcoming_election,
+                                              label = ""h2o automl"",
+                                              colorize = T)
+
+new_date_birth <- test_df_0 %>% select( - c('party_upcoming_election'))
+pb_h2o_automl <- predict_parts(explainer_h2o_automl,new_observation = new_date_birth,type=""break_down"")
+
+
+
+Have pasted first 50 rows of data here :
+
+
+https://pastebin.com/C6ETyJbp","['r', 'h2o', 'dalex']",Soumya Boral,https://stackoverflow.com/users/8315634/soumya-boral,"1,329"
+77475890,77475890,2023-11-13T17:57:13,2023-11-15 13:39:15Z,43,"I built an 
+H2ORandomForestEstimator
+ model using 
+train()
+ method on my spark dataframe with the target column containing values 0 or 1. I downloaded and printed its mojo files using 
+model.download_mojo(MOJO_ZIP_PATH)
+ and 
+h2o.print_mojo(MOJO_ZIP_PATH, tree_index=tree_ind)
+ functions respectively. A partial such output tree is shown below.
+
+
+As can be seen, leaf nodes have a field named 
+predValue
+ containing a value between 0 and 1. What is the meaning of this 
+predValue
+ field? Does it mean that the target variable is likely to contain the value contained in 
+predValue
+ field if the input variables happen to meet this root to leaf path when 
+predict()
+ is called on them?
+
+
+Moreover, I want to preprocess the output model of 
+H2ORandomForestEstimator
+ and filter only those rules (root to leaf paths) for which my model will predict 1. Is there a way to filter such rules by parsing the mojo files without actually running the 
+predict()
+ function on input variables? 
+predValue
+ field in the output mojo files looked promising to solve this problem but I could not figure out its co-relation with the output variable. Can it be used to figure out the top-N rules?
+
+
+'trees': [{
+    'root': {
+        'nodeNumber': 0,
+        'weight': 18319.0,
+        'colId': 169,
+        'colName': 'pkg_items_gl_product_group_desc_1.gl_electronics',
+        'leftward': True,
+        'isCategorical': False,
+        'inclusiveNa': True,
+        'splitValue': 0.5,
+        'rightChild': {
+            'nodeNumber': 25,
+            'weight': 462.0,
+            'predValue': 0.9935065
+        },
+        'leftChild': {
+            'nodeNumber': 1,
+            'weight': 17857.0,
+            'colId': 0,
+            'colName': 'pkg_attr_total_pkg_price',
+            'leftward': True,
+            'isCategorical': False,
+            'inclusiveNa': True,
+            'splitValue': 186.52805,
+            'rightChild': {
+                'nodeNumber': 26,
+                'weight': 201.0,
+                'predValue': 0.9900498
+            },
+            'leftChild': {
+                'nodeNumber': 3,
+                'weight': 13184.0,
+                'colId': 149,
+                'colName': 'pkg_items_gl_product_group_desc_1.gl_automotive',
+                'leftward': True,
+                'isCategorical': False,
+                'inclusiveNa': True,
+                'splitValue': 0.5,
+                'rightChild': {
+                    'nodeNumber': 27,
+                    'weight': 312.0,
+                    'predValue': 0.99038464
+                },","['machine-learning', 'pyspark', 'random-forest', 'decision-tree', 'h2o']",desertnaut,https://stackoverflow.com/users/4685471/desertnaut,60.1k
+77208586,77208586,2023-09-30T21:59:06,2023-10-01 11:53:51Z,0,"I am getting an error. It occurs when I use the deep learning function in h2o in R. My response is a categorical variable which takes on 3 values so I can't change it to binary labels.
+
+
+
+
+Error: java.lang.IllegalArgumentException: Actual column must contain binary class labels, but found cardinality 3!
+
+
+
+
+This is my input:
+
+
+h2o.init()
+dat_h20 = data.frame(Event=as.factor(space_data$Event), TrajA= space_data$TrajA, AcousticA = space_data$AcousticA, HullScan= as.factor(space_data$HullScan), MCStatus = as.factor(space_data$MCStatus))
+set.seed(2023)
+
+set = sample(1:150, 150 , replace = FALSE)
+data_train = as.h2o(dat_h20[set,])
+head(data_train)
+data_val = as.h2o(dat_h20[-set,])
+
+value = exp(seq(-10,-3, length = 20))
+value
+validation_errors = numeric(20) # validation error for each regularisation parameter
+?h2o.deeplearning
+dat_h20[1]
+for (i in 1:length(value))
+{
+model = h2o.deeplearning(x = 2:5, y = 1 ,
+                         training_frame = data_train, 
+                         validation_frame = data_val,
+                         standardize = TRUE, 
+                         hidden = c(5,5), 
+                         activation = 'Rectifier', 
+                         distribution = 'multinomial',
+                         loss = 'CrossEntropy',
+                         l2 = value[i],
+                         rate = 0.01,
+                         adaptive_rate = FALSE,
+                         epochs = 1000,
+                         reproducible = TRUE,
+                         seed = 2,
+                         )
+validation_errors[i]= h2o.logloss(model, train = TRUE, valid = TRUE)
 }
-                
-model2 %>% layer_dense(name=""output"",units = 1,activation = ""sigmoid"")
 
-set_weights(model2,weights)
+plot(value, validation_errors)","['r', 'deep-learning', 'h2o']",jonrsharpe,https://stackoverflow.com/users/3001761/jonrsharpe,121k
+77186876,77186876,2023-09-27T11:01:32,2023-09-27 16:49:27Z,0,"I can't seem to get h2o running in R.
 
-predict2 <- predict(model2,as.matrix(newdf))
-
-lines(seq(-10,10,by=0.01),predict2,col=4,lwd=2)
-legend(""topleft"",legend=c(""h2o"",""keras""),col=c(2,4),lwd=2)
+I can easily import h2o using 
+library(h2o)
+ which displays
 
 
+----------------------------------------------------------------------
 
-I suspect there is something funny with the way h2o sets up its activation layers
-. H2o doesn't allow nearly as much 'under the hood' access as keras, so I've been so far unable to look at the inner goings on in the h2o model. For instance, how is h2o able to do regression on data that extends beyond (-1,1) with only tanh activation functions?
+Your next step is to start H2O:
+    > h2o.init()
+
+For H2O package documentation, ask for help:
+    > ??h2o
+
+After starting H2O, you can use the Web UI at http://localhost:54321
+For more information visit https://docs.h2o.ai
+
+----------------------------------------------------------------------
 
 
-I've tried the above code with ReLu as well as Tanh, and I've tried altering the final layer of the keras model from tanh tanh to linear, to no avail.
+Attaching package: ‘h2o’
+
+The following objects are masked from ‘package:stats’:
+
+    cor, sd, var
+
+The following objects are masked from ‘package:base’:
+
+    %*%, %in%, &&, ||, apply, as.factor, as.numeric, colnames, colnames<-,
+    ifelse, is.character, is.factor, is.numeric, log, log10, log1p, log2,
+    round, signif, trunc
+
+Warning message:
+package ‘h2o’ was built under R version 4.1.3 
+
+
+
+But the issue is whenever I run 
+h2o.init()
+ to start the h2o cluster, I get the following error message
+
+
+H2O is not running yet, starting it now...
+<simpleError in system2(command, ""-version"", stdout = TRUE, stderr = TRUE): '""C:\Program Files\Java\jdk-20\bin\bin\java.exe""' not found>
+Error in value[[3L]](cond) : 
+  You have a 32-bit version of Java. H2O works best with 64-bit Java.
+Please download the latest Java SE JDK from the following URL:
+https://www.oracle.com/technetwork/java/javase/downloads/index.html
+In addition: Warning message:
+In normalizePath(path.expand(path), winslash, mustWork) :
+  path[1]=""C:\Program Files\Java\jdk-20\bin/bin/java.exe"": The system cannot find the path specified
+
+
+
+My laptop is HP 64-bit and the Java JDK I downloaded and installed is jdk-20_windows-x64_bin (which is 64-bit).
+
+I have also set the required Java Path in Environment Variables.
+
+
+Below is the Java version installed
+
+
+Microsoft Windows [Version 10.0.19044.1889]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\user>java -version
+java version ""20.0.2"" 2023-07-18
+Java(TM) SE Runtime Environment (build 20.0.2+9-78)
+Java HotSpot(TM) 64-Bit Server VM (build 20.0.2+9-78, mixed mode, sharing)
+
+
+
+I don't understand why h2o cannot detect my 64-bit Java already installed and work with it.
+
+Did I download/install the wrong Java JDK file?
+
+
+My R version is 4.1.0
+
+
+Below are images of my JAVA_HOME variable and Path variable","['java', 'r', 'h2o', 'h2o.ai']",Unknown,,N/A
+77184526,77184526,2023-09-27T03:26:48,2023-10-20 20:03:43Z,54,"Having had AutoML() recommend a model after I experimented with a single column of data and needed to identify a target as a step-1 of the single data to train the successful model I now want to use the model on test (live) data. The model however wants a 2 column input and when I use a padded second column ""target"" = [0] then the model returns the same predictive output and I am guessing it is because of the second null zero entry column. Is there a way around this issue please ?
+
+
+I have tried using the model with just one column and it errored and I have added the second padding column all zeros and while the code worked the prediction is always the same with differing inputs",['h2o'],marc_s,https://stackoverflow.com/users/13302/marc-s,752k
+77064065,77064065,2023-09-08T04:01:47,2024-03-23 05:09:27Z,0,"I'm very new to generative AI. I have 64gb RAM and 20GB GPU. I used some opensource model from Huggingface and used Python to simply prompt it with out of box model and displaying the result. I downloaded the model to local using 
+save_pretrained
+ and trying to load the model from local there after. It works. But everytime I run the python file it takes more than 10 mins to display the results.
+
+
+There is a step 
+Loading checkpoint shards
+ that takes 6-7 mins everytime. Am I doing anything wrong? why it has to load something everytime even though the model is refered from local.
+
+
+I tried using 
+local_files_only=True, cache_dir=cache_dir, low_cpu_mem_usage=True, max_shard_size=""200MB""
+ , none solved the time issue .
+
+
+How to prompt the saved model directly without so much delay as user usable. Any help would be highly appreciated","['huggingface-transformers', 'h2o', 'huggingface', 'huggingface-tokenizers', 'llama']",Khaleel,https://stackoverflow.com/users/3867290/khaleel,"1,372"
+77016904,77016904,2023-08-31T14:43:01,2023-09-06 14:39:48Z,173,"The 
+documentation 
+ for distributed random forest in h2o states that, for multiclass problems, ""a tree is used to estimate the probability of each class separately"". I can see this in visualising the trees that each class indeed seems to have a completely independent ""one-vs-rest"" tree.
+
+
+I am wondering how the scores from these trees are combined into the final score vector - are they just normalized to sum to one?
+
+
+I would also like to understand why this approach was chosen and how it compares to the usual approach of handling multiple classes within a single tree. For individual classes we see that the performance of the multiclass classifier is typically worse than a dedicated one-vs-rest classifier with the same hyperparameters, even though under the hood the multiclass classifier should be very similar.","['random-forest', 'h2o', 'multiclass-classification']",nickc,https://stackoverflow.com/users/22442035/nickc,11
+76950243,76950243,2023-08-22T05:09:39,2023-08-23 03:33:35Z,47,"I tried to build H2O open source, nomatter stable version or clone version, build process via 
+./gradlew build
+ are failed due to ""error: cannot find symbol"", the detailed error info as below:
+
+
+Updated build log:
+
+
+here is the full log from output for the latest rel-3.42.0 branch:
+
+(python) wayahead@ubox:~/workspace/h2o/github$ git clone --branch rel-3.42.0 https://github.com/h2oai/h2o-3.git
+Cloning into 'h2o-3'...
+remote: Enumerating objects: 428884, done.
+remote: Counting objects: 100% (6618/6618), done.
+remote: Compressing objects: 100% (3895/3895), done.
+remote: Total 428884 (delta 3654), reused 5264 (delta 2604), pack-reused 422266
+Receiving objects: 100% (428884/428884), 604.35 MiB | 9.36 MiB/s, done.
+Resolving deltas: 100% (263828/263828), done.
+(python) wayahead@ubox:~/workspace/h2o/github$ javac -version
+javac 1.8.0_382
+(python) wayahead@ubox:~/workspace/h2o/github$ cd h2o-3/
+(python) wayahead@ubox:~/workspace/h2o/github/h2o-3$ ./gradlew build -x test
+Starting a Gradle Daemon (subsequent builds will be faster)
+
+> Configure project :
+The project project ':h2o-persist-s3' needs CI for running tests! You can pass `-PdoCI=true` to force CI behaviour.
+
+> Configure project :h2o-assemblies:main
+== :h2o-assemblies:main: Using optional component: xgboost, version 3.42.0
+== :h2o-assemblies:main: Using optional component: jython-cfunc, version 3.42.0
+== :h2o-assemblies:main: Using optional component: jgrapht, version 3.42.0
+== :h2o-assemblies:main: Using optional component: mojo-pipeline, version 3.42.0
+
+> Configure project :h2o-r
+
+
+> Configure project :h2o-assemblies:genmodel
+== :h2o-assemblies:genmodel: Using optional genmodel component: xgboost, version 3.42.0
+== :h2o-assemblies:genmodel: Using optional genmodel component: jgrapht, version 3.42.0
+== :h2o-assemblies:genmodel: Using optional genmodel component: mojo-pipeline, version 3.42.0
+
+> Configure project :h2o-assemblies:minimal
+== :h2o-assemblies:minimal: Using optional component: xgboost, version 3.42.0
+== :h2o-assemblies:minimal: Using optional component: jython-cfunc, version 3.42.0
+== :h2o-assemblies:minimal: Using optional component: jgrapht, version 3.42.0
+== :h2o-assemblies:minimal: Using optional component: mojo-pipeline, version 3.42.0
+
+> Configure project :h2o-assemblies:steam
+== :h2o-assemblies:steam: Using optional component: xgboost, version 3.42.0
+== :h2o-assemblies:steam: Using optional component: jython-cfunc, version 3.42.0
+== :h2o-assemblies:steam: Using optional component: jgrapht, version 3.42.0
+== :h2o-assemblies:steam: Using optional component: mojo-pipeline, version 3.42.0
+
+> Task :h2o-core:generateBuildVersionJava
+NOTE: emitBuildVersionJava found no file, emitting new file
+> Task :h2o-genmodel:generateBuildVersionJava
+NOTE: emitBuildVersionJava found no file, emitting new file
+> Task :h2o-genmodel:compileJava
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+:h2o-genmodel:compileJava took 1.141 secs
+
+> Task :h2o-core:compileJava
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+:h2o-core:compileJava took 7.099 secs
+
+> Task :h2o-algos:compileJava
+/home/wayahead/workspace/h2o/github/h2o-3/h2o-algos/src/main/java/hex/schemas/GLMModelV3.java:24: error: cannot find symbol
+  public static final class GLMModelOutputV3 extends ModelOutputSchemaV3<GLMOutput, GLMModelOutputV3> {
+                                                     ^
+  symbol:   class ModelOutputSchemaV3
+  location: class hex.schemas.GLMModelV3
+/home/wayahead/workspace/h2o/github/h2o-3/h2o-algos/src/main/java/hex/schemas/GLMModelV3.java:24: error: cannot find symbol
+  public static final class GLMModelOutputV3 extends ModelOutputSchemaV3<GLMOutput, GLMModelOutputV3> {
+                                                                         ^
+  symbol:   class GLMOutput
+  location: class hex.schemas.GLMModelV3
+/home/wayahead/workspace/h2o/github/h2o-3/h2o-algos/src/main/java/hex/schemas/GLMModelV3.java:22: error: type argument hex.schemas.GLMModelV3.GLMModelOutputV3 is not within bounds of type-variable OS
+public class GLMModelV3 extends ModelSchemaV3<GLMModel, GLMModelV3, GLMModel.GLMParameters, GLMV3.GLMParametersV3, GLMOutput, GLMModelV3.GLMModelOutputV3> {
+                                                                                                                                        ^
+/home/wayahead/workspace/h2o/github/h2o-3/h2o-algos/src/main/java/hex/schemas/GLMModelV3.java:196: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/home/wayahead/workspace/h2o/github/h2o-3/h2o-algos/src/main/java/hex/schemas/GLMModelV3.java:198: error: non-static variable super cannot be referenced from a static context
+      super.fillFromImpl(impl);
+      ^
+/home/wayahead/workspace/h2o/github/h2o-3/h2o-algos/src/main/java/hex/schemas/GLMModelV3.java:198: error: no suitable method found for fillFromImpl(hex.glm.GLMModel.GLMOutput)
+      super.fillFromImpl(impl);
+           ^
+    method water.api.Schema.fillFromImpl(hex.glm.GLMModel) is not applicable
+      (argument mismatch; hex.glm.GLMModel.GLMOutput cannot be converted to hex.glm.GLMModel)
+    method water.api.schemas3.ModelSchemaV3.fillFromImpl(hex.glm.GLMModel) is not applicable
+      (argument mismatch; hex.glm.GLMModel.GLMOutput cannot be converted to hex.glm.GLMModel)
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+6 errors
+:h2o-algos:compileJava took 2.255 secs
+
+> Task :h2o-algos:compileJava FAILED
+
+Task timings:
+   7.099 secs  :h2o-core:compileJava
+   2.255 secs  :h2o-algos:compileJava
+   1.141 secs  :h2o-genmodel:compileJava
+   0.366 secs  :h2o-core:generateBuildVersionJava
+   0.290 secs  All others
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':h2o-algos:compileJava'.
+> Compilation failed; see the compiler error output for details.
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.2/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD FAILED in 29s
+14 actionable tasks: 13 executed, 1 up-to-date
+
+
+
+==============================================
+The environment: Ubuntu 22.04, openjdk version ""1.8.0_382""
+
+
+I did look into the FQA and README of h2o-3 at github, and tried many times 
+./gladew clean
+. Accorindg to the above error, seems machine learning algo 
+GLMModelV3
+ is mising in the code base, but there is no info about how to fetch those code/jar. So I hope the expert can explain more details about how to prepare the build environment.",['h2o'],Unknown,,N/A
+76931856,76931856,2023-08-18T18:40:12,2023-08-22 22:25:05Z,47,"I am trying to migrate a model from Hadoop to GCP. Model MOJO will not be retrained. I am running the model in Dataproc using Airflow spark submit.
+Source data format matches with Hadoop source and everything. While running the model, I am getting this error:
+
+
+Caused by: hex.genmodel.easy.exception.PredictUnknownCategoricalLevelException: Unknown categorical level (my_column,Y)
+
+
+
+This column has the same values as we have on Hadoop, and in there everything works fine.
+Model was created on H20 version 
+3.30.0.4
+ and MOJO version is 
+1.4
+.
+
+
+While running the dataproc cluster I am using 
+""PIP_PACKAGES"": ""h2o_pysparkling_3.1""
+
+
+Not sure what the issue is? Please help.","['h2o', 'sparkling-water', 'h2o.ai']",Unknown,,N/A
+76850663,76850663,2023-08-07T10:06:32,2023-08-10 09:23:45Z,0,"I am trying to build a model of Cox Proportional Hazard with h2o. In fact a I have succesfully built a model using deeplearning about survival in gastric cancer dataset. When trying to do it with h2o.coxph, I always get ""ERRR on field: _train: Training data must have at least 2 features (incl. response)"". I have checked that my data train frame has the column of ""event/response"" (Have tried with factor/numeric/integer with same results). Also I have tried with an invented  10 observations dataset which include ""start column (all zeros), stop colum (random>0), event column (random (0,1)) and a predictor (eg:age (random>20), with the same results.
+
+
+But when I import the data (csv file) that under the ""help section"" is suggested, and check the datatype of the start,stop and event column, are similar to those I have, but in this case I can build the model. I don't know which the problem is.
+
+
+Any suggestions??
+
+
+This is my code:
+
+
+h2o.init()
+
+#Load data into the cluster
+datos_h2o<-as.h2o(prueba_2)
+
+#Build the model
+modelo_coxph <- h2o.coxph(x = ""edad"", training_frame = datos_h2o,
+                         event_column = ""event"",
+                         start_column= ""inicio"",
+                         stop_column = ""final""
+                        )
+
+
+
+
+Thanks in advance","['r', 'h2o']",ilpadrino,https://stackoverflow.com/users/1974542/ilpadrino,13
+76844317,76844317,2023-08-06T03:30:58,2023-08-09 20:31:49Z,346,"I'm stuck with H2oGPT, I can't let it run.
+
+
+I am running on a Windows PC with
+
+
+
+
+11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz   2.30 GHz
+
+
+32GB memory 64bit
+
+
+GPU Nvidia GeForce RTX 3050
+
+
+
+
+I followed all the procedure described in the 
+H2oGPT Windows Installation Page
+.
+
+
+This is the command I launch.
+
+
+$ python generate.py --base_model='llama' --prompt_type=llama2 --score_model=None --langchain_mode='UserData' --user_path=./my_documents
+
+
+
+This is the error stack trace:
+
+
+Traceback (most recent call last):
+  File ""C:\Users\dulcin\Documents\Java\UltraGPT\h2ogpt\generate.py"", line 7, in <module>
+    from src.gen import main
+  File ""C:\Users\dulcin\Documents\Java\UltraGPT\h2ogpt\src\gen.py"", line 32, in <module>
+    from utils import set_seed, clear_torch_cache, NullContext, wrapped_partial, EThread, get_githash, \
+ImportError: cannot import name 'set_seed' from 'utils' (C:\Users\dulcin\AppData\Local\Programs\Python\Python310\lib\site-packages\utils\__init__.py)
+
 
 
 My questions are:
 
 
-How does the h2o model give different results to the Keras model even when the same weights are used? What goes on under the hood when h2o is performing a prediction?
 
 
-and
+Should I install ""utils"" seaprately?
 
 
-is there any other basic mistake I made when attempting to convert the weights?","['r', 'tensorflow', 'keras', 'h2o']",Ingolifs,https://stackoverflow.com/users/8968617/ingolifs,301,"{'gold': None, 'silver': '', 'bronze': ''}"
-71777142,71777142,2022-04-07T06:08:55,2022-04-26 12:33:26Z,156,"I would like to plot a loss vs epoch graph from a deep quantile regression model in H2O. I'm using the H2ODeepLearningEstimator but can't seem to find a way to retrieve the loss like in Keras.
-
-
-https://machinelearningmastery.com/display-deep-learning-model-training-history-in-keras/
-
-
-Could somebody please point me in the right direction?","['python', 'h2o', 'h2o.ai']",mj_whales,https://stackoverflow.com/users/14039621/mj-whales,122,"{'gold': '', 'silver': '', 'bronze': ''}"
-71741263,71741263,2022-04-04T17:19:22,2022-04-04 18:08:54Z,484,"I used H2O's automl on my dataset, and the top model is a stackedensemble model. I like to get all basemodels with it's parameters of this stacked model. How do I get this models?","['python', 'h2o']",seb2704,https://stackoverflow.com/users/5269959/seb2704,530,"{'gold': '', 'silver': '', 'bronze': ''}"
-71693880,71693880,2022-03-31T14:00:33,2022-06-30 14:29:18Z,0,"I would like to use h2o in 
-R
- for glm regression but with random effects (HGLM, seems possible from 
-this page
- ). I do not manage to make it work yet, and get errors I do not understand.
-
-
-Is here my working example: I define a dataset with Simpson paradox: a global increasing trend, but a decreasing trend in each group
-
-
-library(tidyverse)
-library(ggplot2)
-library(h2o)
-library(data.table)
-
-global_slope <- 1
-global_int <- 1
-
-Npoints_per_group <- 50
-N_groups <- 10
-pentes <- rnorm(N_groups,-1,.5)
-
-centers_x <- seq(0,10,length = N_groups)
-center_y <- global_slope*centers_x + global_int
-
-group_spread <- 2
-
-group_names <- sample(LETTERS,N_groups)
-
-df <- lapply(1:N_groups,function(i){
-  x <- seq(centers_x[i]-group_spread/2,centers_x[i]+group_spread/2,length = Npoints_per_group)
-  y <- pentes[i]*(x- centers_x[i])+center_y[i]+rnorm(Npoints_per_group)
-  data.table(x = x,y = y,ID = group_names[i])
-}) %>% rbindlist()
-
-
-
-You can recognize something similar to the example of the 
-wiki page of Simpson paradox
-:
-
-
-ggplot(df,aes(x,y,color = as.factor(ID)))+
-  geom_point()
-
-
-
-
-
-The linear regression without random effect sees the increasing trend:
-
-
-lm(y~x,data = df) %>% 
-summary()
-
-Coefficients:
-            Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  1.28187    0.13077   9.803   <2e-16 ***
-x            0.94147    0.02194  42.917   <2e-16 ***
-
-
-
-A standard multilevel regression would look like that:
-
-
-library(lme4)
-library(lmerTest)
-
-lmer( y ~ x + (1+x|ID) ,data = df) %>% 
-  summary()
-
-
-
-And would estimate properly a decreasing trend:
-
-
-Fixed effects:
-            Estimate Std. Error      df t value Pr(>|t|)    
-(Intercept)  11.7192     2.6218  8.8220   4.470 0.001634 ** 
-x            -1.0418     0.1959  8.9808  -5.318 0.000486 ***
-
-
-
-Now I test with 
-h2o
-:
-
-
-library(h2o)
-h2o.init()
-
-df2 <- as.h2o(df)
-test_glm <- h2o.glm(family = ""gaussian"",
-                        x = ""x"",
-                        y = ""y"",
-                        training_frame = df2,
-                        lambda = 0,
-                        compute_p_values = TRUE)
-test_glm
-
-
-
-And it works well, similar to the linear model above:
-
-
-Coefficients: glm coefficients
-      names coefficients std_error   z_value  p_value standardized_coefficients
-1 Intercept     1.281868  0.130766  9.802785 0.000000                  5.989232
-2         x     0.941473  0.021937 42.916536 0.000000                  3.058444
-
-
-
-But when I want to use random effects:
-
-
-test_glm2 <- h2o.glm(family = ""gaussian"",
-                     x = ""x"",
-                     y = ""y"",
-                     training_frame = df2,
-                     random_columns = ""ID"",
-                     lambda = 0,
-                     compute_p_values = TRUE)
-
-
-
-
-I got
-
-
-
-
-Error in .h2o.checkAndUnifyModelParameters(algo = algo, allParams = ALL_PARAMS, : vector of random_columns must be of type numeric, but got character.
-
-
-
-
-Even if I force 
-df2$ID  <- as.numeric(df2$ID)
-.
-
-
-What Am I doing wrong? What is the proper way to find something similar to the mixed effect model with 
-lmer
- (i.e. random slope and intercept)?
-
-
-
-
-EDIT
-
-
-I changed to use, as suggested by Erin LeDell, the column number. I now get a different error, that I do not understand either:
-
-
-df2$ID  <- as.factor(df2$ID)
-
-test_glm2 <- h2o.glm(family = ""gaussian"",
-                     x = ""x"",
-                     y = ""y"",
-                     training_frame = df2,
-                     random_columns = c(3),
-                     HGLM = TRUE,
-                     lambda = 0,
-                     compute_p_values = TRUE)
-
-DistributedException from localhost/127.0.0.1:54321: 'null', caused by java.lang.NullPointerException
-
-DistributedException from localhost/127.0.0.1:54321: 'null', caused by java.lang.NullPointerException
-    at water.MRTask.getResult(MRTask.java:660)
-    at water.MRTask.getResult(MRTask.java:670)
-    at water.MRTask.doAll(MRTask.java:530)
-    at water.MRTask.doAll(MRTask.java:482)
-    at hex.glm.GLM$GLMDriver.fitCoeffs(GLM.java:1334)
-    at hex.glm.GLM$GLMDriver.fitHGLM(GLM.java:1505)
-    at hex.glm.GLM$GLMDriver.fitModel(GLM.java:2060)
-    at hex.glm.GLM$GLMDriver.computeSubmodel(GLM.java:2526)
-    at hex.glm.GLM$GLMDriver.doCompute(GLM.java:2664)
-    at hex.glm.GLM$GLMDriver.computeImpl(GLM.java:2561)
-    at hex.ModelBuilder$Driver.compute2(ModelBuilder.java:247)
-    at hex.glm.GLM$GLMDriver.compute2(GLM.java:1188)
-    at water.H2O$H2OCountedCompleter.compute(H2O.java:1658)
-    at jsr166y.CountedCompleter.exec(CountedCompleter.java:468)
-    at jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:263)
-    at jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:976)
-    at jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479)
-    at jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104)
-
-
-
-
-
-Edit 2:
-
-
-I actually found a way to remove the above error, by adding
-
-
-rand_link = c(""identity""),
-rand_family = c(""gaussian""),
-
-
-
-to the 
-h2o.glm
- arguments:
-
-
-h2o.glm(family = ""gaussian"",
-                     rand_link = c(""identity""),
-                     rand_family = c(""gaussian""),
-                     # compute_p_values = TRUE,
-                     x = ""x"",
-                     y = ""y"",
-                     training_frame = df2,
-                     random_columns = c(3),
-                     HGLM = TRUE,
-                     lambda = 0)
-
-
-
-Works. But when I set 
-compute_p_values = TRUE
-, and then find a new error:
-
-
-
-Error in .h2o.doSafeREST(h2oRestApiVersion = h2oRestApiVersion, urlSuffix = page,  : 
-  
-
-ERROR MESSAGE:
-
-degrees of freedom (0)","['r', 'h2o', 'glm']",,https://stackoverflow.com/posts/71693880/revisions,,"{'gold': None, 'silver': None, 'bronze': None}"
-71616995,71616995,2022-03-25T12:26:18,2022-03-25 20:41:20Z,0,"I am running Spark 2.4.4 using Yarn and interfacing using RSparkling and Sparklyr
-
-
-As per 
-these
- instructions I've
-
-
-
-
-Installed Sparklyr
-
-
-Called the library for Sparklyr
-
-
-Removed any prior installs of H2O
-
-
-Installed the latest version of H2O (rel-zorn)
-
-
-Installed rsparkling 3.36.0.3-1-2.4
-
-
-Called the library for rsparkling
-
-
-Specified my spark_config()
-
-
-Successfully made a connection to Spark using Yarn
-
-
-Ran h2oConf <- H2OConf()
-
-
-
-
-When I try to make a H2O context using the h2oConf above I get the following error:
-
-
-Error in h2o.init(strict_version_check = FALSE, https = https, insecure = insecure,  : 
-  unused argument (cacert = conf$sslCACert())
-
-
-
-I've tried multiple different versions of RSparkling and H2O and have been unsuccessful connecting.
-
-
-Is there some obvious step that I'm missing? Any suggestions would be greatly appreciated.
-
-
-Solution:
-Based on feedback from @Marek Novotny below I discovered that I had a reference to an old version of H2O in my namespace. Once I unloaded the package I was able to resolve this issue and moved on to the 
-next","['r', 'rstudio', 'h2o', 'sparklyr', 'h2o.ai']",,https://stackoverflow.com/posts/71616995/revisions,,"{'gold': None, 'silver': None, 'bronze': None}"
-71609592,71609592,2022-03-24T21:23:05,2022-03-25 12:19:19Z,0,"I am trying to get H2O working with Sparklyr on my spark cluster (yarn)
-
-
-spark_version(sc) = 2.4.4
-
-My spark cluster is running V2.4.4
-
-
-According to 
-this
- page the compatible version with my spark is 2.4.5 for Sparkling Water and the H2O release is rel-xu patch version 3. However when I install this version I am prompted to update my H2O install to the next release (REL-ZORN). Between the H2O guides and the sparklyr guides it's very confusing and contradictory at times.
-
-
-
-
-Since this is a yarn deployment and not local, unfortunately I can't provide a repex to help with trobleshooting.
-
-
-url <- ""http://h2o-release.s3.amazonaws.com/sparkling-water/rel-2.4/5/sparkling-water-2.4.5.zip""
-
-download.file(url = url,""sparkling-water-2.4.5.zip"")
-
-unzip(""sparkling-water-2.4.5.zip"")
-
-# RUN THESE CMDs FROM THE TERMINAL
-cd sparkling-water-2.4.5
-bin/sparkling-shell --conf ""spark.executor.memory=1g""
-
-# RUN THESE FROM WITHIN RSTUDIO
-install.packages(""sparklyr"")
-library(sparklyr)
-
-# REMOVE PRIOR INSTALLS OF H2O
-detach(""package:rsparkling"", unload = TRUE)
-if (""package:h2o"" %in% search()) { detach(""package:h2o"", unload = TRUE) }
-if (isNamespaceLoaded(""h2o"")){ unloadNamespace(""h2o"") }
-remove.packages(""h2o"")
-
-# INSTALLING REL-ZORN (3.36.0.3) WHICH IS REQUIRED FOR SPARKLING WATER 3.36.0.3
-install.packages(""h2o"", type = ""source"", repos = ""https://h2o-release.s3.amazonaws.com/h2o/rel-zorn/3/R"")
-
-# INSTALLING FROM S3 SINCE CRAN NO LONGER SUPPORTED
-install.packages(""rsparkling"", type = ""source"", repos = ""http://h2o-release.s3.amazonaws.com/sparkling-water/spark-2.4/3.36.0.3-1-2.4/R"")
-
-# AS PER THE GUIDE
-options(rsparkling.sparklingwater.version = ""2.4.5"")
-library(rsparkling)
-
-# SPECIFY THE CONFIGURATION
-config <- sparklyr::spark_config()
-config[[""spark.yarn.queue""]] <- ""my_data_science_queue""
-config[[""sparklyr.backend.timeout""]] <- 36000
-config[[""spark.executor.cores""]] <- 32
-config[[""spark.driver.cores""]] <- 32
-config[[""spark.executor.memory""]] <- ""40g""
-config[[""spark.executor.instances""]] <- 8
-config[[""sparklyr.shell.driver-memory""]] <- ""16g""
-config[[""spark.default.parallelism""]] <- ""8""
-config[[""spark.rpc.message.maxSize""]] <- ""256""
-
-# MAKE A SPARK CONNECTION
-sc <- sparklyr::spark_connect(
-  master = ""yarn"",
-  spark_home = ""/opt/mapr/spark/spark"",
-  config = config,
-  log = ""console"",
-  version = ""2.4.4""
-)
-
-
-
-When I try to establish a H2O context using the next chunk I get the following error
-
-
-h2o_context(sc)
-
-Error in h2o_context(sc) : could not find function ""h2o_context""
-
-
-
-Any pointers as to where I'm going wrong would be greatly appreciated.","['r', 'apache-spark', 'h2o', 'sparklyr']",Phil,https://stackoverflow.com/posts/71609592/revisions,"8,052","{'gold': '', 'silver': '', 'bronze': ''}"
-71587437,71587437,2022-03-23T12:42:50,2022-03-23 12:42:50Z,0,"when running h2o.init() (using the latest package version) from r, it is creating libxgboost4j_gpu*.so files within temp directory which take significant amount of space and pile up (when run several times). Does anyone know how to stop this?","['r', 'h2o', 'temp']",martin_hulin,https://stackoverflow.com/users/14849337/martin-hulin,43,"{'gold': None, 'silver': None, 'bronze': ''}"
-71529386,71529386,2022-03-18T15:26:31,2022-09-09 01:15:54Z,660,"I am currently trying to use H2O from Python, and I encounter some problems on my Mac OS with XGBoost.
-It seems like H2O does not find it anywhere.
-
-
-More precisely, the next simple snippet
-
-
-import pandas as pd
-import h2o
-
-data = [['2015-01-01', '2490.925806' , '-0.41'],
-        ['2015-01-02', '2412.623113' , '-0.48'],
-        ['2015-01-03', '2365.611276' , '-0.55']]
-df = pd.DataFrame(data, columns=[""time"", ""base"", ""target""]).set_index(""time"", drop=True)
-
-h2o.init(nthreads=-1)
-estimator = h2o.estimators.H2OXGBoostEstimator()
-training_frame = h2o.H2OFrame(df) 
-estimator.train([""base""], ""target"", training_frame)
-
-
-
-gives me the error :
-
-
-H2OResponseError: Server error water.exceptions.H2ONotFoundArgumentException:
-  Error: POST /3/ModelBuilders/xgboost not found
-  Request: POST /3/ModelBuilders/xgboost
-    data: {'training_frame': 'Key_Frame__upload_893634781f588299bbd20d51c98d43a9.hex', 'nfolds': '0', 'keep_cross_validation_models': 'True', 'keep_cross_validation_predictions': 'False', 'keep_cross_validation_fold_assignment': 'False', 'score_each_iteration': 'False', 'fold_assignment': 'auto', 'response_column': 'target', 'ignore_const_cols': 'True', 'stopping_rounds': '0', 'stopping_metric': 'auto', 'stopping_tolerance': '0.001', 'max_runtime_secs': '0.0', 'seed': '-1', 'distribution': 'auto', 'tweedie_power': '1.5', 'categorical_encoding': 'auto', 'quiet_mode': 'True', 'ntrees': '50', 'max_depth': '6', 'min_rows': '1.0', 'min_child_weight': '1.0', 'learn_rate': '0.3', 'eta': '0.3', 'sample_rate': '1.0', 'subsample': '1.0', 'col_sample_rate': '1.0', 'colsample_bylevel': '1.0', 'col_sample_rate_per_tree': '1.0', 'colsample_bytree': '1.0', 'colsample_bynode': '1.0', 'max_abs_leafnode_pred': '0.0', 'max_delta_step': '0.0', 'score_tree_interval': '0', 'min_split_improvement': '0.0', 'gamma': '0.0', 'nthread': '-1', 'build_tree_one_node': 'False', 'calibrate_model': 'False', 'max_bins': '256', 'max_leaves': '0', 'sample_type': 'uniform', 'normalize_type': 'tree', 'rate_drop': '0.0', 'one_drop': 'False', 'skip_drop': '0.0', 'tree_method': 'auto', 'grow_policy': 'depthwise', 'booster': 'gbtree', 'reg_lambda': '1.0', 'reg_alpha': '0.0', 'dmatrix_type': 'auto', 'backend': 'auto', 'gainslift_bins': '-1', 'auc_type': 'auto', 'scale_pos_weight': '1.0'}
-
-
-
-For more information about my distribution:
-
-
-
-
-OS: Monterey 12.3
-
-
-Processor: Apple M1
-
-
-Python: 3.9.10
-
-
-H2O: 3.36.0.3
-
-
-
-
-I suspect Apple M1 to be the cause of the error, but is that really the case ?","['xgboost', 'h2o', 'apple-m1']",Clej,https://stackoverflow.com/users/11963167/clej,466,"{'gold': None, 'silver': '', 'bronze': ''}"
-71412682,71412682,2022-03-09T16:24:41,2022-03-09 16:24:41Z,0,"I have been trying to replicate the results from cross-validation from 
-h2o
- by hand, but I'm puzzled on why the results are different. In my understanding, if a 
-fold_column
- is specified, then cross-validation happens according to the groups defined within that column. Therefore, for fold 1, the model should train on folds 2, 3, 4 and 5.
-
-
-set.seed(1)
-iris$fold <- sample(1:5, nrow(iris), replace = TRUE)
-
-fit_cv <- h2o.glm(x = c(""Species"", ""Petal.Width"", ""Petal.Length""),
-                  y = c(""Sepal.Length""),
-                  training_frame = as.h2o(iris),
-                  fold_column = ""fold"", 
-                  alpha = 0.2, lambda = 0.1, seed=1,
-                  keep_cross_validation_models = TRUE)
-
-
-
-This outputs for fold 1 a training MAE of:
-
-
-fit_fold1 <-  h2o.cross_validation_models(fit_cv)[[1]]
-
-> fit_fold1@model$training_metrics@metrics$mae
-[1] 0.3035526
-
-
-
-However, if fitted by hand, the training MAE is (slightly) different:
-
-
-dd_fold1_fit <- iris[iris$fold != 1,]
-
-fit_fold1_direct <- h2o.glm(x = c(""Species"", ""Petal.Width"", ""Petal.Length""),
-                                y = c(""Sepal.Length""),
-                                training_frame = as.h2o(dd_fold1_fit),
-                                alpha = 0.2, lambda = 0.1, 
-                                seed=1)
-    
-fit_fold1_direct@model$training_metrics@metrics$mae
-[1] 0.3004132
-
-
-
-This is a minimal example, the issue is that with real data that I am working with the difference is larger, and I can't replicate the cross-validation results.
-
-
-Any idea on what the explanation could be?","['r', 'h2o']",Theodor,https://stackoverflow.com/users/2236837/theodor,"1,016","{'gold': '', 'silver': '', 'bronze': ''}"
-71172747,71172747,2022-02-18T11:30:19,2022-02-23 13:57:32Z,95,"I configured h2o application to use openLDAP configuration referring to the link:
-
-https://docs.h2o.ai/sparkling-water/2.3/latest-stable/doc/tutorials/ldap.html
-
-Added userNameAttribute=uid to ovreride 'cn' to use 'uid' field instead.
-
-
-However it is not working. The query getting passed on LDAP still has cn=user_id instead of uid=user_id.
-
-
-Am I doing something wrong or is a bug?
-
-
-ldap.conf:
-
-
-    ai.h2o.org.eclipse.jetty.plus.jaas.spi.LdapLoginModule required
-    debug=""true""
-    useLdaps=""true""
-    contextFactory=""com.sun.jndi.ldap.LdapCtxFactory""
-    hostname=""ldap.h2o.ai""
-    port=""389""
-    bindDn=""cn=admin,dc=h2o,dc=ai""
-    bindPassword=""h2o""
-    authenticationMethod=""simple""
-    forceBindingLogin=""true""
-    userBaseDn=""ou=users,dc=h2o,dc=ai""
-    userNameAttribute=""uid"";
-};```","['ldap', 'h2o', 'openldap']",Pankaj Mahadik,https://stackoverflow.com/users/16570951/pankaj-mahadik,31,"{'gold': None, 'silver': None, 'bronze': ''}"
-71146238,71146238,2022-02-16T17:07:49,2022-02-17 00:02:39Z,156,"We use XGBoost model for regression prediction model, We use XGBoost as grid search hyper parameter tuning process,
-
-
-We run this model on 90GB h2o cluster. This process now running over 1.2 years, but suddenly this process stop due to ""Closing connection _sid_af1c at exit""
-
-
-Training data set is 800 000, due to this error we decreased it to 500 000 but same error occurred.
-
-
-ntrees - 300,400
-
-
-depth - 8.10
-
-
-variables - 382
-
-
-I have attached H2o memory log and our application error log. Could you please support to fixed this issue.
-
-
-----------------------------------------H2o Log [Start]----------------------
-
-**We start H2o as 2 node cluster, but h2o log crated on one node.** 
-
-INFO water.default: ----- H2O started  -----
-INFO water.default: Build git branch: master
-INFO water.default: Build git hash: 0588cccd72a7dc1274a83c30c4ae4161b92d9911
-INFO water.default: Build git describe: jenkins-master-5236-4-g0588ccc
-INFO water.default: Build project version: 3.33.0.5237
-INFO water.default: Build age: 1 year, 3 months and 17 days
-INFO water.default: Built by: 'jenkins'
-INFO water.default: Built on: '2020-10-27 19:21:29'
-WARN water.default: 
-WARN water.default: *** Your H2O version is too old! Please download the latest version from http://h2o.ai/download/ ***
-WARN water.default: 
-INFO water.default: Found H2O Core extensions: [XGBoost, KrbStandalone]
-INFO water.default: Processed H2O arguments: [-flatfile, /usr/local/h2o/flatfile.txt, -port, 54321]
-INFO water.default: Java availableProcessors: 20
-INFO water.default: Java heap totalMemory: 962.5 MB
-INFO water.default: Java heap maxMemory: 42.67 GB
-INFO water.default: Java version: Java 1.8.0_262 (from Oracle Corporation)
-INFO water.default: JVM launch parameters: [-Xmx48g]
-INFO water.default: JVM process id: 
-[email protected]
-
-INFO water.default: OS version: Linux 3.10.0-1127.10.1.el7.x86_64 (amd64)
-INFO water.default: Machine physical memory: 62.74 GB
-INFO water.default: Machine locale: en_US
-INFO water.default: X-h2o-cluster-id: 1644769990156
-INFO water.default: User name: 'root'
-INFO water.default: IPv6 stack selected: false
-INFO water.default: Possible IP Address: ens192 (ens192), xxxxxxxxxxxxxxxxxxxx
-INFO water.default: Possible IP Address: ens192 (ens192), xxxxxxxxxxx
-INFO water.default: Possible IP Address: lo (lo), 0:0:0:0:0:0:0:1%lo
-INFO water.default: Possible IP Address: lo (lo), 127.0.0.1
-INFO water.default: H2O node running in unencrypted mode.
-INFO water.default: Internal communication uses port: 54322
-INFO water.default: Listening for HTTP and REST traffic on http://xxxxxxxxxxxx:54321/
-INFO water.default: H2O cloud name: 'root' on /xxxxxxxxxxxx:54321, discovery address /xxxxxxxxxxxx:57653
-INFO water.default: If you have trouble connecting, try SSH tunneling from your local machine (e.g., via port 55555):
-INFO water.default:   1. Open a terminal and run 'ssh -L 55555:localhost:54321 root@xxxxxxxxxxxx'
-INFO water.default:   2. Point your browser to http://localhost:55555
-INFO water.default: Log dir: '/tmp/h2o-root/h2ologs'
-INFO water.default: Cur dir: '/usr/local/h2o/h2o-3.33.0.5237'
-INFO water.default: Subsystem for distributed import from HTTP/HTTPS successfully initialized
-INFO water.default: HDFS subsystem successfully initialized
-INFO water.default: S3 subsystem successfully initialized
-INFO water.default: GCS subsystem successfully initialized
-INFO water.default: Flow dir: '/root/h2oflows'
-INFO water.default: Cloud of size 1 formed [/xxxxxxxxxxxx:54321]
-INFO water.default: Registered parsers: [GUESS, ARFF, XLS, SVMLight, AVRO, PARQUET, CSV]
-INFO water.default: XGBoost extension initialized
-INFO water.default: KrbStandalone extension initialized
-INFO water.default: Registered 2 core extensions in: 2632ms
-INFO water.default: Registered H2O core extensions: [XGBoost, KrbStandalone]
-INFO hex.tree.xgboost.XGBoostExtension: Found XGBoost backend with library: xgboost4j_gpu
-INFO hex.tree.xgboost.XGBoostExtension: XGBoost supported backends: [WITH_GPU, WITH_OMP]
-INFO water.default: Registered: 217 REST APIs in: 353ms
-INFO water.default: Registered REST API extensions: [Amazon S3, XGBoost, Algos, AutoML, Core V3, TargetEncoder, Core V4]
-INFO water.default: Registered: 291 schemas in 112ms
-INFO water.default: H2O started in 4612ms
-INFO water.default: 
-INFO water.default: Open H2O Flow in your web browser: http://xxxxxxxxxxxx:54321
-INFO water.default: 
-INFO water.default: Cloud of size 2 formed [mastera.xxxxxxxxxxxx.com/xxxxxxxxxxxx:54321, masterb.xxxxxxxxxxxx.com/xxxxxxxxxxxx:54321]
-INFO water.default: Locking cloud to new members, because water.rapids.Session$1
-INFO hex.tree.xgboost.task.XGBoostUpdater: Initial Booster created, size=448
-ERROR water.default: Got IO error when sending a batch of bytes: 
-java.io.IOException: Connection reset by peer
-    at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
-    at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
-    at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
-    at sun.nio.ch.IOUtil.write(IOUtil.java:51)
-    at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:468)
-    at water.H2ONode$SmallMessagesSendThread.sendBuffer(H2ONode.java:605)
-    at water.H2ONode$SmallMessagesSendThread.run(H2ONode.java:588)
-----------------------------------------H2o Log [End]--------------------------------
-
-----------------------------------------Application Log [Start]----------------------
-Checking whether there is an H2O instance running at http://localhost:54321 . connected.
-Warning: Your H2O cluster version is too old (1 year, 3 months and 17 days)! Please download and install the latest version from http://h2o.ai/download/
---------------------------  ------------------------------------------------------------------
-H2O_cluster_uptime:         19 mins 49 secs
-H2O_cluster_timezone:       Asia/Colombo
-H2O_data_parsing_timezone:  UTC
-H2O_cluster_version:        3.33.0.5237
-H2O_cluster_version_age:    1 year, 3 months and 17 days !!!
-H2O_cluster_name:           root
-H2O_cluster_total_nodes:    2
-H2O_cluster_free_memory:    84.1 Gb
-H2O_cluster_total_cores:    40
-H2O_cluster_allowed_cores:  40
-H2O_cluster_status:         locked, healthy
-H2O_connection_url:         http://localhost:54321
-H2O_connection_proxy:       {""http"": null, ""https"": null}
-H2O_internal_security:      False
-H2O_API_Extensions:         Amazon S3, XGBoost, Algos, AutoML, Core V3, TargetEncoder, Core V4
-Python_version:             3.7.0 final
---------------------------  ------------------------------------------------------------------
---------------------------  ------------------------------------------------------------------
-H2O_cluster_uptime:         19 mins 49 secs
-H2O_cluster_timezone:       Asia/Colombo
-H2O_data_parsing_timezone:  UTC
-H2O_cluster_version:        3.33.0.5237
-H2O_cluster_version_age:    1 year, 3 months and 17 days !!!
-H2O_cluster_name:           root
-H2O_cluster_total_nodes:    2
-H2O_cluster_free_memory:    84.1 Gb
-H2O_cluster_total_cores:    40
-H2O_cluster_allowed_cores:  40
-H2O_cluster_status:         locked, healthy
-H2O_connection_url:         http://localhost:54321
-H2O_connection_proxy:       {""http"": null, ""https"": null}
-H2O_internal_security:      False
-H2O_API_Extensions:         Amazon S3, XGBoost, Algos, AutoML, Core V3, TargetEncoder, Core V4
-Python_version:             3.7.0 final
---------------------------  ------------------------------------------------------------------
-release memory here...
-Checking whether there is an H2O instance running at http://localhost:54321 . connected.
-Warning: Your H2O cluster version is too old (1 year, 3 months and 17 days)! Please download and install the latest version from http://h2o.ai/download/
---------------------------  ------------------------------------------------------------------
-H2O_cluster_uptime:         19 mins 49 secs
-H2O_cluster_timezone:       Asia/Colombo
-H2O_data_parsing_timezone:  UTC
-H2O_cluster_version:        3.33.0.5237
-H2O_cluster_version_age:    1 year, 3 months and 17 days !!!
-H2O_cluster_name:           root
-H2O_cluster_total_nodes:    2
-H2O_cluster_free_memory:    84.1 Gb
-H2O_cluster_total_cores:    40
-H2O_cluster_allowed_cores:  40
-H2O_cluster_status:         locked, healthy
-H2O_connection_url:         http://localhost:54321
-H2O_connection_proxy:       {""http"": null, ""https"": null}
-H2O_internal_security:      False
-H2O_API_Extensions:         Amazon S3, XGBoost, Algos, AutoML, Core V3, TargetEncoder, Core V4
-Python_version:             3.7.0 final
---------------------------  ------------------------------------------------------------------
-Parse progress: |█████████████████████████████████████████████████████████| 100%
-xgboost Grid Build progress: |████████Closing connection _sid_af1c at exit
-H2O session _sid_af1c was not closed properly.
-Closing connection _sid_9313 at exit
-H2O session _sid_9313 was not closed properly.
-----------------------------------------Application Log [End]----------------------","['machine-learning', 'artificial-intelligence', 'xgboost', 'h2o']",James Z,https://stackoverflow.com/posts/71146238/revisions,12.3k,"{'gold': '', 'silver': '', 'bronze': ''}"
-71138526,71138526,2022-02-16T08:38:17,2022-02-16 23:54:28Z,278,"I am using h2o autoML on python.
-
-
-I used the autoML part to find the best model possible: it is a StackedEnsemble.
-
-
-Now I would like to take the model and retrain it on a bigger dataset (which was not possible before because I would explode the google colab free RAM capacity).
-
-
-But AutoML does some preprocessing to my data and I don't know which one.
-
-
-How can I get the preprocessing steps to re-apply it to my bigger data before feeding it to the model ?
-
-
-Thanks in advance,
-
-
-Gab","['python', 'google-colaboratory', 'h2o', 'automl', 'data-preprocessing']",Gabiboubibel,https://stackoverflow.com/users/13354125/gabiboubibel,75,"{'gold': None, 'silver': None, 'bronze': ''}"
-71093974,71093974,2022-02-12T16:58:15,2022-02-17 00:06:57Z,0,"I have just computed a gamma GLM with the h2o package in R.
-
-
-When I'm trying to predict on the test set I get this error:
-
-
-
-
-Illegal argument(s) for GLM model: GLM_model_R_1644680218230_95. Details: ERRR on field: _family: Response value for gamma distribution must be greater than 0.
-
-
-
-
-I understand that a gamma model cannot be trained on data with zero response, but one should be able to predict on data with a true value 0 (this is used a a lot in actuaries).
-
-
-Does any one know a h2o solution? I know I can simply make the model with glm() or something similar, but I'm relying on mean encoded categorical variables (which is really convenient in h2o).
-
-
-Thanks!","['r', 'h2o', 'glm', 'glmnet']",marc_s,https://stackoverflow.com/posts/71093974/revisions,752k,"{'gold': '', 'silver': '', 'bronze': ''}"
-71081912,71081912,2022-02-11T14:41:22,2022-02-16 23:46:43Z,0,"I am running a randomForest model using h2o in R. The exercise is a binary classification problem in which I have approx. 5x as many ‘1’s as ‘0’s.
-
-
-Because the dataset is a time series (approx. 50k observations), I am using a growing window validation scheme as opposed to the typical CV schemes used in most ML cases. For each step I train the model on 60% of the data available up to that time point and then hold out the remaining 40% to be split equally between the validation frame and the testing data.
-
-
-I am getting extremely poor performance in both my hold out validation data and test data which suggests that I am overfitting to the training dataset. If anyone can spot any obvious, glaring errors in how I am setting up my model and the hyper parameter search I’d really appreciate some pointers. It may be that I simply have in sufficient number of features (n = 27) to adequately capture the response, but I would like to rule out incorrect model specification first.
-
-
-Here is the specification of my model and the hyper-parameter grid search.
-
-
-# create feature names
-y <- ""Response""
-x <- setdiff(names(gwWF1_train[, -c(1:3)]), y)
-
-# turn training set into h2o object
-gwWF1_train.h2o <- as.h2o(gwWF1_train[, -c(1:3)])
-
-# turn validation set into h2o object
-gwWF1_valid.h2o <- as.h2o(gwWF1_valid[, -c(1:3)])
-
-# hyperparameter grid
-hyper_grid.h2o <- list(
-  ntrees      = seq(50, 1000, by = 50),
-  mtries      = seq(2, 10, by = 1),
-  max_depth   = seq(2, 10, by = 1),
-  min_rows    = seq(5, 15, by = 1),
-  nbins       = seq(5, 40, by = 5),
-  sample_rate = c(.55, .632, .75)
-)
-
-# random grid search criteria
-search_criteria <- list(
-  strategy = ""RandomDiscrete"",
-  stopping_metric = ""auc"",
-  stopping_tolerance = 0.005,
-  stopping_rounds = 20,
-  max_runtime_secs = 5*60
-  )
-
-# build grid search 
-random_grid <- h2o.grid(
-  algorithm = ""randomForest"",
-  grid_id = ""rf_grid"",
-  x = x, 
-  y = y, 
-  seed = 29,
-  balance_classes = TRUE,
-  training_frame = gwWF1_train.h2o,
-  validation_frame = gwWF1_valid.h2o,
-  hyper_params = hyper_grid.h2o,
-  search_criteria = search_criteria
-  )
-  
-# collect the results and sort by our model performance metric of choice
-grid_perf <- h2o.getGrid(
-  grid_id = ""rf_grid"", 
-  sort_by = ""auc"", 
-  decreasing = TRUE
-  )
-print(grid_perf)
-
-
-
-Here is the performance on the training and validation frames
-
-
-Model Details:
-==============
-
-H2OBinomialModel: drf
-Model ID:  rf_grid_model_14 
-Model Summary: 
-  number_of_trees number_of_internal_trees model_size_in_bytes min_depth max_depth mean_depth min_leaves max_leaves mean_leaves
-1             100                      100              224183        10        10   10.00000         99        272   173.86000
-
-
-H2OBinomialMetrics: drf
-** Reported on training data. **
-** Metrics reported on Out-Of-Bag training samples **
-
-MSE:  0.1154841
-RMSE:  0.3398295
-LogLoss:  0.3836627
-Mean Per-Class Error:  0.3434005
-AUC:  0.716039
-AUCPR:  0.3877677
-Gini:  0.432078
-R^2:  0.08126146
-
-Confusion Matrix (vertical: actual; across: predicted) for F1-optimal threshold:
-           0    1    Error         Rate
-0      12089 2009 0.142502  =2009/14098
-1       1327 1111 0.544299   =1327/2438
-Totals 13416 3120 0.201742  =3336/16536
-
-Maximum Metrics: Maximum metrics at their respective thresholds
-                        metric threshold        value idx
-1                       max f1  0.182031     0.399784 175
-2                       max f2  0.133141     0.498254 264
-3                 max f0point5  0.229674     0.437443 119
-4                 max accuracy  0.263718     0.863147  94
-5                max precision  0.705162     1.000000   0
-6                   max recall  0.019641     1.000000 396
-7              max specificity  0.705162     1.000000   0
-8             max absolute_mcc  0.209525     0.298843 139
-9   max min_per_class_accuracy  0.153280     0.651354 225
-10 max mean_per_class_accuracy  0.174269     0.661033 188
-11                     max tns  0.705162 14098.000000   0
-12                     max fns  0.705162  2437.000000   0
-13                     max fps  0.010717 14098.000000 399
-14                     max tps  0.019641  2438.000000 396
-15                     max tnr  0.705162     1.000000   0
-16                     max fnr  0.705162     0.999590   0
-17                     max fpr  0.010717     1.000000 399
-18                     max tpr  0.019641     1.000000 396
-
-Gains/Lift Table: Extract with `h2o.gainsLift(<model>, <data>)` or `h2o.gainsLift(<model>, valid=<T/F>, xval=<T/F>)`
-H2OBinomialMetrics: drf
-** Reported on validation data. **
-
-MSE:  0.1340771
-RMSE:  0.3661654
-LogLoss:  0.4422115
-Mean Per-Class Error:  0.5
-AUC:  0.5295048
-AUCPR:  0.1770512
-Gini:  0.05900952
-R^2:  -0.006636504
-
-Confusion Matrix (vertical: actual; across: predicted) for F1-optimal threshold:
-       0     1    Error          Rate
-0      0 13220 1.000000  =13220/13220
-1      0  2485 0.000000       =0/2485
-Totals 0 15705 0.841770  =13220/15705
-
-Maximum Metrics: Maximum metrics at their respective thresholds
-                        metric threshold        value idx
-1                       max f1  0.025167     0.273227 399
-2                       max f2  0.025167     0.484500 399
-3                 max f0point5  0.161209     0.203459 140
-4                 max accuracy  0.291947     0.841770   1
-5                max precision  0.291947     0.500000   1
-6                   max recall  0.025167     1.000000 399
-7              max specificity  0.302964     0.999924   0
-8             max absolute_mcc  0.178262     0.056716 103
-9   max min_per_class_accuracy  0.133292     0.525553 215
-10 max mean_per_class_accuracy  0.140828     0.529093 195
-11                     max tns  0.302964 13219.000000   0
-12                     max fns  0.302964  2485.000000   0
-13                     max fps  0.030503 13220.000000 398
-14                     max tps  0.025167  2485.000000 399
-15                     max tnr  0.302964     0.999924   0
-16                     max fnr  0.302964     1.000000   0
-17                     max fpr  0.030503     1.000000 398
-18                     max tpr  0.025167     1.000000 399
-
-Gains/Lift Table: Extract with `h2o.gainsLift(<model>, <data>)` or `h2o.gainsLift(<model>, valid=<T/F>, xval=<T/F>)`
-
-
-
-And here is the performance on the testing data
-
-
-H2OBinomialMetrics: drf
-
-MSE:  0.1293883
-RMSE:  0.3597059
-LogLoss:  0.4274263
-Mean Per-Class Error:  0.4719334
-AUC:  0.530868
-AUCPR:  0.1588326
-Gini:  0.06173602
-R^2:  -0.001929629
-
-Confusion Matrix (vertical: actual; across: predicted) for F1-optimal threshold:
-          0     1    Error          Rate
-0      4321 12888 0.748910  =12888/17209
-1       603  2490 0.194956     =603/3093
-Totals 4924 15378 0.664516  =13491/20302
-
-Maximum Metrics: Maximum metrics at their respective thresholds
-                        metric threshold        value idx
-1                       max f1  0.128344     0.269612 283
-2                       max f2  0.084278     0.473644 380
-3                 max f0point5  0.140284     0.194700 248
-4                 max accuracy  0.313605     0.847601   1
-5                max precision  0.313605     0.333333   1
-6                   max recall  0.050387     1.000000 399
-7              max specificity  0.316369     0.999884   0
-8             max absolute_mcc  0.128344     0.047063 283
-9   max min_per_class_accuracy  0.152158     0.522793 210
-10 max mean_per_class_accuracy  0.140284     0.531315 248
-11                     max tns  0.316369 17207.000000   0
-12                     max fns  0.316369  3093.000000   0
-13                     max fps  0.062918 17209.000000 398
-14                     max tps  0.050387  3093.000000 399
-15                     max tnr  0.316369     0.999884   0
-16                     max fnr  0.316369     1.000000   0
-17                     max fpr  0.062918     1.000000 398
-18                     max tpr  0.050387     1.000000 399
-
-Gains/Lift Table: Extract with `h2o.gainsLift(<model>, <data>)` or `h2o.gainsLift(<model>, valid=<T/F>, xval=<T/F>)`","['r', 'machine-learning', 'random-forest', 'h2o']",DaveTheRave,https://stackoverflow.com/users/12774843/davetherave,77,"{'gold': None, 'silver': '', 'bronze': ''}"
-71068729,71068729,2022-02-10T16:27:26,2022-02-10 17:39:03Z,0,"I want to make sure the weights_column arguments in h2o.glm() is the same as the weights argument in glm(). To compare, I am looking at the rmse of both models using the Seatbelts dataset in R. I don't think a weight is needed in this model, but for the sake of demonstration I added one.
-
-
-head(Seatbelts)
-
-Seatbelts<-Seatbelts[complete.cases(Seatbelts),]
-
-## 75% of the sample size
-smp_size <- floor(0.75 * nrow(Seatbelts))
-
-## set the seed to make your partition reproducible
-set.seed(123)
-train_ind <- sample(seq_len(nrow(Seatbelts)), size = smp_size)
-
-train <- Seatbelts[train_ind, ]
-test <- Seatbelts[-train_ind, ]
-
-# glm()
-m1 <- glm(DriversKilled  ~  front + rear + kms + PetrolPrice + VanKilled + law,
-          family=poisson(link = ""log""),
-          weights = drivers,
-          data=train)
-
-pred <- predict(m1, test)
-RMSE(pred = pred, obs = test$DriversKilled)
-
-
-
-The rmse is 120.5797.
-
-
-# h2o.glm()
-library(h2o)
-h2o.init()
-
-train <- as.h2o(train)
-test <- as.h2o(test)
-m2 <- h2o.glm(x = c(""front"", ""rear"", ""kms"", ""PetrolPrice"", ""VanKilled"", ""law""),
-                 y = ""DriversKilled"",
-                 training_frame = train,
-                 family = 'poisson',
-                 link = 'log',
-                 lambda = 0,
-                 weights_column = ""drivers"")
-
-# performance metrics on test data
-h2o.performance(m2, test)
-
-
-
-The rmse is 18.65627. Why do these models have such different rmse? Am I using the weights_column argument in h2o.glm() incorrectly?","['r', 'h2o', 'glm']",,https://stackoverflow.com/posts/71068729/revisions,,"{'gold': None, 'silver': None, 'bronze': None}"
-71063715,71063715,2022-02-10T10:46:21,2022-02-16 23:34:54Z,0,"So I'm about to write my master thesis, and doing some data modelling/scoring in R, where I have some issues. I have been given a ReadMe file to follow with older versions of R, but did not seem to work, and therefore I have tried to update R and the code for it. But I have never modelled with h2o in R, and it makes an error when I try to loadmodel from the given code of the author. Can anyone help me with a solution?
-
-
-I run this code:
-w2v_model <- h2o.loadModel(w2v_fname)
-
-
-which results in this error:
-ERROR: Unexpected HTTP Status code: 400 Bad Request (url = http://localhost:54321/99/Models.bin/)
-
-
-java.lang.IllegalArgumentException
-[1] ""java.lang.IllegalArgumentException: Found version 3.10.4.6, but running version 3.36.0.2\n\nFor more information visit:\n  
-http://jira.h2o.ai/browse/TN-14""
-
-[2] ""    water.AutoBuffer.checkVersion(AutoBuffer.java:296)""
-
-[3] ""    water.AutoBuffer.(AutoBuffer.java:277)""
-
-[4] ""    water.AutoBuffer.(AutoBuffer.java:257)""
-
-[5] ""    hex.Model.importBinaryModel(Model.java:3192)""
-
-[6] ""    water.api.ModelsHandler.importModel(ModelsHandler.java:250)""
-
-[7] ""    java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)""
-
-[8] ""    java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)""
-
-[9] ""    java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)""
-
-[10] ""    java.base/java.lang.reflect.Method.invoke(Method.java:568)""
-
-[11] ""    water.api.Handler.handle(Handler.java:60)""
-
-[12] ""    water.api.RequestServer.serve(RequestServer.java:470)""
-
-[13] ""    water.api.RequestServer.doGeneric(RequestServer.java:301)""
-
-[14] ""    water.api.RequestServer.doPost(RequestServer.java:227)""
-
-[15] ""    javax.servlet.http.HttpServlet.service(HttpServlet.java:707)""
-
-[16] ""    javax.servlet.http.HttpServlet.service(HttpServlet.java:790)""
-
-[17] ""    org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:865)""
-
-[18] ""    org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:535)""
-
-[19] ""    org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255)""
-
-[20] ""    org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317)""
-
-[21] ""    org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203)""
-
-[22] ""    org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)""
-
-[23] ""    org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201)""
-
-[24] ""    org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219)""
-
-[25] ""    org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144)""
-
-[26] ""    org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)""
-
-[27] ""    org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)""
-
-[28] ""    water.webserver.jetty9.Jetty9ServerAdapter$LoginHandler.handle(Jetty9ServerAdapter.java:130)""
-
-[29] ""    org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)""
-
-[30] ""    org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)""
-
-[31] ""    org.eclipse.jetty.server.Server.handle(Server.java:531)""
-
-[32] ""    org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352)""
-
-[33] ""    org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260)""
-
-[34] ""    org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281)""
-
-[35] ""    org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)""
-
-[36] ""    org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)""
-
-[37] ""    org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)""
-
-[38] ""    org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)""
-
-[39] ""    org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)""
-
-[40] ""    org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)""
-
-[41] ""    org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)""
-
-[42] ""    org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762)""
-
-[43] ""    org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680)""
-
-[44] ""    java.base/java.lang.Thread.run(Thread.java:833)""
-
-
-Error in .h2o.doSafeREST(h2oRestApiVersion = h2oRestApiVersion, urlSuffix = page,  :
-
-
-ERROR MESSAGE:
-
-
-Found version 3.10.4.6, but running version 3.36.0.2
-
-
-For more information visit:
-
-http://jira.h2o.ai/browse/TN-14
-
-
-Thanks in advance.","['r', 'h2o']",Super Kai - Kazuya Ito,https://stackoverflow.com/posts/71063715/revisions,1,"{'gold': None, 'silver': None, 'bronze': None}"
-70759860,70759860,2022-01-18T17:26:35,2022-02-17 00:05:26Z,106,"I have a requirement to add new algorithms built in Python/Java to H2O and making it available in Flow UI. I have not found much information other than these old posts
-
-
-
-
-https://groups.google.com/g/h2ostream/c/lFXdizcgemE?pli=1
-
-
-https://www.h2o.ai/blog/hacking-algorithms-into-h2o-quantiles/
-
-
-
-
-Please let me know if there is a way to do it. I don't think these articles are still relevant. Thanks in advance!",['h2o'],python dev,https://stackoverflow.com/users/2020301/python-dev,219,"{'gold': '', 'silver': '', 'bronze': ''}"
-70721119,70721119,2022-01-15T11:47:31,2022-01-17 06:22:36Z,190,"Is the H2OModelSelectionEstimator deprecated? When I run the code
-
-
-from h2o.estimators import H2OModelSelectionEstimator
-
-
-
-I get the message: ImportError: cannot import name 'H2OModelSelectionEstimator' from 'h2o.estimators'","['python', 'h2o', 'glm']",lostwanderer,https://stackoverflow.com/users/12029329/lostwanderer,163,"{'gold': '', 'silver': '', 'bronze': ''}"
-70637288,70637288,2022-01-08T23:33:47,2023-07-13 18:03:24Z,111,"I see Snowflake has a partner connect through which I could activate the H2O Driverless AI and access Snowflake from there.
-I also see that H2O Driverless AI can be independently deployed on any cloud cluster, by we managing our own cluster instances.
-
-
-How are both the clusters in above different?
-In the H2O Driverless AI activated through the partner connect from Snowflake, don't we not require to manage the instances of H2O Driverless AI, so are we charged accordingly for that?
-
-
-In the H2O Driverless AI deployed on our own Cloud cluster instances, is it the licensed version of H2O Driverless AI that we deploy and manage? Also, can we deploy the H2O-3(h2o flow) on these instances for building using h20 python packages, since i don't see any notebooks on Driverless AI for developing from ground-up?","['h2o', 'driverless-ai', 'h2o.ai']",topchef,https://stackoverflow.com/posts/70637288/revisions,19.8k,"{'gold': '', 'silver': '', 'bronze': ''}"
-70622044,70622044,2022-01-07T13:35:43,2022-01-12 08:48:55Z,72,"h2o version: h2o-3.34.0.3 (rel-zizler)
-
-
-Java version: openjdk version ""15.0.2"" 2021-01-19
-(installed  with: 
-FROM adoptopenjdk:15-jre-openj9-focal
-)
-
-
-I want to build an XGBoost model using Java 15, but the same code with the same data which runs without issues on Java 14 (openjdk version ""14.0.2"" 2020-07-14) fails on Java 15, producing the following error messages:
-
-
-water.exceptions.H2OIllegalArgumentException: Illegal argument: o of function: IcedWrapper: 
-    at water.IcedWrapper.<init>(IcedWrapper.java:152) ~[h2o.jar:?]
-    at water.util.TwoDimTable.set(TwoDimTable.java:254) ~[h2o.jar:?]
-    at water.util.ReproducibilityInformationUtils.createNodeInformationTable(ReproducibilityInformationUtils.java:72) ~[h2o.jar:?]
-    at hex.Model$Output.createReproducibilityInformationTable(Model.java:1199) ~[h2o.jar:?]
-    at hex.Model$Output.<init>(Model.java:991) ~[h2o.jar:?]
-    at hex.Model$Output.<init>(Model.java:973) ~[h2o.jar:?]
-    at hex.tree.xgboost.XGBoostOutput.<init>(XGBoostOutput.java:16) ~[h2o.jar:?]
-    at hex.tree.xgboost.XGBoost$XGBoostDriver.buildModelImpl(XGBoost.java:419) ~[h2o.jar:?]
-    at hex.tree.xgboost.XGBoost$XGBoostDriver.buildModel(XGBoost.java:393) ~[h2o.jar:?]
-    at hex.tree.xgboost.XGBoost$XGBoostDriver.computeImpl(XGBoost.java:379) ~[h2o.jar:?]
-    at hex.ModelBuilder$Driver.compute2(ModelBuilder.java:246) ~[h2o.jar:?]
-    at water.H2O$H2OCountedCompleter.compute(H2O.java:1652) ~[h2o.jar:?]
-    at jsr166y.CountedCompleter.exec(CountedCompleter.java:468) ~[h2o.jar:?]
-    at jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:263) [h2o.jar:?]
-    at jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:974) [h2o.jar:?]
-    at jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1477) [h2o.jar:?]
-    at jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) [h2o.jar:?] 
-
-
-
-I launch the h2o server with the following command:
-
-
-ENTRYPOINT /bin/bash -c ""cd h2o && java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1 -XshowSettings:vm -jar h2o.jar
-
-
-Has anyone came across with similar issues? It looks like a version incompatibility to me, but based on a comment from this, h2o should support Java 15 from version 3.32.1.1 and up.
-
-Running H2O with Java 16 on R","['java', 'xgboost', 'h2o']",,https://stackoverflow.com/posts/70622044/revisions,,"{'gold': None, 'silver': None, 'bronze': None}"
-70597370,70597370,2022-01-05T17:49:20,2022-01-06 14:54:28Z,0,"Using the h2o package for R, I created a set of base models using AutoML with StackedEnsemble's disabled. Thus, the set of models only contains the base models that AutoML generates by default (GLM, GBM, XGBoost, DeepLearning, and DRF). Using these base models I was able to successfully train a default stacked ensemble manually using the h2o.stackedEnsemble function (i.e., a GLM with default params). I exported the model as a MOJO, shutdown the H2O cluster, restarted R, initialized a new H2O cluster, imported the stacked ensemble MOJO, and successfully generated predictions on a new validation set.
-
-
-So far so good.
-
-
-Next, I did the exact same thing following the exact same process, but this time I made one change: I trained the stacked ensemble 
-with all pairwise interactions between the base models
-. The interactions were created automatically by feeding a list of the base model Ids to the interaction metalearner_parameter. The model appeared to train without issue and (as I described above) was able to export it as a MOJO, restart the h2o cluster, restart R, and import the MOJO. However, when I attempt to generate predictions on the same validation set I used above I get the following error:
-
-
-DistributedException from localhost/127.0.0.1:54321: 'null', caused by java.lang.ArrayIndexOutOfBoundsException
-
-DistributedException from localhost/127.0.0.1:54321: 'null', caused by java.lang.ArrayIndexOutOfBoundsException
-    at water.MRTask.getResult(MRTask.java:660)
-    at water.MRTask.getResult(MRTask.java:670)
-    at water.MRTask.doAll(MRTask.java:530)
-    at water.MRTask.doAll(MRTask.java:549)
-    at hex.Model.predictScoreImpl(Model.java:2057)
-    at hex.generic.GenericModel.predictScoreImpl(GenericModel.java:127)
-    at hex.Model.score(Model.java:1896)
-    at water.api.ModelMetricsHandler$1.compute2(ModelMetricsHandler.java:491)
-    at water.H2O$H2OCountedCompleter.compute(H2O.java:1658)
-    at jsr166y.CountedCompleter.exec(CountedCompleter.java:468)
-    at jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:263)
-    at jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:976)
-    at jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479)
-    at jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104)
-Caused by: java.lang.ArrayIndexOutOfBoundsException
-
-Error: DistributedException from localhost/127.0.0.1:54321: 'null', caused by java.lang.ArrayIndexOutOfBoundsException
-
-
-
-When I exported the stacked ensemble with interactions as a MOJO I also exported it as a binary. When I instead import the binary for the stacked ensemble with interactions it is able to generate predictions on the validation set without error.
-
-
-I'm running R 4.1.2 and this was all done using h2o_3.36.0.1
-
-
-Does anyone have any suggestions for resolving this issue?
-
-
-EDIT (more info): The datasets used to train and validate the model all contain continuous predictors and targets, so I do not believe this is related to one-hot encoding as might be the case for others getting this error.","['r', 'h2o', 'glm']",,https://stackoverflow.com/posts/70597370/revisions,,"{'gold': None, 'silver': None, 'bronze': None}"
-70471661,70471661,2021-12-24T09:57:18,2022-01-27 18:28:01Z,71,"I am implementing my own algorithm in H2O's Java source code (under package 
-h2o-algos
-).
-
-
-How can I join two frames' rows (i.e. vectors) in H2O given H2O Java methods?
-
-
-For instance, given two Frame A and B
-
-
-Frame A:
-
-| Id       | Name           |
-| -------- | -------------- |
-| 123      | John           |
-| 456      | Bob            |
-Frame B:
-| Id       | Name           |
-| -------- | -------------- |
-| 789      | Alice          |
-
-
-
-I want the resultant Frame C to be:
-
-
-| Id       | Name           |
-| -------- | -------------- |
-| 123      | John           |
-| 456      | Bob            |
-| 789      | Alice          |
-
-
-
-Is there a way to do this faster then: making new vectors, than create a new frame from the new vectors? I have read the documentation and found that the 
-Frame::append()
- method would create new columns, not joining rows.","['java', 'h2o']",Huy Ngo,https://stackoverflow.com/users/3972907/huy-ngo,194,"{'gold': None, 'silver': None, 'bronze': ''}"
-70440726,70440726,2021-12-21T19:32:36,2021-12-21 22:39:00Z,412,"In a Databricks notebook, I am trying to load an H2O model that was trained for H2O version 3.30.1.3.
-
-
-I have installed the version of Sparkling Water which corresponds to the Spark version used for the model training (3.0), 
-h2o-pysparkling-3.0
-, which I pulled from PyPI.
-
-
-The Sparkling Water server is using the latest version of H2O rather than the version I need. Maybe there is a way to specify the H2O version when I initiate the Sparkling Water context?  Something like this:
-
-
-import h2o
-from pysparkling import H2OContext
-from pysparkling.ml import H2OBinaryModel
-
-hc = H2OContext.getOrCreate(h2o_version='3.30.1.3')
-model = H2OBinaryModel.read('s3://bucket/model_file')
-
-
-
-I run the above code without an argument to 
-H2OContext.getOrCreate()
- and I get this error:
-
-
-IllegalArgumentException: 
- The binary model has been trained in H2O of version
- 3.30.1.3 but you are currently running H2O version of 3.34.0.6.
- Please make sure that running Sparkling Water/H2O-3 cluster and the loaded binary
- model correspond to the same H2O-3 version.
-
-
-
-Where is the Python API for Sparkling Water? If I could find that I might be able to determine if there's an H2O version argument for the context initializer but surprisingly it's been impossible for me to find so far with Google and poking around in the docs.
-
-
-Or is this something that's instead handled by installing an H2O version-specific build of Sparkling Water? Or perhaps there's another relevant configuration setting someplace?","['h2o', 'sparkling-water']",James Adams,https://stackoverflow.com/users/85248/james-adams,"8,687","{'gold': '', 'silver': '', 'bronze': ''}"
-70408222,70408222,2021-12-19T00:35:45,2021-12-23 21:49:01Z,89,"My question is if Open Source H2O-3, Open Source Sparkling Water and Driverless AI are affected by CVE-2021-44228 and CVE-2021-45046.","['h2o', 'sparkling-water', 'driverless-ai', 'h2o.ai']",Michal,https://stackoverflow.com/users/5089773/michal,437,"{'gold': None, 'silver': '', 'bronze': ''}"
-70366277,70366277,2021-12-15T15:29:29,2021-12-15 15:47:13Z,0,"A vulnerability of 
-log4j
- became public.
-Amongst other packages, I am using R 
-shiny
- and 
-h2o
- packages.
-I already found out, that 
-shiny
- is not affected by the vulnerability, since it uses 
-log4js
-(see 
-https://github.com/log4js-node/log4js-node/issues/1105
-), which is an implementation in Javascript.
-
-
-Now we come to 
-h2o
-. I know that this package provides an API to the 
-h2o
--framework in Java. In the documentation of building 
-h2o
- from source from github (see 
-https://h2o-release.s3.amazonaws.com/h2o/rel-noether/4/docs-website/developuser/quickstart_git.html
-), i found along the lines
-
-
-javac -source 1.6 -target 1.6 -sourcepath src/main/java -classpath
-""../lib/log4j/log4j-1.2.15.jar:../target/h2o.jar:../lib/hadoop/mapr2.1.3/hadoop-0.20.2-dev-core.jar""
--d classes/mapr2.1.3 src/main/java/water/hadoop/*.java
-warning: [options] bootstrap class path not set in conjunction with -source 1.6
-1 warning
-jar cf target/h2odriver_mapr2.1.3.jar -C classes/mapr2.1.3 .
-make build_inner HADOOP_VERSION=cdh3
-mkdir classes/cdh3
-javac -source 1.6 -target 1.6 -sourcepath src/main/java -classpath
-""../lib/log4j/log4j-1.2.15.jar:../target/h2o.jar:../lib/hadoop/cdh3/hadoop-core-0.20.2-cdh3u6.jar"" -d
-classes/cdh3 src/main/java/water/hadoop/*.java
-warning: [options] bootstrap class path not set in conjunction with -source 1.6
-1 warning
-jar cf target/h2odriver_cdh3.jar -C classes/cdh3 .
-make build_inner HADOOP_VERSION=cdh4
-mkdir classes/cdh4
-javac -source 1.6 -target 1.6 -sourcepath src/main/java -classpath
-""../lib/log4j/log4j-1.2.15.jar:../target/h2o.jar:../lib/hadoop/cdh4/hadoop-common.jar:../
-
-
-
-It seems like 
-h2o
- is using 
-log4j
-, but I don't know much about Java and its dependencies.
-
-
-Can anyone with more knowledge clearify whether the 
-h2o
--package is affected by the 
-log4j
- vulnerability? And if so, how to solve or workaround this?
-
-
-Thank you very much in advance.","['java', 'r', 'security', 'log4j', 'h2o']",Jonas,https://stackoverflow.com/users/14316488/jonas,"1,788","{'gold': '', 'silver': '', 'bronze': ''}"
-70311395,70311395,2021-12-10T23:22:57,2022-02-17 00:15:38Z,328,"As my plan was to exclusively use H2O's web GUI, I installed H2O following these steps: 
-https://docs.h2o.ai/h2o/latest-stable/h2o-docs/downloading.html#download-and-run-from-the-command-line
-. I got a Windows Firewall popup asking me to allow h2o to communicate on public networks (I was connected to a public network at that moment). I accepted.
-
-
-Now I would like to uninstall it, but I have not been able to find info about it. Also, it does not appear in the list of installed applications in Windows 10 settings. I have not found any rules related to H2O or port 54321 in Windows firewall either.
-
-
-Please note:
-
-
-
-
-This is the first time I install programs this way.
-
-
-I do not have Python or R installed in my computer, as it was not necessary for using H2O's web GUI.","['uninstallation', 'h2o']",,https://stackoverflow.com/posts/70311395/revisions,,"{'gold': None, 'silver': None, 'bronze': None}"
-70294943,70294943,2021-12-09T18:27:46,2022-02-17 00:18:45Z,107,"With the latest version of 
-hex.genmodel
- java library, we can get the MSE value. But I need to define the threshold value to identify the anomaly from generated H2O Poco class itself. Even a calculation would be helpful.
-
-
-Thanks for the help.","['java', 'h2o', 'autoencoder', 'threshold', 'anomaly-detection']",Niroshan K,https://stackoverflow.com/users/10318195/niroshan-k,88,"{'gold': None, 'silver': None, 'bronze': ''}"
-70279189,70279189,2021-12-08T17:22:34,2022-04-15 12:24:11Z,73,"I'm new to machine learning and H2O tools, and I'd like to know if there is a high-level H2O interface that allows us to implement new methods into a pipeline.
-
-
-I know we can build models thanks to Flow interface and export them as POJO/MOJO. But how can I, for example, decide to use kNN method as an imputation method for my data, when Flow only allows simple imputation like mean/mode ?","['methods', 'h2o', 'imputation']",General Grievance,https://stackoverflow.com/posts/70279189/revisions,"4,957","{'gold': '', 'silver': '', 'bronze': ''}"
-70274744,70274744,2021-12-08T12:06:17,2022-02-17 00:08:37Z,171,"plz help~
-
-
-i create h2o-stateful-set which set replicas: 3, then i run a h2o automl job, it works well. but suddenly one of pod breakdown, i use 
-kubectl delete pod h2o-k8s-1
- to delete this pod. the statefulset create a new pod has same name h2o-k8s-1.
-But here's the problem, the new pod can't join h2o cluster, and  job stuck, logs as follows
-
-
-FJ-126-3  WARN water.default: Killing h2o-stateful-set-1.h2o-service.dhr-h2o.svc.cluster.local/10.177.5.212:54321 because the cloud is no longer accepting n
-ew H2O nodes.
-
-
-
-i know New H2O nodes join to form a cluster during launch. After a job has started on the cluster, it prevents new members from joining. but what should i do if cluster pod breakdown during training?","['h2o', 'h2o.ai']",dhr,https://stackoverflow.com/users/11118784/dhr,1,"{'gold': None, 'silver': None, 'bronze': ''}"
-70205550,70205550,2021-12-02T19:43:29,2022-01-15 06:58:37Z,382,"I have recently started learning about H2O AutoML. I am wondering which one of the following options works better. Single node with 6GB of memory or a cluster of three nodes with 2GB memory each.
-
-
-
-
-java -Xmx6g -jar h2o.jar -name MyCluster
-
-
-java -Xmx2g -jar h2o.jar &   java -Xmx2g -jar h2o.jar &   java -Xmx2g -jar h2o.jar &
-
-
-
-
-If there are drawbacks with single node deployment, can you recommend any methods to optimize the performance?
-Thanks in advance!","['h2o', 'h2o.ai']",python dev,https://stackoverflow.com/users/2020301/python-dev,219,"{'gold': '', 'silver': '', 'bronze': ''}"
-70178457,70178457,2021-12-01T02:29:58,2021-12-06 07:33:54Z,183,"In my algorithm, master node needs more memory (say 20GB) while the worker nodes need much less memory (say 3GB). However, as far as I know, in H2O it is only possibly to set the master node the same memory as worker nodes using 
--mapperXmx
-.
-
-
-In Apache Spark, it is possible to specify the driver memory with 
---driver-memory
- argument. However, I have 
-not
- been able to find a equivalent way to set ""master/driver"" node's memory in H2O.
-
-
-I am running H2O (
-not
- Sparkling Water) on a Hadoop cluster (essentially on a YARN cluster) using this command:
-
-hadoop jar h2o-hadoop-3/h2o-cdh6.3-assembly/build/libs/h2odriver-3.33.1.jar -nodes 5 -mapperXmx 3g -output my/output/dir/on/hdfs
-. This way I am able to specify worker nodes' memory as 3GB. However, I could not find the argument to specify the master node's memory.  Is it possible to set the master node 20GB?","['java', 'hadoop', 'hadoop-yarn', 'h2o']",,https://stackoverflow.com/posts/70178457/revisions,,"{'gold': None, 'silver': None, 'bronze': None}"
-70071481,70071481,2021-11-22T19:39:50,2021-11-22 19:39:50Z,0,"I am trying to convert some R code to Python. The code builds h2o models and uses Lime for explanations. The Lime modules in each language seem to be quite different.
-
-
-What would be the equiavlent python functions to this R code?
-
-
-explainer <- lime(x=observations, model=mymodel)
-explainations <- lime::exaplin(x=observations, explainer=explainer,n_permutations=5000, feature_select=""highest_weights"", n_labels=5, n_features=10)
-
-
-
-This is a multiclass classification problem with 3 classes. I was thinking the best translation in Python would be to use the LimeTabularExplainer.
-
-
-explainer = lime.lime_tabular.LimeTabularExplainer(observations, mode='classification', class_names=myclasses,feature_names=observationCols)
-explainations = explainer.explain_instance(observations, mymodel, num_samples=5000, num_features=8)
-
-
-
-This doesn't seem to be working through so I am not confident. Is there a better way to translate this R code, or better Lime documentation somewhere for explaining models.","['python', 'r', 'model', 'h2o', 'lime']",Jacqueline Schafer,https://stackoverflow.com/users/17482226/jacqueline-schafer,11,"{'gold': None, 'silver': None, 'bronze': ''}"
+Is my laynch command ok? ./my_documents right now only contains one text document.","['h2o', 'openai-api']",donnadulcinea,https://stackoverflow.com/users/3200736/donnadulcinea,"1,864"

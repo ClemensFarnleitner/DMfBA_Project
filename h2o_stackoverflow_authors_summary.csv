@@ -1,107 +1,36 @@
-7101708,7101708,Grigory Skvortsov,https://stackoverflow.com/users/7101708/grigory-skvortsov,"{'gold': 0, 'silver': 4, 'bronze': 23}",463,58000,9,21,2016-11-01
-1809593,1809593,user1809593,https://stackoverflow.com/users/1809593/user1809593,"{'gold': 0, 'silver': 0, 'bronze': 3}",41,1000,0,4,2012-11-08
-1009823,1009823,Robert Long,https://stackoverflow.com/users/1009823/robert-long,"{'gold': 6, 'silver': 34, 'bronze': 68}",6696,585000,245,36,2011-10-23
-17356884,17356884,Pradeep Ganesan,https://stackoverflow.com/users/17356884/pradeep-ganesan,"{'gold': 0, 'silver': 0, 'bronze': 1}",11,175,0,1,2021-11-08
-14399602,14399602,Michael Chao,https://stackoverflow.com/users/14399602/michael-chao,"{'gold': 0, 'silver': 8, 'bronze': 17}",873,2100000,13,12,2020-10-06
-85248,85248,James Adams,https://stackoverflow.com/users/85248/james-adams,"{'gold': 24, 'silver': 100, 'bronze': 153}",8687,1300000,34,162,2009-03-31
-7128641,7128641,jjhold,https://stackoverflow.com/users/7128641/jjhold,"{'gold': 0, 'silver': 0, 'bronze': 10}",99,8000,1,10,2016-11-07
-12215233,12215233,Abhay,https://stackoverflow.com/users/12215233/abhay,"{'gold': 0, 'silver': 0, 'bronze': 1}",11,75,0,1,2019-10-14
-1683061,1683061,Whitebeard,https://stackoverflow.com/users/1683061/whitebeard,"{'gold': 5, 'silver': 27, 'bronze': 31}",6163,846000,87,12,2012-09-19
-17034413,17034413,cmiso84,https://stackoverflow.com/users/17034413/cmiso84,"{'gold': 0, 'silver': 0, 'bronze': 2}",11,431,0,1,2021-09-29
-2485450,2485450,user2485450,https://stackoverflow.com/users/2485450/user2485450,"{'gold': 0, 'silver': 0, 'bronze': 4}",21,2000,1,3,2013-06-14
-9244371,9244371,Hutch3232,https://stackoverflow.com/users/9244371/hutch3232,"{'gold': 0, 'silver': 4, 'bronze': 12}",428,15000,9,8,2018-01-20
-7205625,7205625,Rumesh Madhusanka,https://stackoverflow.com/users/7205625/rumesh-madhusanka,"{'gold': 3, 'silver': 15, 'bronze': 29}",1355,181000,5,31,2016-11-24
-11289178,11289178,Frank001,https://stackoverflow.com/users/11289178/frank001,"{'gold': 0, 'silver': 1, 'bronze': 6}",63,3000,0,7,2019-04-01
-11942305,11942305,Prometheous5,https://stackoverflow.com/users/11942305/prometheous5,"{'gold': 0, 'silver': 0, 'bronze': 5}",53,3000,0,4,2019-08-18
-16919489,16919489,Arthur Matta,https://stackoverflow.com/users/16919489/arthur-matta,"{'gold': 0, 'silver': 0, 'bronze': 2}",13,308,0,1,2021-09-15
-16231567,16231567,Divyansh Sharma,https://stackoverflow.com/users/16231567/divyansh-sharma,"{'gold': 0, 'silver': 0, 'bronze': 2}",21,2000,0,2,2021-06-15
-13337635,13337635,yudhiesh,https://stackoverflow.com/users/13337635/yudhiesh,"{'gold': 3, 'silver': 23, 'bronze': 55}",6771,520000,294,98,2020-04-17
+,user_id,user_name,user_profile_link,badges,reputation,reached,answer_count,questions_count,member_since
+12979649,12979649,Adam,https://stackoverflow.com/users/12979649/adam,"{'gold': 0, 'silver': 0, 'bronze': 4}",21,269,1,3,2020-02-28
+27513799,27513799,XuhanChen,https://stackoverflow.com/users/27513799/xuhanchen,"{'gold': 0, 'silver': 0, 'bronze': 0}",1,56,0,1,2024-09-27
+5904690,5904690,Max,https://stackoverflow.com/users/5904690/max,"{'gold': 0, 'silver': 7, 'bronze': 25}",569,46000,1,50,2016-02-09
+2449938,2449938,Sasha Babaei,https://stackoverflow.com/users/2449938/sasha-babaei,"{'gold': 1, 'silver': 3, 'bronze': 9}",485,15000,12,22,2013-06-04
+22456747,22456747,ZTraveler,https://stackoverflow.com/users/22456747/ztraveler,"{'gold': 0, 'silver': 0, 'bronze': 0}",1,80,0,1,2023-08-28
+23479948,23479948,user23479948,https://stackoverflow.com/users/23479948/user23479948,"{'gold': 0, 'silver': 0, 'bronze': 0}",1,52,0,1,2024-02-25
 1700890,1700890,user1700890,https://stackoverflow.com/users/1700890/user1700890,"{'gold': 22, 'silver': 97, 'bronze': 203}",7672,1300000,7,398,2012-09-26
-16537296,16537296,James Ellis,https://stackoverflow.com/users/16537296/james-ellis,"{'gold': 0, 'silver': 0, 'bronze': 6}",101,9000,1,9,2021-07-27
-142317,142317,Shaun Lebron,https://stackoverflow.com/users/142317/shaun-lebron,"{'gold': 0, 'silver': 28, 'bronze': 29}",2531,149000,21,17,2009-07-21
-16537296,16537296,James Ellis,https://stackoverflow.com/users/16537296/james-ellis,"{'gold': 0, 'silver': 0, 'bronze': 6}",101,9000,1,9,2021-07-27
-16586671,16586671,DavsGudnaim,https://stackoverflow.com/users/16586671/davsgudnaim,"{'gold': 0, 'silver': 0, 'bronze': 3}",11,126,0,1,2021-08-03
-13729130,13729130,Jesús Asdrúbal Molina Víquez,https://stackoverflow.com/users/13729130/jes%c3%bas-asdr%c3%babal-molina-v%c3%adquez,"{'gold': 0, 'silver': 0, 'bronze': 7}",119,5000,0,16,2020-06-11
-4544413,4544413,Luis Ramon Ramirez Rodriguez,https://stackoverflow.com/users/4544413/luis-ramon-ramirez-rodriguez,"{'gold': 28, 'silver': 118, 'bronze': 196}",10303,2700000,1,384,2015-02-08
-7343922,7343922,user7343922,https://stackoverflow.com/users/7343922/user7343922,"{'gold': 0, 'silver': 4, 'bronze': 22}",306,36000,25,33,2016-12-27
-8236733,8236733,lampShadesDrifter,https://stackoverflow.com/users/8236733/lampshadesdrifter,"{'gold': 9, 'silver': 50, 'bronze': 117}",4139,452000,111,267,2017-06-30
-15134789,15134789,HAYAT SABIR,https://stackoverflow.com/users/15134789/hayat-sabir,"{'gold': 0, 'silver': 0, 'bronze': 1}",1,130,0,1,2021-02-03
-5428238,5428238,Math Lover,https://stackoverflow.com/users/5428238/math-lover,"{'gold': 0, 'silver': 4, 'bronze': 16}",177,25000,1,18,2015-10-09
-16328135,16328135,Pablo34,https://stackoverflow.com/users/16328135/pablo34,"{'gold': 0, 'silver': 0, 'bronze': 2}",21,437,0,1,2021-06-27
-11533623,11533623,Tomas,https://stackoverflow.com/users/11533623/tomas,"{'gold': 0, 'silver': 1, 'bronze': 2}",91,96000,2,2,2019-05-21
-4513999,4513999,oercim,https://stackoverflow.com/users/4513999/oercim,"{'gold': 2, 'silver': 18, 'bronze': 37}",1848,137000,2,91,2015-01-31
-6287730,6287730,David Comfort,https://stackoverflow.com/users/6287730/david-comfort,"{'gold': 0, 'silver': 0, 'bronze': 6}",153,8000,2,7,2016-05-03
-10484383,10484383,Matthew Son,https://stackoverflow.com/users/10484383/matthew-son,"{'gold': 0, 'silver': 11, 'bronze': 37}",1383,317000,26,43,2018-10-10
-9366998,9366998,Lucas Bali,https://stackoverflow.com/users/9366998/lucas-bali,"{'gold': 0, 'silver': 1, 'bronze': 6}",81,4000,2,3,2018-02-15
-15824587,15824587,therafafan,https://stackoverflow.com/users/15824587/therafafan,"{'gold': 0, 'silver': 0, 'bronze': 4}",13,760,0,4,2021-05-03
-4508705,4508705,sharvarig,https://stackoverflow.com/users/4508705/sharvarig,"{'gold': 0, 'silver': 0, 'bronze': 0}",1,449,0,2,2015-01-29
-3447708,3447708,Electrino,https://stackoverflow.com/users/3447708/electrino,"{'gold': 4, 'silver': 21, 'bronze': 52}",2870,307000,9,174,2014-03-21
-8771368,8771368,Geir Inge,https://stackoverflow.com/users/8771368/geir-inge,"{'gold': 0, 'silver': 3, 'bronze': 10}",189,17000,0,7,2017-10-13
-8771368,8771368,Geir Inge,https://stackoverflow.com/users/8771368/geir-inge,"{'gold': 0, 'silver': 3, 'bronze': 10}",189,17000,0,7,2017-10-13
-11249314,11249314,my_cse lab,https://stackoverflow.com/users/11249314/my-cse-lab,"{'gold': 0, 'silver': 1, 'bronze': 5}",35,6000,0,3,2019-03-24
-15852149,15852149,Wojciech Blachowski,https://stackoverflow.com/users/15852149/wojciech-blachowski,"{'gold': 0, 'silver': 0, 'bronze': 2}",21,377,0,1,2021-05-06
-3048453,3048453,David,https://stackoverflow.com/users/3048453/david,"{'gold': 5, 'silver': 52, 'bronze': 90}",10022,509000,220,140,2013-11-29
-3447708,3447708,Electrino,https://stackoverflow.com/users/3447708/electrino,"{'gold': 4, 'silver': 21, 'bronze': 52}",2870,307000,9,174,2014-03-21
-4606796,4606796,V Nguyn,https://stackoverflow.com/users/4606796/v-nguyn,"{'gold': 0, 'silver': 0, 'bronze': 0}",1,202,0,1,2015-02-25
-11689518,11689518,rrodriguezbarron,https://stackoverflow.com/users/11689518/rrodriguezbarron,"{'gold': 0, 'silver': 0, 'bronze': 7}",29,1000,4,2,2019-06-23
-9579974,9579974,Jānis,https://stackoverflow.com/users/9579974/j%c4%81nis,"{'gold': 0, 'silver': 0, 'bronze': 6}",63,7000,3,8,2018-03-31
-15415131,15415131,Leo Barbosa,https://stackoverflow.com/users/15415131/leo-barbosa,"{'gold': 0, 'silver': 1, 'bronze': 4}",31,4000,1,1,2021-03-17
-3447708,3447708,Electrino,https://stackoverflow.com/users/3447708/electrino,"{'gold': 4, 'silver': 21, 'bronze': 52}",2870,307000,9,174,2014-03-21
-9482910,9482910,user9482910,https://stackoverflow.com/users/9482910/user9482910,"{'gold': 0, 'silver': 0, 'bronze': 5}",25,3000,0,4,2018-03-13
-15798405,15798405,Blitz,https://stackoverflow.com/users/15798405/blitz,"{'gold': 0, 'silver': 0, 'bronze': 2}",1,117,0,1,2021-04-30
-15791721,15791721,이광현,https://stackoverflow.com/users/15791721/%ec%9d%b4%ea%b4%91%ed%98%84,"{'gold': 0, 'silver': 0, 'bronze': 0}",1,302,0,1,2021-04-29
-11612543,11612543,AlvinH,https://stackoverflow.com/users/11612543/alvinh,"{'gold': 3, 'silver': 14, 'bronze': 10}",1409,897000,7,6,2019-06-07
-15723919,15723919,josephD,https://stackoverflow.com/users/15723919/josephd,"{'gold': 0, 'silver': 0, 'bronze': 7}",152,4000,5,6,2021-04-21
-5269047,5269047,sm925,https://stackoverflow.com/users/5269047/sm925,"{'gold': 1, 'silver': 18, 'bronze': 31}",2678,94000,129,20,2015-08-26
-5269047,5269047,sm925,https://stackoverflow.com/users/5269047/sm925,"{'gold': 1, 'silver': 18, 'bronze': 31}",2678,94000,129,20,2015-08-26
-10290113,10290113,Brian Head,https://stackoverflow.com/users/10290113/brian-head,"{'gold': 0, 'silver': 1, 'bronze': 5}",57,6000,0,8,2018-08-29
-15263363,15263363,Luisa Nogueira,https://stackoverflow.com/users/15263363/luisa-nogueira,"{'gold': 0, 'silver': 0, 'bronze': 2}",13,307,0,1,2021-02-23
-10082579,10082579,Jdv,https://stackoverflow.com/users/10082579/jdv,"{'gold': 0, 'silver': 2, 'bronze': 13}",329,13000,0,21,2018-07-14
-15529486,15529486,AberLan,https://stackoverflow.com/users/15529486/aberlan,"{'gold': 0, 'silver': 0, 'bronze': 1}",3,360,0,1,2021-04-01
-15099185,15099185,alhyang,https://stackoverflow.com/users/15099185/alhyang,"{'gold': 0, 'silver': 0, 'bronze': 1}",1,177,0,1,2021-01-28
-15504053,15504053,Ingelik,https://stackoverflow.com/users/15504053/ingelik,"{'gold': 0, 'silver': 0, 'bronze': 0}",1,238,0,1,2021-03-29
-4965276,4965276,TOBi,https://stackoverflow.com/users/4965276/tobi,"{'gold': 0, 'silver': 0, 'bronze': 4}",35,6000,0,5,2015-06-02
-3438001,3438001,Martin Smith,https://stackoverflow.com/users/3438001/martin-smith,"{'gold': 1, 'silver': 29, 'bronze': 55}",4047,1300000,100,51,2014-03-19
-15480525,15480525,mrrob,https://stackoverflow.com/users/15480525/mrrob,"{'gold': 0, 'silver': 0, 'bronze': 2}",3,379,0,1,2021-03-25
-14035190,14035190,Lisseth,https://stackoverflow.com/users/14035190/lisseth,"{'gold': 0, 'silver': 1, 'bronze': 3}",33,3000,0,2,2020-08-02
-9962007,9962007,mirekphd,https://stackoverflow.com/users/9962007/mirekphd,"{'gold': 3, 'silver': 54, 'bronze': 78}",6488,6300000,270,47,2018-06-19
-8272351,8272351,Cristian Contrera,https://stackoverflow.com/users/8272351/cristian-contrera,"{'gold': 0, 'silver': 3, 'bronze': 18}",713,53000,46,7,2017-07-07
-15377458,15377458,John Leonard,https://stackoverflow.com/users/15377458/john-leonard,"{'gold': 0, 'silver': 0, 'bronze': 2}",11,170,0,1,2021-03-11
-2513990,2513990,blehblehbleh,https://stackoverflow.com/users/2513990/blehblehbleh,"{'gold': 0, 'silver': 0, 'bronze': 6}",154,3000,5,5,2013-06-23
-9086383,9086383,Keith,https://stackoverflow.com/users/9086383/keith,"{'gold': 0, 'silver': 2, 'bronze': 8}",154,164000,7,4,2017-12-12
-10178162,10178162,Phoenix,https://stackoverflow.com/users/10178162/phoenix,"{'gold': 0, 'silver': 8, 'bronze': 18}",399,60000,8,33,2018-08-03
-10871102,10871102,Sarvendra Singh,https://stackoverflow.com/users/10871102/sarvendra-singh,"{'gold': 1, 'silver': 3, 'bronze': 10}",139,29000,0,20,2019-01-05
-5248451,5248451,Adrish Ray,https://stackoverflow.com/users/5248451/adrish-ray,"{'gold': 0, 'silver': 0, 'bronze': 3}",43,2000,0,4,2015-08-20
-13506329,13506329,Lihka_nonem,https://stackoverflow.com/users/13506329/lihka-nonem,"{'gold': 0, 'silver': 2, 'bronze': 10}",378,13000,14,20,2020-05-09
-11942120,11942120,Kai,https://stackoverflow.com/users/11942120/kai,"{'gold': 0, 'silver': 0, 'bronze': 2}",5,362,0,2,2019-08-18
-23512643,23512643,stats_noob,https://stackoverflow.com/users/23512643/stats-noob,"{'gold': 5, 'silver': 31, 'bronze': 140}",5857,511000,75,"1,084",2024-03-01
-2205916,2205916,user2205916,https://stackoverflow.com/users/2205916/user2205916,"{'gold': 11, 'silver': 59, 'bronze': 91}",3426,725000,9,179,2013-03-25
-13756465,13756465,Fanwei Zeng,https://stackoverflow.com/users/13756465/fanwei-zeng,"{'gold': 0, 'silver': 0, 'bronze': 6}",55,2000,1,6,2020-06-16
-1372785,1372785,aburkov,https://stackoverflow.com/users/1372785/aburkov,"{'gold': 0, 'silver': 2, 'bronze': 5}",13,4000,6,6,2012-05-03
-10287139,10287139,JP Satrio,https://stackoverflow.com/users/10287139/jp-satrio,"{'gold': 0, 'silver': 0, 'bronze': 2}",1,308,0,2,2018-08-28
-5248451,5248451,Adrish Ray,https://stackoverflow.com/users/5248451/adrish-ray,"{'gold': 0, 'silver': 0, 'bronze': 3}",43,2000,0,4,2015-08-20
-4332914,4332914,Marco De Virgilis,https://stackoverflow.com/users/4332914/marco-de-virgilis,"{'gold': 2, 'silver': 11, 'bronze': 34}",1067,82000,42,54,2014-12-06
-15147871,15147871,Emir Smaka,https://stackoverflow.com/users/15147871/emir-smaka,"{'gold': 0, 'silver': 0, 'bronze': 0}",1,320,0,1,2021-02-04
-11888134,11888134,Akshay Gane,https://stackoverflow.com/users/11888134/akshay-gane,"{'gold': 0, 'silver': 0, 'bronze': 2}",13,1000,1,2,2019-08-06
-7758654,7758654,vdebuen,https://stackoverflow.com/users/7758654/vdebuen,"{'gold': 0, 'silver': 0, 'bronze': 3}",31,14000,1,2,2017-03-23
-11942120,11942120,Kai,https://stackoverflow.com/users/11942120/kai,"{'gold': 0, 'silver': 0, 'bronze': 2}",5,362,0,2,2019-08-18
-13382158,13382158,user123231322,https://stackoverflow.com/users/13382158/user123231322,"{'gold': 0, 'silver': 0, 'bronze': 5}",65,4000,0,13,2020-04-22
-7846405,7846405,sefiks,https://stackoverflow.com/users/7846405/sefiks,"{'gold': 0, 'silver': 10, 'bronze': 18}",1585,938000,152,6,2017-04-10
-4332914,4332914,Marco De Virgilis,https://stackoverflow.com/users/4332914/marco-de-virgilis,"{'gold': 2, 'silver': 11, 'bronze': 34}",1067,82000,42,54,2014-12-06
-15052924,15052924,Shahin Manafi,https://stackoverflow.com/users/15052924/shahin-manafi,"{'gold': 0, 'silver': 0, 'bronze': 0}",1,377,0,1,2021-01-21
-11502399,11502399,Ken,https://stackoverflow.com/users/11502399/ken,"{'gold': 3, 'silver': 23, 'bronze': 42}",1401,205000,11,75,2019-05-15
-4332914,4332914,Marco De Virgilis,https://stackoverflow.com/users/4332914/marco-de-virgilis,"{'gold': 2, 'silver': 11, 'bronze': 34}",1067,82000,42,54,2014-12-06
-10851493,10851493,dkmina,https://stackoverflow.com/users/10851493/dkmina,"{'gold': 0, 'silver': 0, 'bronze': 1}",11,103,0,1,2018-12-31
-11227440,11227440,Di Zhen,https://stackoverflow.com/users/11227440/di-zhen,"{'gold': 0, 'silver': 0, 'bronze': 1}",21,489,0,1,2019-03-19
-8968617,8968617,Ingolifs,https://stackoverflow.com/users/8968617/ingolifs,"{'gold': 0, 'silver': 2, 'bronze': 15}",301,10000,6,16,2017-11-20
-11067633,11067633,MLearner,https://stackoverflow.com/users/11067633/mlearner,"{'gold': 0, 'silver': 1, 'bronze': 7}",63,8000,0,9,2019-02-15
-14022410,14022410,Yass Light,https://stackoverflow.com/users/14022410/yass-light,"{'gold': 0, 'silver': 0, 'bronze': 4}",23,1000,0,3,2020-07-30
-12914714,12914714,Kenneth Foo,https://stackoverflow.com/users/12914714/kenneth-foo,"{'gold': 0, 'silver': 0, 'bronze': 3}",33,402,0,2,2020-02-17
-10817571,10817571,C. Cooney,https://stackoverflow.com/users/10817571/c-cooney,"{'gold': 0, 'silver': 6, 'bronze': 23}",581,44000,31,51,2018-12-20
-6393250,6393250,Jon Nguyen,https://stackoverflow.com/users/6393250/jon-nguyen,"{'gold': 1, 'silver': 1, 'bronze': 10}",99,20000,0,20,2016-05-28
-10871102,10871102,Sarvendra Singh,https://stackoverflow.com/users/10871102/sarvendra-singh,"{'gold': 1, 'silver': 3, 'bronze': 10}",139,29000,0,20,2019-01-05
-14049184,14049184,Ahmad H. Ibrahim,https://stackoverflow.com/users/14049184/ahmad-h-ibrahim,"{'gold': 0, 'silver': 8, 'bronze': 14}",1079,299000,39,6,2020-08-04
-12750776,12750776,marv722,https://stackoverflow.com/users/12750776/marv722,"{'gold': 0, 'silver': 0, 'bronze': 4}",67,2000,0,8,2020-01-20
-14849337,14849337,martin_hulin,https://stackoverflow.com/users/14849337/martin-hulin,"{'gold': 0, 'silver': 0, 'bronze': 4}",43,763,0,4,2020-12-18
-4013447,4013447,newleaf,https://stackoverflow.com/users/4013447/newleaf,"{'gold': 8, 'silver': 38, 'bronze': 57}",2447,407000,9,93,2014-09-05
-1249481,1249481,danas.zuokas,https://stackoverflow.com/users/1249481/danas-zuokas,"{'gold': 4, 'silver': 31, 'bronze': 40}",4633,557000,61,28,2012-03-05
+3348414,3348414,SqueakyBeak,https://stackoverflow.com/users/3348414/squeakybeak,"{'gold': 0, 'silver': 5, 'bronze': 16}",432,21000,10,38,2014-02-24
+6123824,6123824,UseR10085,https://stackoverflow.com/users/6123824/user10085,"{'gold': 4, 'silver': 31, 'bronze': 64}",8062,430000,315,115,2016-03-28
+2621316,2621316,Amon,https://stackoverflow.com/users/2621316/amon,"{'gold': 6, 'silver': 34, 'bronze': 59}",2931,1300000,10,150,2013-06-13
+20954952,20954952,Tiago,https://stackoverflow.com/users/20954952/tiago,"{'gold': 0, 'silver': 1, 'bronze': 10}",65,15000,0,12,2023-01-07
+9228207,9228207,mindstorm84,https://stackoverflow.com/users/9228207/mindstorm84,"{'gold': 0, 'silver': 0, 'bronze': 8}",102,6000,7,11,2018-01-17
+10504648,10504648,Tyler Moore,https://stackoverflow.com/users/10504648/tyler-moore,"{'gold': 0, 'silver': 0, 'bronze': 3}",51,2000,0,3,2018-10-15
+5298815,5298815,Joe Faraguna,https://stackoverflow.com/users/5298815/joe-faraguna,"{'gold': 0, 'silver': 0, 'bronze': 3}",11,38,0,1,2015-09-03
+14061266,14061266,wej,https://stackoverflow.com/users/14061266/wej,"{'gold': 0, 'silver': 0, 'bronze': 1}",21,2000,0,6,2020-08-06
+23374954,23374954,jo_sh,https://stackoverflow.com/users/23374954/jo-sh,"{'gold': 0, 'silver': 0, 'bronze': 0}",1,81,0,2,2024-02-10
+9198260,9198260,firmo23,https://stackoverflow.com/users/9198260/firmo23,"{'gold': 3, 'silver': 46, 'bronze': 151}",8384,508000,25,992,2018-01-10
+11698173,11698173,Geerthy Thambiraj,https://stackoverflow.com/users/11698173/geerthy-thambiraj,"{'gold': 0, 'silver': 0, 'bronze': 2}",21,264,0,2,2019-06-25
+23271364,23271364,Rich,https://stackoverflow.com/users/23271364/rich,"{'gold': 0, 'silver': 0, 'bronze': 0}",1,13,0,1,2024-01-19
+22314796,22314796,Nithin Reddy,https://stackoverflow.com/users/22314796/nithin-reddy,"{'gold': 0, 'silver': 0, 'bronze': 0}",1,86,0,1,2023-07-31
+23209807,23209807,sofi,https://stackoverflow.com/users/23209807/sofi,"{'gold': 0, 'silver': 0, 'bronze': 1}",11,174,0,1,2024-01-07
+23121261,23121261,Simon M.,https://stackoverflow.com/users/23121261/simon-m,"{'gold': 0, 'silver': 0, 'bronze': 2}",21,103,0,1,2023-12-18
+7214340,7214340,Mirko,https://stackoverflow.com/users/7214340/mirko,"{'gold': 0, 'silver': 2, 'bronze': 11}",233,12000,1,18,2016-11-26
+9687785,9687785,omoshiroiii,https://stackoverflow.com/users/9687785/omoshiroiii,"{'gold': 0, 'silver': 5, 'bronze': 12}",693,48000,68,4,2018-04-23
+8315634,8315634,Soumya Boral,https://stackoverflow.com/users/8315634/soumya-boral,"{'gold': 1, 'silver': 16, 'bronze': 33}",1329,1200000,22,46,2017-07-16
+394667,394667,Vijay Kansal,https://stackoverflow.com/users/394667/vijay-kansal,"{'gold': 0, 'silver': 12, 'bronze': 28}",839,51000,6,26,2010-07-17
+22663600,22663600,statsstudent,https://stackoverflow.com/users/22663600/statsstudent,"{'gold': 0, 'silver': 0, 'bronze': 1}",1,139,0,1,2023-09-30
+18784875,18784875,Rothschild,https://stackoverflow.com/users/18784875/rothschild,"{'gold': 0, 'silver': 1, 'bronze': 6}",39,1000,0,4,2022-04-12
+22641771,22641771,Wise Recruitment,https://stackoverflow.com/users/22641771/wise-recruitment,"{'gold': 0, 'silver': 0, 'bronze': 0}",1,54,0,1,2023-09-27
+3867290,3867290,Khaleel,https://stackoverflow.com/users/3867290/khaleel,"{'gold': 3, 'silver': 17, 'bronze': 36}",1372,168000,81,25,2014-07-23
+22442035,22442035,nickc,https://stackoverflow.com/users/22442035/nickc,"{'gold': 0, 'silver': 0, 'bronze': 2}",11,173,0,1,2023-08-24
+22426730,22426730,kevin,https://stackoverflow.com/users/22426730/kevin,"{'gold': 0, 'silver': 0, 'bronze': 2}",1,47,0,1,2023-08-22
+9670371,9670371,trougc,https://stackoverflow.com/users/9670371/trougc,"{'gold': 0, 'silver': 5, 'bronze': 18}",405,31000,3,31,2018-04-19
+1974542,1974542,ilpadrino,https://stackoverflow.com/users/1974542/ilpadrino,"{'gold': 0, 'silver': 0, 'bronze': 6}",13,4000,2,5,2013-01-13
+3200736,3200736,donnadulcinea,https://stackoverflow.com/users/3200736/donnadulcinea,"{'gold': 2, 'silver': 27, 'bronze': 37}",1864,305000,10,34,2014-01-16

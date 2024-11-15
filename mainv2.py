@@ -165,7 +165,6 @@ class StackOverFlowFetcher:
     def answer_summary(self, link, post_id):
         response = requests.get(link)
         soup = BeautifulSoup(response.content, "html.parser")
-        print(link)
 
         answers_container = soup.find("div", id="answers")
         if answers_container:
@@ -323,7 +322,7 @@ if __name__ == "__main__":
     # Comment this number in order to fetch all pages
     max_pages = 3
 
-    for page in range(3, max_pages + 1):
+    for page in range(1, max_pages + 1):
         print("=" * 50)
         print(f"Start fetching page {page}")
         print("=" * 50)
