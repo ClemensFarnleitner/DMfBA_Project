@@ -99,3 +99,4 @@ This CSV contains comprehensive information about the authors of questions, answ
 | `answer_count`    | Total number of answers provided by the author.                            |
 | `questions_count` | Total number of questions asked by the author.                             |
 | `member_since`    | Date when the author joined Stack Overflow.                                |
+| `post_id`     | Unique identifier for each question.                                        |
