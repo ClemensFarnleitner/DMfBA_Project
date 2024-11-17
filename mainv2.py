@@ -88,7 +88,7 @@ class StackOverFlowFetcher:
             self.question_details(link, post_id)
 
             if user_info:
-                author_data = self.extract_author_data(user_info)
+                author_data = self.extract_author_data(user_info, post_id)
                 self.csv_writer.write_author_csv(author_data)  # Write author data to CSV
 
             # Append to summary list
@@ -227,8 +227,9 @@ class StackOverFlowFetcher:
             # Write comments into CSV
             self.csv_writer.write_comment_csv(comments_summary)
 
-    def extract_author_data(self, user_info_container):
+    def extract_author_data(self, user_info_container, post_id):
         authors_summary = {}
+        post_id = post_id
 
         try:
             # Extract basic user info
@@ -294,6 +295,7 @@ class StackOverFlowFetcher:
                 "answer_count": answer_count,
                 "questions_count": questions_count,
                 "member_since": member_since,
+                "post_id": post_id
             }
 
         except Exception as e:

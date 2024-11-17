@@ -61,7 +61,7 @@ x_df
 
 
 You can find the names of a h2o frame by calling 
-names(x_df)",2024-09-17T18:47:25,jpsmith,https://stackoverflow.com/users/12109788/jpsmith,16.2k,78995266
+names(x_df)",2024-09-17T18:47:25,jpsmith,https://stackoverflow.com/users/12109788/jpsmith,16.3k,78995266
 78988439,78988439,0,"Looks like the ""JAVA not found"" error from 
 agua::h2o_start()
  is coming from a call to 
@@ -609,13 +609,18 @@ https://github.com/h2oai/h2ogpt/issues/622#issuecomment-1666898436",2023-08-09T2
 
 
 gbm_autoML = h2o.get_model(aml.leader)
-gbm_continued = H2OGradientBoostingEstimator(model_id = 'gbm_continued', max_depth = gbm_autoML.actual_params['max_depth'], ntrees = gbm_autoML.actual_params['ntrees']+2, checkpoint = aml.leader)
+gbm_continued = H2OGradientBoostingEstimator(
+  model_id = 'gbm_continued', 
+  max_depth = gbm_autoML.actual_params['max_depth'], 
+  ntrees = gbm_autoML.actual_params['ntrees']+2, 
+  checkpoint = aml.leader)
+
 
 
 To continue to train a GBM model meaning that you are adding more trees into the model.  That is why I have added 2 to the ntrees parameter.  Feel free to change the 2 to anything else that you want as long as it >= 1.
 
 
-Hope this helps and good luck.",2023-07-28T20:42:20,Wendy,https://stackoverflow.com/users/20736722/wendy,301,76790068
+Hope this helps and good luck.",2023-07-28T20:42:20,Aemyl,https://stackoverflow.com/users/6074182/aemyl,"2,182",76790068
 76775726,76775726,1,"Currently h2o generic estimator loaded from mojo files can perform scoring but will not be able to be trained again.
 
 
@@ -1538,7 +1543,7 @@ rmse = function(y, y_predict){
 }
 
 rmse(test['Sepal.Length'], test['predicted'])
-[1] 0.3395448",2022-09-24T15:18:28,phiver,https://stackoverflow.com/users/4985176/phiver,23.5k,73831597
+[1] 0.3395448",2022-09-24T15:18:28,phiver,https://stackoverflow.com/users/4985176/phiver,23.6k,73831597
 74120543,74120543,2,"Yes, H2O AutoML uses most of the hyperparameter defaults in GLM and Deep Learning, and both of those default to 
 standardize = TRUE
 .
@@ -2017,7 +2022,7 @@ If you make a prediction with h2o you will see that it has already taken care of
 
 Note that the models differ slightly in the rmse. 
 h2o.glm
- has a lot more going on in the background.",2022-02-10T17:39:03,phiver,https://stackoverflow.com/users/4985176/phiver,23.5k,71068729
+ has a lot more going on in the background.",2022-02-10T17:39:03,phiver,https://stackoverflow.com/users/4985176/phiver,23.6k,71068729
 71150632,71150632,0,"This is because you cannot use an older model in a newer version of H2O. When you are working with binary models, the version has to be the same.",2022-02-16T23:34:54,Michal Kurka,https://stackoverflow.com/users/7301183/michal-kurka,566,71063715
 70804860,70804860,0,"Article 
 https://www.h2o.ai/blog/hacking-algorithms-into-h2o-quantiles/
@@ -2691,7 +2696,7 @@ df.style.format({'URL': make_clickable})
 Replace 
 gcp.databricks.com
  with whatever cloud provider domain you're using.",2024-05-30T13:30:15,tomasu,https://stackoverflow.com/users/11167644/tomasu,"1,438",68026366
-69110665,69110665,0,Seems h2o cluster version is updated on CRAN version now. Simply reinstalling from CRAN solved the issue.,2021-09-08T23:28:36,Matthew Son,https://stackoverflow.com/users/10484383/matthew-son,"1,383",67940893
+69110665,69110665,0,Seems h2o cluster version is updated on CRAN version now. Simply reinstalling from CRAN solved the issue.,2021-09-08T23:28:36,Matthew Son,https://stackoverflow.com/users/10484383/matthew-son,"1,385",67940893
 67830165,67830165,2,"I think I was able to solve it. After some monitoring with the htop command I think the issue was actually a memory one. I restarted h2o limiting the memory to 1GB and 2 threads (maybe this is not strictly necessary) and I was able to run everything ok, as it seems.
 
 
@@ -3888,12 +3893,12 @@ h2o.xgboost.available()
 
 But if you are on Windows xgboost within h2o is not available. See 
 the limitations
- on help pages of h2o for xgboost.",2020-12-22T12:53:44,phiver,https://stackoverflow.com/users/4985176/phiver,23.5k,65408098
+ on help pages of h2o for xgboost.",2020-12-22T12:53:44,phiver,https://stackoverflow.com/users/4985176/phiver,23.6k,65408098
 65391232,65391232,1,"H2O may not understand that this path is on the DBFS.  You may try to specify path 
 /dbfs/FileStore/tables/iris.csv
  - in this case it will be read as ""local file"", or try to specify the full path with schema, like 
 dbfs:/FileStore/tables/iris.csv
- - but this may require DBFS-specific jars for H2O.",2020-12-21T10:37:39,Alex Ott,https://stackoverflow.com/users/18627/alex-ott,86.7k,65384846
+ - but this may require DBFS-specific jars for H2O.",2020-12-21T10:37:39,Alex Ott,https://stackoverflow.com/users/18627/alex-ott,86.8k,65384846
 65242857,65242857,0,"You can call the model metrics by calling their respective methods. E.g. 
 model1.mse()
 , 
@@ -5295,7 +5300,7 @@ Error Output:
    Error: Could not find or load main class sys.ai.h2o.debug.allowJavaVersions
    Caused by: java.lang.ClassNotFoundException: sys.ai.h2o.debug.allowJavaVersions 
 Error in h2o.init(jvm_custom_args = c(""sys.ai.h2o.debug.allowJavaVersions"",  : 
-  H2O failed to start, stopping execution.",2020-09-12T16:09:18,dnlbrky,https://stackoverflow.com/users/1344789/dnlbrky,"9,775",62377746
+  H2O failed to start, stopping execution.",2020-09-12T16:09:18,dnlbrky,https://stackoverflow.com/users/1344789/dnlbrky,"9,785",62377746
 70011697,70011697,0,"This is Related and has been answered here: 
 https://stackoverflow.com/a/68370871/17441922
 
@@ -6938,7 +6943,7 @@ lambda     error
 Which can be plotted, etc...
 
 
-  ggplot() + geom_line(data = tbl[lambda < 0.00001], aes(x = lambda, y = error))",2020-01-27T17:45:01,James Hirschorn,https://stackoverflow.com/users/1349673/james-hirschorn,"7,876",59833263
+  ggplot() + geom_line(data = tbl[lambda < 0.00001], aes(x = lambda, y = error))",2020-01-27T17:45:01,James Hirschorn,https://stackoverflow.com/users/1349673/james-hirschorn,"7,886",59833263
 59813317,59813317,4,"According to H2O documentation there is no 
 as_dataframe
  method: 
@@ -7724,7 +7729,7 @@ h2o
 factor
  or 
 character
-.",2019-10-29T21:17:49,Axeman,https://stackoverflow.com/users/4341440/axeman,34.7k,58615510
+.",2019-10-29T21:17:49,Axeman,https://stackoverflow.com/users/4341440/axeman,34.8k,58615510
 58583275,58583275,2,"I guess you are facing this error because:-
 
 
@@ -8237,7 +8242,7 @@ For JAVA, i tried taking reference of the below issue fix and the code, but was 
 https://github.com/h2oai/h2o-3/pull/3642",2019-09-03T20:08:37,curios,https://stackoverflow.com/users/12001172/curios,11,57732980
 57856568,57856568,0,"I believe if you use these parameters for 'performance' 
 valid=TRUE, xval=FALSE
- and ignore the newdata parameter you will get what you are after.",2019-09-09T14:57:32,runningbirds,https://stackoverflow.com/users/3788557/runningbirds,"6,555",57704535
+ and ignore the newdata parameter you will get what you are after.",2019-09-09T14:57:32,runningbirds,https://stackoverflow.com/users/3788557/runningbirds,"6,565",57704535
 57669379,57669379,0,"extra_classpath
  is for use when starting H2O 
 from Python
@@ -9490,7 +9495,7 @@ https://github.com/h2oai/h2o-3/blob/master/h2o-genmodel/src/main/java/hex/genmod
 56346643,56346643,0,"I resolved the issue by adding the following maven coordinates to the packages option in spark-submit
 
 
---packages ai.h2o:h2o-jetty-8:3.24.0.3",2019-05-28T16:35:43,user238607,https://stackoverflow.com/users/3238085/user238607,"2,418",56346607
+--packages ai.h2o:h2o-jetty-8:3.24.0.3",2019-05-28T16:35:43,user238607,https://stackoverflow.com/users/3238085/user238607,"2,428",56346607
 56358795,56358795,0,"If 
 validation_frame
  is provided and 
@@ -9986,7 +9991,7 @@ mtcars.hex
 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2             0              0
 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1             0              0
 
-[32 rows x 13 columns]",2019-04-14T08:26:45,phiver,https://stackoverflow.com/users/4985176/phiver,23.5k,55672999
+[32 rows x 13 columns]",2019-04-14T08:26:45,phiver,https://stackoverflow.com/users/4985176/phiver,23.6k,55672999
 55623852,55623852,0,"Ok i solved this embarrassingly quickly after submitting this question. Still it's worth keeping for others with similar problems.
 
 
@@ -10005,7 +10010,7 @@ h2o.init()
 dfx <- as.h2o(dfx)
 
 
-H <- h2o.deeplearning(x = 1, y = 2,training_frame=dfx,weights_column = ""w"", hidden=c(5,4))",2019-04-11T02:34:02,Ingolifs,https://stackoverflow.com/users/8968617/ingolifs,301,55623803
+H <- h2o.deeplearning(x = 1, y = 2,training_frame=dfx,weights_column = ""w"", hidden=c(5,4))",2019-04-11T02:34:02,Ingolifs,https://stackoverflow.com/users/8968617/ingolifs,311,55623803
 55621782,55621782,1,"An alternative is to use an H2O 
 MOJO
  model (instead of a 
@@ -11507,7 +11512,7 @@ h2o.importFolder
 
 Or save the file as csv / txt before you transform it with 
 as.h2o
- and load it directly into h2o with one of the above functions.",2019-01-29T12:29:51,phiver,https://stackoverflow.com/users/4985176/phiver,23.5k,54417507
+ and load it directly into h2o with one of the above functions.",2019-01-29T12:29:51,phiver,https://stackoverflow.com/users/4985176/phiver,23.6k,54417507
 54459577,54459577,4,"as.h2o(d)
  works like this (even when client and server are the same machine):
 
@@ -18005,7 +18010,7 @@ data.hex[h2o.day(data.hex$date_used_dt) == 5, ]
 
 Or any combination of month and year like 
 data.hex[h2o.year(data.hex$date_used_dt) == 2017 & h2o.month(data.hex$date_used_dt) == 12, ]
-  if you just want december 2017.",2018-07-07T08:45:59,phiver,https://stackoverflow.com/users/4985176/phiver,23.5k,51216030
+  if you just want december 2017.",2018-07-07T08:45:59,phiver,https://stackoverflow.com/users/4985176/phiver,23.6k,51216030
 51169475,51169475,0,"You dont connect two docker containers though ip addresses. Instead, you want to use docker internal network aliases: 
 
 
@@ -18319,7 +18324,7 @@ thresholds_and_metric_scores
 
 
 perf['metrics']['thresholds_and_metric_scores']",2018-06-16T18:15:01,Erin LeDell,https://stackoverflow.com/users/5451344/erin-ledell,"8,809",50883728
-51006671,51006671,0,used dir() to find the various functions I needed.,2018-06-24T03:14:24,runningbirds,https://stackoverflow.com/users/3788557/runningbirds,"6,555",50883728
+51006671,51006671,0,used dir() to find the various functions I needed.,2018-06-24T03:14:24,runningbirds,https://stackoverflow.com/users/3788557/runningbirds,"6,565",50883728
 50854458,50854458,1,"There is only label-encoding, 
 LabelEncoder
 , together with OHE available in sklearn. However, it does not provide the functionality that you want, as categories are simply encoded as integers and this is meaningful for ordinal categories only, I believe. I believe, in sklearn it is left up to models to implement such enum category treatment (because there are many models in sklearn and most of them would not be able to benefit from such encoding). 
@@ -19524,7 +19529,7 @@ However if you look at the following documentation, there are options for securi
 http://docs.h2o.ai/h2o/latest-stable/h2o-docs/security.html",2018-04-20T11:15:23,TomKraljevic,https://stackoverflow.com/users/2085461/tomkraljevic,"3,671",49932493
 49921563,49921563,1,"It looks like guys from H2O didn't hear about logging module: 
 https://github.com/h2oai/h2o-3/blob/master/h2o-py/h2o/model/metrics_base.py#L669
-... They are happily print messages instead of use proper logging. It's sad.",2018-04-19T12:49:40,omikron,https://stackoverflow.com/users/719457/omikron,"2,805",49920880
+... They are happily print messages instead of use proper logging. It's sad.",2018-04-19T12:49:40,omikron,https://stackoverflow.com/users/719457/omikron,"2,815",49920880
 49926150,49926150,0,"According to the 
 H2O Glossary
 , the format for 
@@ -21037,7 +21042,7 @@ Python directory
 
 
 cd h2o-py
-../gradlew build",2018-03-09T21:27:17,phd,https://stackoverflow.com/users/7976758/phd,92.7k,49199204
+../gradlew build",2018-03-09T21:27:17,phd,https://stackoverflow.com/users/7976758/phd,92.8k,49199204
 52874993,52874993,0,"I have this working now. I think the trick is to make sure you do NOT have h2o installed on your base python. I did the following:
 
 
@@ -29705,7 +29710,7 @@ build.gradle
         dexOptions {
            javaMaxHeapSize = ""4g""
         }
-   }",2016-11-23T18:09:56,ali ozkara,https://stackoverflow.com/users/4362167/ali-ozkara,"5,589",45217753
+   }",2016-11-23T18:09:56,ali ozkara,https://stackoverflow.com/users/4362167/ali-ozkara,"5,599",45217753
 27716421,27716421,14,"For me, the following steps worked:
 
 
@@ -36880,7 +36885,7 @@ issue 3434
 
 What you can do in the meantime is recode the date column:
 
-as.Date(structure(returned.dataset$week_of_date/1000, class = c(""POSIXct"", ""POSIXt"")))",2016-10-27T11:18:44,phiver,https://stackoverflow.com/users/4985176/phiver,23.5k,40275946
+as.Date(structure(returned.dataset$week_of_date/1000, class = c(""POSIXct"", ""POSIXt"")))",2016-10-27T11:18:44,phiver,https://stackoverflow.com/users/4985176/phiver,23.6k,40275946
 40286029,40286029,0,"Refer to the response by phiver for a more detailed answer, but another simple workaround would be to convert the date columns to character before passing to H2O (if you do not need the column in a date format in H2O).  Here is a simple example.
 
 
@@ -38212,7 +38217,7 @@ Kaggle. Search the scripts / kernels for h2o.
 
 
 
-As for your third question, read their ""Why H2O pages"".",2016-08-22T07:40:46,phiver,https://stackoverflow.com/users/4985176/phiver,23.5k,39071874
+As for your third question, read their ""Why H2O pages"".",2016-08-22T07:40:46,phiver,https://stackoverflow.com/users/4985176/phiver,23.6k,39071874
 39090678,39090678,1,"To answer your question about how H2O works it is little hard to put together here. however in nutshell, H2O is an open source enterprise ready machine intelligence engine with accessibility from popular machine learning languages i.e. R, Python as well as programming languages Java and Scala. Enterprise ready means users can distribute execution to multiple machines depending on extremely large size of data. The Java based core engine has builtin multiple algorithms implementation and any language interface goes through interpreter to H2O core engine which could be a distributed cluster to build models and score results. There is a lot in between so I would suggest visiting link below to learn more about H2O architecture and execution from various supported language:
 
 
@@ -38248,14 +38253,14 @@ What are the pros and cons between SparkMLlib and H2O machine library
 What are the strengths of h2o compare to other ML library
 
 
-How to apply ML algorithm to R and Spark data frame etc.",2017-01-03T08:57:04,Saurabh Chauhan,https://stackoverflow.com/users/5835763/saurabh-chauhan,"3,191",39071874
+How to apply ML algorithm to R and Spark data frame etc.",2017-01-03T08:57:04,Saurabh Chauhan,https://stackoverflow.com/users/5835763/saurabh-chauhan,"3,201",39071874
 39046859,39046859,2,"I ran into the same issue. Trying to explain the predicted value versus the p1 value. 
 
 
 H2O uses maximum F1 score by default for classification. With the p1 column you can specify your own threshold. 
 
 
-It is not very obvious from reading the documentation. But you can find it in the R booklet. Strangely enough not in de DRF, GBM, or Deep Learning booklets.",2016-08-19T19:59:52,phiver,https://stackoverflow.com/users/4985176/phiver,23.5k,39046032
+It is not very obvious from reading the documentation. But you can find it in the R booklet. Strangely enough not in de DRF, GBM, or Deep Learning booklets.",2016-08-19T19:59:52,phiver,https://stackoverflow.com/users/4985176/phiver,23.6k,39046032
 38980384,38980384,1,"Have you created the ~/.pgpass file, where the file belongs to the user that is running Steam?
 
 
@@ -41290,7 +41295,7 @@ Cliff",2015-12-17T18:41:58,Cliff Click,https://stackoverflow.com/users/5687938/c
 
 See also 
 logged issue
- with H2O",2015-12-03T09:05:07,phiver,https://stackoverflow.com/users/4985176/phiver,23.5k,34060916
+ with H2O",2015-12-03T09:05:07,phiver,https://stackoverflow.com/users/4985176/phiver,23.6k,34060916
 34054600,34054600,3,"Getting the Mean Squared Error
 
 
