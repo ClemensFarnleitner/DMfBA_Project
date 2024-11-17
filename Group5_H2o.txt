@@ -1,0 +1,9 @@
+Project Submission for Group 5 H2o AutoML
+
+Plieschnegger Christof
+Farnleitner Clemens
+Baumgartner René
+Benischke Konstantin
+Savković Pavle
+
+GitHub Repo Link: https://github.com/ClemensFarnleitner/DMfBA_Project
